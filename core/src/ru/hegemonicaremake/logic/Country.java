@@ -14,13 +14,16 @@ public class Country {
 
     //regional economics
     public float farmFoodProduction;
+    public float startFoodProduction;
     public float citizenEatingFood;
 
     public float mineProduction;
     public float workshopProduction;
+    public float citizenProduction;
 
     public float libraryScienceProduction;
     public float universityScienceProduction;
+    public float citizenScienceProduction;
 
     public Country(int id) {
         this.id = id;
@@ -33,19 +36,34 @@ public class Country {
         buildings[Building.ID.WORKSHOP] = new Building(Building.ID.WORKSHOP);
         buildings[Building.ID.CITY] = new Building(Building.ID.CITY);
 
+        technologies = new Technology[6];
+        technologies[Technology.ID.ENGINEERING] = new Technology(Technology.ID.ENGINEERING, this);
+        technologies[Technology.ID.PAPER] = new Technology(Technology.ID.PAPER, this);
+        technologies[Technology.ID.SIMPLYCHEMISTRY] = new Technology(Technology.ID.SIMPLYCHEMISTRY, this);
+        technologies[Technology.ID.MACHINERY] = new Technology(Technology.ID.MACHINERY, this);
+        technologies[Technology.ID.APPRENTICESHIP] = new Technology(Technology.ID.APPRENTICESHIP, this);
+        technologies[Technology.ID.EDUCATION] = new Technology(Technology.ID.EDUCATION, this);
+
         farmFoodProduction = Building.STARTFOODPRODUCTION.FARM;
+        startFoodProduction = Building.STARTFOODPRODUCTION.STARTPRODUCTION;
         citizenEatingFood = OTHERVALUES.STARTEATINGFOODCITIZEN;
         mineProduction = Building.STARTPRODUCTION.MINE;
         workshopProduction = Building.STARTPRODUCTION.WORKSHOP;
+        citizenProduction = Building.STARTPRODUCTION.CITIZEN;
         libraryScienceProduction = Building.STARTSCIENCEPRODUCTION.LIBRARY;
         universityScienceProduction = Building.STARTSCIENCEPRODUCTION.UNIVERSITY;
+        citizenScienceProduction = Building.STARTSCIENCEPRODUCTION.CITIZEN;
     }
 
-    public class NAME {
+    public void onTurn() {
 
     }
 
-    public class OTHERVALUES {
+    public static class NAME {
+
+    }
+
+    public static class OTHERVALUES {
         public final static float STARTEATINGFOODCITIZEN = 2;
     }
 }

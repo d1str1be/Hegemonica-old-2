@@ -44,7 +44,7 @@ public class Technology {
 
     }
 
-    public class ID {
+    public static class ID {
         public final static int ENGINEERING = 0;
         public final static int PAPER = 1;
         public final static int SIMPLYCHEMISTRY = 2;
@@ -53,7 +53,7 @@ public class Technology {
         public final static int EDUCATION = 5;
     }
 
-    public class COST {
+    public static class COST {
         public final static float ENGINEERING = 15;
         public final static float PAPER = 15;
         public final static float SIMPLYCHEMISTRY = 15;

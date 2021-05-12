@@ -9,28 +9,43 @@ public class Building extends ProvinceProject{
     public int quantity;
     public int limit;
 
+    public boolean isNeedCity;
+
     //province constructor
     public Building(int id, Province province) {
         super(id);
+        quantity = 0;
         this.province = province;
         switch (id) {
             case ID.FARM:
                 cost = STARTCOST.FARM;
+                limit = 9999;
+                isNeedCity = false;
                 break;
             case ID.MINE:
                 cost = STARTCOST.MINE;
+                limit = 9999;
+                isNeedCity = false;
                 break;
             case ID.LIBRARY:
                 cost = STARTCOST.LIBRARY;
+                limit = 1;
+                isNeedCity = true;
                 break;
             case ID.UNIVERSITY:
                 cost = STARTCOST.UNIVERSITY;
+                limit = 1;
+                isNeedCity = true;
                 break;
             case ID.WORKSHOP:
                 cost = STARTCOST.WORKSHOP;
+                limit = 1;
+                isNeedCity = true;
                 break;
             case ID.CITY:
                 cost = STARTCOST.CITY;
+                limit = 1;
+                isNeedCity = false;
                 break;
         }
     }
@@ -61,19 +76,28 @@ public class Building extends ProvinceProject{
     }
 
     public void build() {
-
+        quantity++;
+        if (id != ID.CITY) province.numberOfBuildings++;
     }
 
-    public class ID {
-        public final static int FARM = 1;
-        public final static int MINE = 2;
-        public final static int LIBRARY = 3;
-        public final static int UNIVERSITY = 4;
-        public final static int WORKSHOP = 5;
-        public final static int CITY = 6;
+    public boolean isAvailable() {
+        if (quantity < limit && isUnlocked && province.numberOfBuildings < province.population) {
+            if (isNeedCity && province.isCity) return true;
+            return !isNeedCity;
+        }
+        return false;
     }
 
-    public class STARTCOST {
+    public static class ID {
+        public final static int FARM = 0;
+        public final static int MINE = 1;
+        public final static int LIBRARY = 2;
+        public final static int UNIVERSITY = 3;
+        public final static int WORKSHOP = 4;
+        public final static int CITY = 5;
+    }
+
+    public static class STARTCOST {
         public final static float FARM = 8;
         public final static float MINE = 8;
         public final static float LIBRARY = 15;
@@ -82,17 +106,18 @@ public class Building extends ProvinceProject{
         public final static float CITY = 75;
     }
 
-    public class STARTPRODUCTION {
+    public static class STARTPRODUCTION {
         public final static float MINE = 2;
         public final static float WORKSHOP = 5;
         public final static float CITIZEN = 1;
     }
 
-    public class STARTFOODPRODUCTION {
+    public static class STARTFOODPRODUCTION {
         public final static float FARM = 2;
+        public final static float STARTPRODUCTION = 4;
     }
 
-    public class STARTSCIENCEPRODUCTION {
+    public static class STARTSCIENCEPRODUCTION {
         public final static float LIBRARY = 4;
         public final static float UNIVERSITY = 10;
         public final static float CITIZEN = 1;

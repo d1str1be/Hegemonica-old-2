@@ -1,5 +1,7 @@
 package ru.hegemonicaremake.logic;
 
+import java.util.ArrayList;
+
 import ru.hegemonicaremake.logic.provinceProject.Building;
 import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
 import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
@@ -8,9 +10,12 @@ public class Province {
 
     public int id;
     public Country owner;
+    public boolean isCity;
 
     public Building[] buildings;
     public WarUnit[] units;
+
+    public ArrayList<Province> adjacentProvinces;
 
     //economics
     public int population;
@@ -24,6 +29,7 @@ public class Province {
     public float eatingFood;
 
     public ProvinceProject projectInProcess;
+    public int numberOfBuildings;
 
     public Province(int id) {
         this.id = id;
@@ -34,6 +40,7 @@ public class Province {
         buildings[Building.ID.UNIVERSITY] = new Building(Building.ID.UNIVERSITY, this);
         buildings[Building.ID.WORKSHOP] = new Building(Building.ID.WORKSHOP, this);
         buildings[Building.ID.CITY] = new Building(Building.ID.CITY, this);
+        numberOfBuildings = 0;
 
         foodPoints = 0;
         productionPoints = 0;
