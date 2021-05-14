@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.logic;
 
 import ru.hegemonicaremake.logic.provinceProject.Building;
+import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
 import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
 
 public class Country {
@@ -9,8 +10,7 @@ public class Country {
     public String name;
 
     public Technology[] technologies;
-    public Building[] buildings;
-    public WarUnit[] units;
+    public ProvinceProject[] provinceProjects;
 
     //regional economics
     public float farmFoodProduction;
@@ -25,16 +25,23 @@ public class Country {
     public float universityScienceProduction;
     public float citizenScienceProduction;
 
+    public LogicMain logicMain;
+
     public Country(int id) {
         this.id = id;
 
-        buildings = new Building[6];
-        buildings[Building.ID.FARM] = new Building(Building.ID.FARM);
-        buildings[Building.ID.MINE] = new Building(Building.ID.MINE);
-        buildings[Building.ID.LIBRARY] = new Building(Building.ID.LIBRARY);
-        buildings[Building.ID.UNIVERSITY] = new Building(Building.ID.UNIVERSITY);
-        buildings[Building.ID.WORKSHOP] = new Building(Building.ID.WORKSHOP);
-        buildings[Building.ID.CITY] = new Building(Building.ID.CITY);
+        provinceProjects = new ProvinceProject[11];
+        provinceProjects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
+        provinceProjects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
+        provinceProjects[ProvinceProject.ID.LIBRARY] = new ProvinceProject(ProvinceProject.ID.LIBRARY);
+        provinceProjects[ProvinceProject.ID.UNIVERSITY] = new ProvinceProject(ProvinceProject.ID.UNIVERSITY);
+        provinceProjects[ProvinceProject.ID.WORKSHOP] = new ProvinceProject(ProvinceProject.ID.WORKSHOP);
+        provinceProjects[ProvinceProject.ID.CITY] = new ProvinceProject(ProvinceProject.ID.CITY);
+        provinceProjects[ProvinceProject.ID.WARRIOR] = new ProvinceProject(ProvinceProject.ID.WARRIOR);
+        provinceProjects[ProvinceProject.ID.ARCHER] = new ProvinceProject(ProvinceProject.ID.ARCHER);
+        provinceProjects[ProvinceProject.ID.SHIELDMAN] = new ProvinceProject(ProvinceProject.ID.SHIELDMAN);
+        provinceProjects[ProvinceProject.ID.SWORDSMAN] = new ProvinceProject(ProvinceProject.ID.SWORDSMAN);
+        provinceProjects[ProvinceProject.ID.CROSSBOWS] = new ProvinceProject(ProvinceProject.ID.CROSSBOWS);
 
         technologies = new Technology[6];
         technologies[Technology.ID.ENGINEERING] = new Technology(Technology.ID.ENGINEERING, this);

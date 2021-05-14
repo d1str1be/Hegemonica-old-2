@@ -10,7 +10,6 @@ public class Province {
 
     public int id;
     public Country owner;
-    public boolean isCity;
 
     public Building[] buildings;
     public WarUnit[] units;

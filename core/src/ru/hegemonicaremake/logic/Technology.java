@@ -1,5 +1,7 @@
 package ru.hegemonicaremake.logic;
 
+import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
+
 public class Technology {
 
     public int id;
@@ -41,7 +43,34 @@ public class Technology {
     }
 
     public void research() {
-
+        isResearched = true;
+        switch (id) {
+            case ID.ENGINEERING:
+                owner.mineProduction += 1;
+                owner.provinceProjects[ProvinceProject.ID.ARCHER].unlock();
+                owner.provinceProjects[ProvinceProject.ID.SHIELDMAN].unlock();
+                break;
+            case ID.PAPER:
+                owner.citizenScienceProduction += 0.5;
+                owner.provinceProjects[ProvinceProject.ID.LIBRARY].unlock();
+                break;
+            case ID.SIMPLYCHEMISTRY:
+                owner.farmFoodProduction += 1;
+                break;
+            case ID.MACHINERY:
+                owner.citizenProduction += 0.25;
+                owner.provinceProjects[ProvinceProject.ID.CROSSBOWS].unlock();
+                break;
+            case ID.APPRENTICESHIP:
+                owner.mineProduction += 1;
+                owner.provinceProjects[ProvinceProject.ID.SWORDSMAN].unlock();
+                break;
+            case ID.EDUCATION:
+                owner.citizenScienceProduction += 1;
+                owner.libraryScienceProduction += 2;
+                owner.provinceProjects[ProvinceProject.ID.UNIVERSITY].unlock();
+                break;
+        }
     }
 
     public static class ID {
