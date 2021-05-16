@@ -11,8 +11,6 @@ public class Province {
     public int id;
     public Country owner;
 
-    public ArrayList<Province> adjacentProvinces;
-
     //units
     public WarUnit unitThere;
 
@@ -32,6 +30,17 @@ public class Province {
 
     public ProvinceProject projectInProcess;
     public int numberOfBuildings;
+
+    //neighbors
+    public Province[] adjacentProvinces;
+    public Province northernProvince;
+    public Province easternProvince;
+    public Province southernProvince;
+    public Province westernProvince;
+    public Province northWesternProvince;
+    public Province northEasternProvince;
+    public Province southEasternProvince;
+    public Province southWesternProvince;
 
     public Province(int id) {
         this.id = id;
@@ -65,10 +74,22 @@ public class Province {
     }
 
     public void onTurn() {
+        foodIncome = buildings[ProvinceProject.ID.FARM].quantity * owner.farmFoodProduction + owner.startFoodProduction;
+        productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;
+        scienceIncome = buildings[ProvinceProject.ID.LIBRARY].quantity * owner.libraryScienceProduction + buildings[ProvinceProject.ID.UNIVERSITY].quantity * owner.universityScienceProduction + population * owner.citizenScienceProduction;
+        eatingFood = population * owner.citizenEatingFood;
 
+        foodPoints += foodIncome - eatingFood;
+        productionPoints += productionIncome;
+        if (foodPoints >= neededFood) {
+            grow();
+        } else if (foodPoints < 0) {
+            decrease();
+        }
     }
 
     public void grow() {
+        foodPoints -= neededFood;
         population++;
         eatingFood = population * owner.citizenEatingFood;
         neededFood += 2;
@@ -78,15 +99,23 @@ public class Province {
         population--;
         eatingFood = population * owner.citizenEatingFood;
         neededFood -= 2;
+        foodPoints = neededFood - 1;
     }
 
     public void setOwner(Country newOwner) {
-
+        owner = newOwner;
+        for (int i = 0; i < 11; i++) {
+            projects[i].isUnlocked = newOwner.provinceProjects[i].isUnlocked;
+        }
     }
 
     public void chooseProject(ProvinceProject provinceProject) {
         projectInProcess = provinceProject;
         neededProduction = provinceProject.cost;
+    }
+
+    public boolean isTurnAvailable() {
+        return !(projectInProcess == null);
     }
 
 }

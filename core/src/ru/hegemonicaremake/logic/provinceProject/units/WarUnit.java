@@ -9,7 +9,6 @@ public class WarUnit extends ProvinceProject {
     public int unitId;
     public Province province;
     public Country owner;
-    public boolean isDestroyed;
 
     //battle
     public float health;
@@ -19,6 +18,7 @@ public class WarUnit extends ProvinceProject {
     public float attackStrength;
     public float defenseStrength;
     public float movementPoints;
+    public boolean isRanged;
 
     //create constructor
     public WarUnit(int id, Province province) {
@@ -33,32 +33,36 @@ public class WarUnit extends ProvinceProject {
                 startAttackStrength = ATTACKSTRENGTH.WARRIOR;
                 startDefenseStrength = DEFENSESTRENGTH.WARRIOR;
                 startMovementPoints = MOVEMENTPOINTS.WARRIOR;
+                isRanged = false;
                 break;
             case ID.ARCHER:
                 startAttackStrength = ATTACKSTRENGTH.ARCHER;
                 startDefenseStrength = DEFENSESTRENGTH.ARCHER;
                 startMovementPoints = MOVEMENTPOINTS.ARCHER;
+                isRanged = true;
                 break;
             case ID.SHIELDMAN:
                 startAttackStrength = ATTACKSTRENGTH.SHIELDMAN;
                 startDefenseStrength = DEFENSESTRENGTH.SHIELDMAN;
                 startMovementPoints = MOVEMENTPOINTS.SHIELDMAN;
+                isRanged = false;
                 break;
             case ID.CROSSBOWS:
                 startAttackStrength = ATTACKSTRENGTH.CROSSBOWS;
                 startDefenseStrength = DEFENSESTRENGTH.CROSSBOWS;
                 startMovementPoints = MOVEMENTPOINTS.CROSSBOWS;
+                isRanged = true;
                 break;
             case ID.SWORDSMAN:
                 startAttackStrength = ATTACKSTRENGTH.SWORDSMAN;
                 startDefenseStrength = DEFENSESTRENGTH.SWORDSMAN;
                 startMovementPoints = MOVEMENTPOINTS.SWORDSMAN;
+                isRanged = false;
                 break;
         }
         attackStrength = startAttackStrength;
         defenseStrength = startDefenseStrength;
         movementPoints = startMovementPoints;
-        isDestroyed = false;
     }
 
     public void setAttackStrength() {
@@ -67,28 +71,6 @@ public class WarUnit extends ProvinceProject {
 
     public void setDefenseStrength() {
         defenseStrength = startDefenseStrength - 10 * (health / 100);
-    }
-
-    public void move(Province province) {
-        if (province.unitThere == null) {
-            this.province.unitThere = null;
-            province.unitThere = this;
-        } else {
-            attack(province);
-        }
-    }
-
-    public void attack(Province province) {
-
-    }
-
-    public void defense(WarUnit unit) {
-
-    }
-
-    public void destroy() {
-        province.unitThere = null;
-        this.isDestroyed = true;
     }
 
     public class ATTACKSTRENGTH {

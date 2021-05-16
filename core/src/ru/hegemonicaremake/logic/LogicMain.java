@@ -13,6 +13,10 @@ public class LogicMain {
     public ArrayList<WarUnit> units;
     public int unitIdCounter;
 
+    //map
+    public int mapHeight;
+    public int mapWidth;
+
     public LogicMain() {
         turn = 1;
         unitIdCounter = 0;
