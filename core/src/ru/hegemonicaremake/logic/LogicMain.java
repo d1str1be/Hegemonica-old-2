@@ -10,11 +10,12 @@ public class LogicMain {
     public int turn;
 
     //units
-    ArrayList<WarUnit> units;
+    public ArrayList<WarUnit> units;
     public int unitIdCounter;
 
     public LogicMain() {
         turn = 1;
         unitIdCounter = 0;
+        units = new ArrayList<WarUnit>();
     }
 }

@@ -1,13 +1,18 @@
 package ru.hegemonicaremake.logic.provinceProject.units;
 
+import ru.hegemonicaremake.logic.Country;
 import ru.hegemonicaremake.logic.Province;
 import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
 
 public class WarUnit extends ProvinceProject {
 
     public int unitId;
+    public Province province;
+    public Country owner;
+    public boolean isDestroyed;
 
     //battle
+    public float health;
     public float startAttackStrength;
     public float startDefenseStrength;
     public float startMovementPoints;
@@ -18,7 +23,11 @@ public class WarUnit extends ProvinceProject {
     //create constructor
     public WarUnit(int id, Province province) {
         super(id);
-        unitId = province.owner.logicMain.unitIdCounter;
+        this.province = province;
+        this.owner = province.owner;
+        unitId = owner.logicMain.unitIdCounter;
+        owner.logicMain.unitIdCounter++;
+        province.unitThere = this;
         switch (id) {
             case ID.WARRIOR:
                 startAttackStrength = ATTACKSTRENGTH.WARRIOR;
@@ -46,6 +55,40 @@ public class WarUnit extends ProvinceProject {
                 startMovementPoints = MOVEMENTPOINTS.SWORDSMAN;
                 break;
         }
+        attackStrength = startAttackStrength;
+        defenseStrength = startDefenseStrength;
+        movementPoints = startMovementPoints;
+        isDestroyed = false;
+    }
+
+    public void setAttackStrength() {
+        attackStrength = startAttackStrength - 10 * (health / 100);
+    }
+
+    public void setDefenseStrength() {
+        defenseStrength = startDefenseStrength - 10 * (health / 100);
+    }
+
+    public void move(Province province) {
+        if (province.unitThere == null) {
+            this.province.unitThere = null;
+            province.unitThere = this;
+        } else {
+            attack(province);
+        }
+    }
+
+    public void attack(Province province) {
+
+    }
+
+    public void defense(WarUnit unit) {
+
+    }
+
+    public void destroy() {
+        province.unitThere = null;
+        this.isDestroyed = true;
     }
 
     public class ATTACKSTRENGTH {
