@@ -16,6 +16,7 @@ public class LogicMain {
     //map
     public int mapHeight;
     public int mapWidth;
+    public float provinceSize;
 
     public LogicMain() {
         turn = 1;
