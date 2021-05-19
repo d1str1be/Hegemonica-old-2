@@ -66,6 +66,10 @@ public class Country {
 
     }
 
+    public void chooseTechnology(Technology technology) {
+        
+    }
+
     public static class NAME {
 
     }
