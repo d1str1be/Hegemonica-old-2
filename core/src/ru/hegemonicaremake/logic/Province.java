@@ -82,10 +82,13 @@ public class Province {
     }
 
     public void onTurn() {
+        UnitActions.onTurn(unitThere);
+
         foodIncome = buildings[ProvinceProject.ID.FARM].quantity * owner.farmFoodProduction + owner.startFoodProduction;
         productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;
         scienceIncome = buildings[ProvinceProject.ID.LIBRARY].quantity * owner.libraryScienceProduction + buildings[ProvinceProject.ID.UNIVERSITY].quantity * owner.universityScienceProduction + population * owner.citizenScienceProduction;
         eatingFood = population * owner.citizenEatingFood;
+        owner.scienceIncome += scienceIncome;
 
         foodPoints += foodIncome - eatingFood;
         productionPoints += productionIncome;
@@ -165,6 +168,15 @@ public class Province {
         adjacentProvinces[5] = southernProvince;
         adjacentProvinces[6] = southWesternProvince;
         adjacentProvinces[7] = westernProvince;
+    }
+
+    public boolean isNeighbor(Province province) {
+        for (Province province1 : adjacentProvinces) {
+            if (province.id == province1.id) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

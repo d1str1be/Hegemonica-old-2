@@ -27,6 +27,10 @@ public class Country {
 
     public LogicMain logicMain;
 
+    public Technology technologyInProcess;
+    public float sciencePoints;
+    public float scienceIncome;
+
     public Country(int id) {
         this.id = id;
 
@@ -60,14 +64,34 @@ public class Country {
         libraryScienceProduction = Building.STARTSCIENCEPRODUCTION.LIBRARY;
         universityScienceProduction = Building.STARTSCIENCEPRODUCTION.UNIVERSITY;
         citizenScienceProduction = Building.STARTSCIENCEPRODUCTION.CITIZEN;
+
+        technologyInProcess = null;
+        sciencePoints = 0;
     }
 
     public void onTurn() {
-
+        for (Province province : logicMain.provinces) {
+            if (province.owner.id == id) {
+                province.onTurn();
+            }
+        }
+        if (sciencePoints >= technologyInProcess.cost) {
+            technologies[technologyInProcess.id].research();
+        }
     }
 
     public void chooseTechnology(Technology technology) {
-        
+        technologyInProcess = technology;
+    }
+
+    public boolean isTurnAvailable() {
+        for (Province province : logicMain.provinces) {
+            if (province.owner.id == id) {
+                if (!province.isTurnAvailable()) return false;
+            }
+        }
+        if (technologyInProcess == null) return false;
+        return true;
     }
 
     public static class NAME {
