@@ -33,6 +33,23 @@ public class Country {
 
     public Country(int id) {
         this.id = id;
+        switch (id) {
+            case ID.NOTHING:
+                name = "Nothing";
+                break;
+            case ID.BLUE:
+                name = "Blue";
+                break;
+            case ID.GREEN:
+                name = "Green";
+                break;
+            case ID.RED:
+                name = "Red";
+                break;
+            case ID.ORANGE:
+                name = "Orange";
+                break;
+        }
 
         provinceProjects = new ProvinceProject[11];
         provinceProjects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
@@ -94,8 +111,12 @@ public class Country {
         return true;
     }
 
-    public static class NAME {
-
+    public static class ID {
+        public final static int NOTHING = 0;
+        public final static int BLUE = 1;
+        public final static int GREEN = 2;
+        public final static int RED = 3;
+        public final static int ORANGE = 4;
     }
 
     public static class OTHERVALUES {
