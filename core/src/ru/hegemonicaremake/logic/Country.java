@@ -27,8 +27,29 @@ public class Country {
 
     public LogicMain logicMain;
 
+    public Technology technologyInProcess;
+    public float sciencePoints;
+    public float scienceIncome;
+
     public Country(int id) {
         this.id = id;
+        switch (id) {
+            case ID.NOTHING:
+                name = "Nothing";
+                break;
+            case ID.BLUE:
+                name = "Blue";
+                break;
+            case ID.GREEN:
+                name = "Green";
+                break;
+            case ID.RED:
+                name = "Red";
+                break;
+            case ID.ORANGE:
+                name = "Orange";
+                break;
+        }
 
         provinceProjects = new ProvinceProject[11];
         provinceProjects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
@@ -60,14 +81,42 @@ public class Country {
         libraryScienceProduction = Building.STARTSCIENCEPRODUCTION.LIBRARY;
         universityScienceProduction = Building.STARTSCIENCEPRODUCTION.UNIVERSITY;
         citizenScienceProduction = Building.STARTSCIENCEPRODUCTION.CITIZEN;
+
+        technologyInProcess = null;
+        sciencePoints = 0;
     }
 
     public void onTurn() {
-
+        for (Province province : logicMain.provinces) {
+            if (province.owner.id == id) {
+                province.onTurn();
+            }
+        }
+        if (sciencePoints >= technologyInProcess.cost) {
+            technologies[technologyInProcess.id].research();
+        }
     }
 
-    public static class NAME {
+    public void chooseTechnology(Technology technology) {
+        technologyInProcess = technology;
+    }
 
+    public boolean isTurnAvailable() {
+        for (Province province : logicMain.provinces) {
+            if (province.owner.id == id) {
+                if (!province.isTurnAvailable()) return false;
+            }
+        }
+        if (technologyInProcess == null) return false;
+        return true;
+    }
+
+    public static class ID {
+        public final static int NOTHING = 0;
+        public final static int BLUE = 1;
+        public final static int GREEN = 2;
+        public final static int RED = 3;
+        public final static int ORANGE = 4;
     }
 
     public static class OTHERVALUES {

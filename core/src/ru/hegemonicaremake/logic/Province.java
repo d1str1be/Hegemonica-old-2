@@ -9,6 +9,7 @@ import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
 public class Province {
 
     public int id;
+    public String name;
     public Country owner;
 
     //units
@@ -31,7 +32,7 @@ public class Province {
     public ProvinceProject projectInProcess;
     public int numberOfBuildings;
 
-    //neighbors
+    //neighbors and location
     public Province[] adjacentProvinces;
     public Province northernProvince;
     public Province easternProvince;
@@ -41,6 +42,9 @@ public class Province {
     public Province northEasternProvince;
     public Province southEasternProvince;
     public Province southWesternProvince;
+
+    public float x;
+    public float y;
 
     public Province(int id) {
         this.id = id;
@@ -73,11 +77,18 @@ public class Province {
         eatingFood = owner.citizenEatingFood;
     }
 
+    public void onFirstTurn() {
+        setNeighbors();
+    }
+
     public void onTurn() {
+        UnitActions.onTurn(unitThere);
+
         foodIncome = buildings[ProvinceProject.ID.FARM].quantity * owner.farmFoodProduction + owner.startFoodProduction;
         productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;
         scienceIncome = buildings[ProvinceProject.ID.LIBRARY].quantity * owner.libraryScienceProduction + buildings[ProvinceProject.ID.UNIVERSITY].quantity * owner.universityScienceProduction + population * owner.citizenScienceProduction;
         eatingFood = population * owner.citizenEatingFood;
+        owner.scienceIncome += scienceIncome;
 
         foodPoints += foodIncome - eatingFood;
         productionPoints += productionIncome;
@@ -85,6 +96,17 @@ public class Province {
             grow();
         } else if (foodPoints < 0) {
             decrease();
+        }
+        if (productionPoints >= neededProduction) {
+            switch (projectInProcess.typeId) {
+                case ProvinceProject.TYPEID.BUILDING:
+                    buildings[projectInProcess.id].build();
+                    break;
+                case ProvinceProject.TYPEID.UNIT:
+                    owner.logicMain.units.add(new WarUnit(projectInProcess.id, this));
+                    break;
+            }
+            projectInProcess = null;
         }
     }
 
@@ -116,6 +138,45 @@ public class Province {
 
     public boolean isTurnAvailable() {
         return !(projectInProcess == null);
+    }
+
+    public void setNeighbors() {
+        float a = owner.logicMain.provinceSize;
+        northWesternProvince = null;
+        northernProvince = null;
+        northEasternProvince = null;
+        easternProvince = null;
+        southEasternProvince = null;
+        southernProvince = null;
+        southWesternProvince = null;
+        westernProvince = null;
+        for (Province province : owner.logicMain.provinces) {
+            if (x - province.x == a && y - province.y == -a) northWesternProvince = province;
+            if (x - province.x == 0 && y - province.y == -a) northernProvince = province;
+            if (x - province.x == -a && y - province.y == -a) northEasternProvince = province;
+            if (x - province.x == -a && y - province.y == 0) easternProvince = province;
+            if (x - province.x == -a && y - province.y == a) southEasternProvince = province;
+            if (x - province.x == 0 && y - province.y == a) southernProvince = province;
+            if (x - province.x == a && y - province.y == a) southWesternProvince = province;
+            if (x - province.x == a && y - province.y == 0) westernProvince = province;
+        }
+        adjacentProvinces[0] = northWesternProvince;
+        adjacentProvinces[1] = northernProvince;
+        adjacentProvinces[2] = northEasternProvince;
+        adjacentProvinces[3] = easternProvince;
+        adjacentProvinces[4] = southEasternProvince;
+        adjacentProvinces[5] = southernProvince;
+        adjacentProvinces[6] = southWesternProvince;
+        adjacentProvinces[7] = westernProvince;
+    }
+
+    public boolean isNeighbor(Province province) {
+        for (Province province1 : adjacentProvinces) {
+            if (province.id == province1.id) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

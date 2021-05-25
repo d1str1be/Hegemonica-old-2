@@ -44,6 +44,8 @@ public class Technology {
 
     public void research() {
         isResearched = true;
+        owner.sciencePoints -= cost;
+        owner.technologyInProcess = null;
         switch (id) {
             case ID.ENGINEERING:
                 owner.mineProduction += 1;
