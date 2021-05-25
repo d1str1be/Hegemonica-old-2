@@ -1,31 +1,40 @@
 package ru.hegemonicaremake;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class HegeGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+import ru.hegemonicaremake.screens.MainMenu;
+
+public class HegeGame extends Game {
+	public final static float VERSION = 0.1f;
+	public static float width;
+	public static float height;
+	
+	Console console;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		this.setScreen(new MainMenu(this));
+		console = new Console();
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		console.draw();
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+	}
+	
+	public static void update(){
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
 	}
 }
