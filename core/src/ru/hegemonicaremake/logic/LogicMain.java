@@ -13,6 +13,7 @@ public class LogicMain {
     public int unitIdCounter;
 
     //map
+    public int mapSizeId;
     public int mapHeight;
     public int mapWidth;
     public float provinceSize;
@@ -23,22 +24,31 @@ public class LogicMain {
     public Country turnCountry;
     public Country[] countries;
 
-    public LogicMain() {
+    public LogicMain(int mapSizeId) {
+        this.mapSizeId = mapSizeId;
         turn = 1;
         unitIdCounter = 0;
         units = new ArrayList<WarUnit>();
-        countries = new Country[playersQuantity + 1];
-        switch (playersQuantity) {
-            case Country.ID.ORANGE:
-                countries[Country.ID.ORANGE] = new Country(Country.ID.ORANGE);
-            case Country.ID.RED:
-                countries[Country.ID.RED] = new Country(Country.ID.RED);
-            case Country.ID.GREEN:
-                countries[Country.ID.GREEN] = new Country(Country.ID.GREEN);
-            case Country.ID.BLUE:
-                countries[Country.ID.BLUE] = new Country(Country.ID.BLUE);
+        switch (mapSizeId) {
+            case MAPSIZEID.EXPERIMENTAL:
+                mapHeight = 3;
+                mapWidth = 3;
+                provinces = new Province[9];
+                for (int i = 0; i < 9; i++) {
+                    provinces[i] = new Province(i);
+                    setProvinceCoordinates(i);
+                }
+                for (int i = 0; i < 9; i++) {
+                    provinces[i].setNeighbors();
+                }
+
+                countries = new Country[2];
                 countries[Country.ID.NOTHING] = new Country(Country.ID.NOTHING);
-                break;
+                countries[Country.ID.BLUE] = new Country(Country.ID.BLUE);
+                for (int i = 0; i < 9; i++) {
+                    provinces[i].owner = countries[Country.ID.NOTHING];
+                }
+                provinces[4].owner = countries[Country.ID.BLUE];
         }
         turnCountry = countries[Country.ID.BLUE];
     }
@@ -47,8 +57,21 @@ public class LogicMain {
         countries[turnCountry.id].onTurn();
         if (turnCountry.id == playersQuantity) {
             turnCountry = countries[Country.ID.BLUE];
+            turn++;
         } else {
             turnCountry = countries[turnCountry.id + 1];
         }
+    }
+
+    public void setProvinceCoordinates(int id) {
+        provinces[id].x = (id % mapWidth) * provinceSize;
+        provinces[id].y = (id / mapWidth) * provinceSize;
+    }
+
+    public static class MAPSIZEID {
+        public final static int EXPERIMENTAL = 0;
+        public final static int LITTLE = 1;
+        public final static int STANDARD = 2;
+        public final static int BIG = 3;
     }
 }
