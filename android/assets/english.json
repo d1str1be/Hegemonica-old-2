@@ -1,0 +1,24 @@
+{
+  "class": "com.hegemonica.game.localization.LocalizationKeys",
+  "map": {
+    "Hegemonica": "Hegemonica",
+    "Play": "Play",
+    "Settings": "Settings",
+    "Language": "Language",
+    "English": "English",
+    "Russian": "Russian",
+    "Sound_Volume": "Sound Volume",
+    "Music_Volume": "Music Volume",
+    "Back": "Back",
+    "Exit": "Exit",
+    "In_Main_Menu": "In Main Menu",
+    "Playing": "Playing",
+    "Levian": "Levian",
+    "Valinia": "Valinia",
+    "Haadra": "Haadra",
+    "Eliria": "Eliria",
+    "Gasiliya": "Gasiliya",
+    "Odar": "Odar"
+  }
+}
+
