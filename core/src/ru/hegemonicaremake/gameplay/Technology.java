@@ -1,6 +1,6 @@
-package ru.hegemonicaremake.logic;
+package ru.hegemonicaremake.gameplay;
 
-import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
 
 public class Technology {
 

@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.logic.notifications;
+package ru.hegemonicaremake.gameplay.notifications;
 
 public class Notification {
 

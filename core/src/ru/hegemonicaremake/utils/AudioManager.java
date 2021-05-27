@@ -1,4 +1,4 @@
-package ru.hegemonicaremake;
+package ru.hegemonicaremake.utils;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;

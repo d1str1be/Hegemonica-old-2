@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.screens;
+package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -6,9 +6,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.HegeLog;
-import ru.hegemonicaremake.logic.LogicMain;
-import ru.hegemonicaremake.logic.Province;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class HegeMap {
     MapInput input;
@@ -36,6 +34,7 @@ public class HegeMap {
     public void checkTap(float x, float y){
         if(logic.findTappedProvince(x,y)!=null){
             HegeLog.log("Input", "You`ve pressed " + logic.findTappedProvince(x,y).name);
+            
         }
         
     }

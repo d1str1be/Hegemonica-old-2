@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.PlayScreen;
 
 public class MainMenu implements Screen {
     

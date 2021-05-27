@@ -1,14 +1,11 @@
-package ru.hegemonicaremake.logic;
+package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-
-import ru.hegemonicaremake.ProvinceGFX;
-import ru.hegemonicaremake.logic.provinceProject.Building;
-import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
-import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.operators.UnitActions;
+import ru.hegemonicaremake.gameplay.provinceProject.Building;
+import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
 
 public class Province {
 

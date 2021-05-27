@@ -1,23 +1,19 @@
-package ru.hegemonicaremake.screens;
+package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import ru.hegemonicaremake.HegeLog;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class MapInput implements GestureDetector.GestureListener {
-    Stage stage;
+    HegeMap map;
     Viewport viewport;
     OrthographicCamera camera;
-    
     InputMultiplexer im;
-    
-    HegeMap map;
     
     private final float zoomMin = 3f;
     private final float zoomMax = 0.25f;
@@ -32,7 +28,6 @@ public class MapInput implements GestureDetector.GestureListener {
         this.camera = camera;
         this.viewport = viewport;
         this.map = map;
-        stage = new Stage(viewport);
         
         camera.translate(0, 0);
         cameraMovementX = camera.viewportWidth / 2;

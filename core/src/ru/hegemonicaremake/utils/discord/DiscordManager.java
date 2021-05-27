@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.discord;
+package ru.hegemonicaremake.utils.discord;
 
 import com.badlogic.gdx.Gdx;
 import net.arikia.dev.drpc.DiscordEventHandlers;
@@ -7,7 +7,7 @@ import net.arikia.dev.drpc.DiscordRichPresence;
 import net.arikia.dev.drpc.DiscordUser;
 import net.arikia.dev.drpc.callbacks.ReadyCallback;
 
-import ru.hegemonicaremake.HegeLog;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class DiscordManager {
     final String appID = "837736520789262386";

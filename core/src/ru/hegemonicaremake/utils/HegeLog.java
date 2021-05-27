@@ -1,6 +1,8 @@
-package ru.hegemonicaremake;
+package ru.hegemonicaremake.utils;
 
 import com.badlogic.gdx.Gdx;
+
+import ru.hegemonicaremake.HegeGame;
 
 public class HegeLog {
     final static public String HEGEMONICA = "Hegemonica";

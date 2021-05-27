@@ -1,4 +1,4 @@
-package ru.hegemonicaremake;
+package ru.hegemonicaremake.utils;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.files.FileHandle;

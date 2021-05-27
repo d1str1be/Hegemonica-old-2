@@ -1,8 +1,7 @@
-package ru.hegemonicaremake.logic;
+package ru.hegemonicaremake.gameplay;
 
-import ru.hegemonicaremake.logic.provinceProject.Building;
-import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
-import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provinceProject.Building;
+import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
 
 public class Country {
 

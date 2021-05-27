@@ -1,7 +1,8 @@
-package ru.hegemonicaremake;
+package ru.hegemonicaremake.utils;
 
 import com.badlogic.gdx.Screen;
 
+import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.screens.MainMenu;
 
 public class ScreenManager {

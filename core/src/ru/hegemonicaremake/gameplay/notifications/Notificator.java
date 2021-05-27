@@ -1,12 +1,12 @@
-package ru.hegemonicaremake.logic.notifications;
+package ru.hegemonicaremake.gameplay.notifications;
 
 import java.util.ArrayList;
 
-import ru.hegemonicaremake.logic.Country;
-import ru.hegemonicaremake.logic.Province;
-import ru.hegemonicaremake.logic.Technology;
-import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
-import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.Country;
+import ru.hegemonicaremake.gameplay.Province;
+import ru.hegemonicaremake.gameplay.Technology;
+import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
 
 public class Notificator {
 

@@ -1,14 +1,14 @@
 package ru.hegemonicaremake;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
-import ru.hegemonicaremake.screens.MainMenu;
+import ru.hegemonicaremake.utils.AudioManager;
+import ru.hegemonicaremake.utils.Console;
+import ru.hegemonicaremake.utils.HegeLog;
+import ru.hegemonicaremake.utils.ScreenManager;
+import ru.hegemonicaremake.utils.SkinManager;
 
 public class HegeGame extends Game {
 	public final static float VERSION = 0.2f;

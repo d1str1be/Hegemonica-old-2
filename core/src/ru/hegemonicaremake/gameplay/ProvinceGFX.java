@@ -1,4 +1,4 @@
-package ru.hegemonicaremake;
+package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import ru.hegemonicaremake.logic.Country;
-import ru.hegemonicaremake.logic.LogicMain;
-import ru.hegemonicaremake.logic.Province;
+import ru.hegemonicaremake.gameplay.Country;
+import ru.hegemonicaremake.gameplay.LogicMain;
+import ru.hegemonicaremake.gameplay.Province;
 
 public class ProvinceGFX {
     Pixmap borders;

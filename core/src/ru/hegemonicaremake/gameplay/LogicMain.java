@@ -1,8 +1,8 @@
-package ru.hegemonicaremake.logic;
+package ru.hegemonicaremake.gameplay;
 
 import java.util.ArrayList;
 
-import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
 
 public class LogicMain {
     

@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.screens;
+package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
