@@ -21,7 +21,7 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
 
-    version = '0.15'
+    version = '0.2'
     ext {
         appName = "hegemonica-remake"
         gdxVersion = '1.10.0'

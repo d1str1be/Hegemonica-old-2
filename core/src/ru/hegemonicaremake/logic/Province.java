@@ -1,7 +1,11 @@
 package ru.hegemonicaremake.logic;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
+import ru.hegemonicaremake.ProvinceGFX;
 import ru.hegemonicaremake.logic.provinceProject.Building;
 import ru.hegemonicaremake.logic.provinceProject.ProvinceProject;
 import ru.hegemonicaremake.logic.provinceProject.units.WarUnit;
@@ -11,6 +15,7 @@ public class Province {
     public int id;
     public String name;
     public Country owner;
+    public LogicMain logicMain;
 
     //units
     public WarUnit unitThere;
@@ -43,12 +48,17 @@ public class Province {
     public Province southEasternProvince;
     public Province southWesternProvince;
 
-    public float x;
-    public float y;
+    public int x;
+    public int y;
+    private final float provinceSideSize = 50f;
+    
+    //for rendering
+    ProvinceGFX gfx;
 
-    public Province(int id) {
+    public Province(int id, LogicMain logicMain, Country owner) {
         this.id = id;
-
+        this.logicMain = logicMain;
+        this.owner = owner;
         projects = new ProvinceProject[11];
         projects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
         projects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
@@ -74,7 +84,8 @@ public class Province {
         foodPoints = 0;
         productionPoints = 0;
         population = 1;
-        eatingFood = owner.citizenEatingFood;
+//        eatingFood = owner.citizenEatingFood;
+        gfx = new ProvinceGFX(this);
     }
 
     public void onFirstTurn() {
@@ -141,7 +152,7 @@ public class Province {
     }
 
     public void setNeighbors() {
-        float a = owner.logicMain.provinceSize;
+        float a = LogicMain.provinceSize;
         northWesternProvince = null;
         northernProvince = null;
         northEasternProvince = null;
@@ -160,6 +171,7 @@ public class Province {
             if (x - province.x == a && y - province.y == a) southWesternProvince = province;
             if (x - province.x == a && y - province.y == 0) westernProvince = province;
         }
+        adjacentProvinces = new Province[8];
         adjacentProvinces[0] = northWesternProvince;
         adjacentProvinces[1] = northernProvince;
         adjacentProvinces[2] = northEasternProvince;
@@ -178,5 +190,31 @@ public class Province {
         }
         return false;
     }
-
+    
+    public void render(SpriteBatch batch){
+        gfx.render(batch);
+    }
+    public void update(){
+        gfx.update();
+    }
+    public boolean contains(float x,float y){
+        int w = LogicMain.provinceSize;
+        int h = LogicMain.provinceSize;
+        if ((w | h) < 0) {
+            // At least one of the dimensions is negative...
+            return false;
+        }
+        // Note: if either dimension is zero, tests below must return false...
+        int X = this.x;
+        int Y = this.y;
+        if (X < x || Y < y) {
+            return false;
+        }
+        w += x;
+        h += y;
+        //    overflow || intersect
+        return ((w < x || w > X) &&
+                (h < y || h > Y));
+    }
+    
 }

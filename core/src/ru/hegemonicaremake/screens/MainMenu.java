@@ -2,24 +2,22 @@ package ru.hegemonicaremake.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import ru.hegemonicaremake.FontManager;
 import ru.hegemonicaremake.HegeGame;
 
 public class MainMenu implements Screen {
@@ -34,7 +32,9 @@ public class MainMenu implements Screen {
     Viewport viewport;
     SpriteBatch batch;
     Label label;
-    TextButton button;
+    TextButton bPlay;
+    
+    Table menuTable;
     
     public MainMenu(HegeGame game) {
         this.game = game;
@@ -42,6 +42,7 @@ public class MainMenu implements Screen {
     
     @Override
     public void show() {
+        
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.translate(camera.viewportWidth / 2, camera.viewportHeight / 2);
         viewport = new FitViewport(HegeGame.width, HegeGame.height, camera);
@@ -52,12 +53,36 @@ public class MainMenu implements Screen {
         bg.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         
+        label = new Label("Hegemonica", game.skinManager.mainMenuStyle);
+        bPlay = new TextButton("Play", game.skinManager.defaultSkin);
+        bPlay.setSize(HegeGame.width * 0.4f, HegeGame.height * 0.3f);
+        bPlay.setColor(Color.WHITE);
+        bPlay.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                game.screenManager.setScreen(new PlayScreen(game));
+                dispose();
+            }
+            
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
         
-        label = new Label("Hegemonica", new LabelStyle(FontManager.buildFont(Gdx.files.internal("fontsTTF/3947.ttf")), Color.WHITE));
         
+        menuTable = new Table();
+        menuTable.setDebug(true);
+        menuTable.setSize(HegeGame.width, HegeGame.height);
+        menuTable.add(label);
+        menuTable.center();
+        menuTable.padBottom(HegeGame.height * 0.2f);
+        menuTable.row();
+        menuTable.add(bPlay);
         
         stage.addActor(bg);
-        stage.addActor(label);
+        stage.addActor(menuTable);
+        Gdx.input.setInputProcessor(stage);
     }
     
     @Override
@@ -89,6 +114,7 @@ public class MainMenu implements Screen {
     
     @Override
     public void dispose() {
+        stage.dispose();
         batch.dispose();
     }
 }

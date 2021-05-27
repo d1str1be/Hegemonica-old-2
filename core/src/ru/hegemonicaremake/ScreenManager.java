@@ -12,21 +12,21 @@ public class ScreenManager {
         this.launch(new MainMenu(game));
     }
     
-    public void setScreen(Screen currScreen, Screen nextScreen) {
+    public void setScreen(Screen nextScreen) {
         try {
             game.setScreen(nextScreen);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HegeLog.log("ScreenManager",  "Changed screen to " + nextScreen.getClass().getName());
-        currScreen.dispose();
+        HegeLog.log("ScreenManager", "Changed screen to " + nextScreen.getClass().getName());
     }
+    
     public void launch(Screen screen) {
         try {
             game.setScreen(screen);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        HegeLog.log("ScreenManager",  "Changed screen to " + screen.getClass().getName());
+        HegeLog.log("ScreenManager", "Changed screen to " + screen.getClass().getName());
     }
 }

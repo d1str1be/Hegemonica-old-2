@@ -31,8 +31,9 @@ public class Country {
     public float sciencePoints;
     public float scienceIncome;
 
-    public Country(int id) {
+    public Country(int id, LogicMain logicMain) {
         this.id = id;
+        this.logicMain = logicMain;
         switch (id) {
             case ID.NOTHING:
                 name = "Nothing";
