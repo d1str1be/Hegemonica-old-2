@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
 import ru.hegemonicaremake.gameplay.provinceProject.Building;
@@ -56,6 +57,7 @@ public class Province {
         this.id = id;
         this.logicMain = logicMain;
         this.owner = owner;
+        this.name = "Province " + id;
         projects = new ProvinceProject[11];
         projects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
         projects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
@@ -190,6 +192,9 @@ public class Province {
     
     public void render(SpriteBatch batch){
         gfx.render(batch);
+    }
+    public void addToStage(Stage stage){
+        gfx.addToStage(stage);
     }
     public void update(){
         gfx.update();

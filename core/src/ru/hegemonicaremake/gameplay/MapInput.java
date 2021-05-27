@@ -7,6 +7,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class MapInput implements GestureDetector.GestureListener {
@@ -15,8 +16,8 @@ public class MapInput implements GestureDetector.GestureListener {
     OrthographicCamera camera;
     InputMultiplexer im;
     
-    private final float zoomMin = 3f;
-    private final float zoomMax = 0.25f;
+    private final float zoomMin = 5f;
+    private final float zoomMax = 1f;
     
     float realX;
     float realY;
@@ -32,7 +33,7 @@ public class MapInput implements GestureDetector.GestureListener {
         camera.translate(0, 0);
         cameraMovementX = camera.viewportWidth / 2;
         cameraMovementY = -camera.viewportHeight / 2;
-        camera.zoom = 0.25f;
+        camera.zoom = 2f;
         
         im = new InputMultiplexer();
         im.addProcessor(new GestureDetector(this));
@@ -50,6 +51,8 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean tap(float x, float y, int count, int button) {
+        realX = (x - cameraMovementX) * camera.zoom;
+        realY = (HegeGame.height - y + cameraMovementY) * camera.zoom;
         HegeLog.log("Input", "Tapped on X: " + realX);
         HegeLog.log("Input", "Tapped on Y: " + realY);
         map.checkTap(x, y);
@@ -71,7 +74,7 @@ public class MapInput implements GestureDetector.GestureListener {
         cameraMovementX += deltaX;
         cameraMovementY += deltaY;
         camera.translate(-deltaX * camera.zoom, deltaY * camera.zoom);
-        return false;
+        return true;
     }
     
     @Override
@@ -81,6 +84,15 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean zoom(float initialDistance, float distance) {
+        if (camera.zoom > zoomMax && camera.zoom < zoomMin)
+            if ((distance - initialDistance) > 0) {
+                camera.zoom *= 0.95f;
+                return true;
+            }
+            else {
+                camera.zoom *= 1.05f;
+                return true;
+            }
         return false;
     }
     
@@ -91,7 +103,7 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public void pinchStop() {
-    
+        
     }
     
     

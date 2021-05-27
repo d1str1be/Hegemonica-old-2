@@ -16,9 +16,9 @@ public class HegeGame extends Game {
 	public static float width;
 	public static float height;
 	
-	public AudioManager audio;
-	public ScreenManager screenManager;
-	public SkinManager skinManager;
+	public static AudioManager audio;
+	public static ScreenManager screenManager;
+	public static SkinManager skinManager;
 	Console console;
 	
 	public HegeGame(){

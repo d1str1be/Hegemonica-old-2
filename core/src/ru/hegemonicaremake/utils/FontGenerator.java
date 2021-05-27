@@ -26,6 +26,16 @@ public class FontGenerator {
         return fontGenerator.generateFont(fontParameter);
     }
     
+    public static BitmapFont generateFont(FileHandle fontFile, int size, int borderWidth) {
+        FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(fontFile);
+        FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        fontParameter.size = size;
+        fontParameter.borderWidth = borderWidth;
+        fontParameter.borderColor = Color.BLACK;
+        fontParameter.color = Color.WHITE;
+        return fontGenerator.generateFont(fontParameter);
+    }
+    
     public static BitmapFont generateFont(FileHandle fontFile, int size, int borderWidth, Color borderColor) {
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(fontFile);
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();

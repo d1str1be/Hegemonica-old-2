@@ -54,14 +54,13 @@ public class MainMenu implements Screen {
         bg.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch = new SpriteBatch();
         
-        label = new Label("Hegemonica", game.skinManager.mainMenuStyle);
-        bPlay = new TextButton("Play", game.skinManager.defaultSkin);
-        bPlay.setSize(HegeGame.width * 0.4f, HegeGame.height * 0.3f);
-        bPlay.setColor(Color.WHITE);
+        label = new Label("Hegemonica", HegeGame.skinManager.timesNewRomanStyle);
+        bPlay = new TextButton("Play", HegeGame.skinManager.shimmerSkin);
+        bPlay.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
         bPlay.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                game.screenManager.setScreen(new PlayScreen(game));
+                HegeGame.screenManager.setScreen(new PlayScreen(game));
                 dispose();
             }
             
@@ -73,13 +72,14 @@ public class MainMenu implements Screen {
         
         
         menuTable = new Table();
+        menuTable.setSize(HegeGame.width * 0.6f, HegeGame.height * 0.5f);
         menuTable.setDebug(true);
         menuTable.setSize(HegeGame.width, HegeGame.height);
         menuTable.add(label);
         menuTable.center();
         menuTable.padBottom(HegeGame.height * 0.2f);
         menuTable.row();
-        menuTable.add(bPlay);
+        menuTable.add(bPlay).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
         
         stage.addActor(bg);
         stage.addActor(menuTable);
