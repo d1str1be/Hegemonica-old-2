@@ -1,5 +1,8 @@
 package ru.hegemonicaremake.gameplay;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 import ru.hegemonicaremake.gameplay.provProject.Building;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 
@@ -7,6 +10,7 @@ public class Country {
     
     public int id;
     public String name;
+    public Texture[] borders;
     
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
@@ -36,21 +40,42 @@ public class Country {
         this.id = id;
         this.logicMain = logicMain;
         population = 1;
+        borders = new Texture[4];
         switch (id) {
             case ID.NOTHING:
                 name = "Nothing";
+                borders[0] = new Texture(Gdx.files.internal("prov/neutralBorderUp.png"));
+                borders[1] = new Texture(Gdx.files.internal("prov/neutralBorderRight.png"));
+                borders[2] = new Texture(Gdx.files.internal("prov/neutralBorderDown.png"));
+                borders[3] = new Texture(Gdx.files.internal("prov/neutralBorderLeft.png"));
                 break;
             case ID.BLUE:
                 name = "Blue";
+                borders[0] = new Texture(Gdx.files.internal("prov/blueBorderUp.png"));
+                borders[1] = new Texture(Gdx.files.internal("prov/blueBorderRight.png"));
+                borders[2] = new Texture(Gdx.files.internal("prov/blueBorderDown.png"));
+                borders[3] = new Texture(Gdx.files.internal("prov/blueBorderLeft.png"));
                 break;
             case ID.GREEN:
                 name = "Green";
+                borders[0] = new Texture(Gdx.files.internal("prov/greenBorderUp.png"));
+                borders[1] = new Texture(Gdx.files.internal("prov/greenBorderRight.png"));
+                borders[2] = new Texture(Gdx.files.internal("prov/greenBorderDown.png"));
+                borders[3] = new Texture(Gdx.files.internal("prov/greenBorderLeft.png"));
                 break;
             case ID.RED:
                 name = "Red";
+                borders[0] = new Texture(Gdx.files.internal("prov/redBorderUp.png"));
+                borders[1] = new Texture(Gdx.files.internal("prov/redBorderRight.png"));
+                borders[2] = new Texture(Gdx.files.internal("prov/redBorderDown.png"));
+                borders[3] = new Texture(Gdx.files.internal("prov/redBorderLeft.png"));
                 break;
             case ID.ORANGE:
                 name = "Orange";
+                borders[0] = new Texture(Gdx.files.internal("prov/orangeBorderUp.png"));
+                borders[1] = new Texture(Gdx.files.internal("prov/orangeBorderRight.png"));
+                borders[2] = new Texture(Gdx.files.internal("prov/orangeBorderDown.png"));
+                borders[3] = new Texture(Gdx.files.internal("prov/orangeBorderLeft.png"));
                 break;
         }
         provinceProjects = new ProvinceProject[11];

@@ -49,25 +49,29 @@ public class ProvinceGFX {
     }
     
     public void update(SpriteBatch batch) {
+        batch.draw(prov.owner.borders[0], prov.x, prov.y, sideSize, sideSize);
+        batch.draw(prov.owner.borders[1], prov.x, prov.y, sideSize, sideSize);
+        batch.draw(prov.owner.borders[2], prov.x, prov.y, sideSize, sideSize);
+        batch.draw(prov.owner.borders[3], prov.x, prov.y, sideSize, sideSize);
         if (prov.owner.id != Country.ID.NOTHING) {
             if (prov.northernProvince != null) {
                 if (prov.owner.id != prov.northernProvince.owner.id) {
-                    batch.draw(pBorders[0], prov.x, prov.y, sideSize, sideSize);
+                    batch.draw(prov.owner.borders[0], prov.x, prov.y, sideSize, sideSize);
                 }
             }
             if (prov.easternProvince != null) {
                 if (prov.owner.id != prov.easternProvince.owner.id) {
-                    batch.draw(pBorders[1], prov.x, prov.y, sideSize, sideSize);
+                    batch.draw(prov.owner.borders[1], prov.x, prov.y, sideSize, sideSize);
                 }
             }
             if (prov.southernProvince != null) {
                 if (prov.owner.id != prov.southernProvince.owner.id) {
-                    batch.draw(pBorders[2], prov.x, prov.y, sideSize, sideSize);
+                    batch.draw(prov.owner.borders[2], prov.x, prov.y, sideSize, sideSize);
                 }
             }
             if (prov.westernProvince != null) {
                 if (prov.owner.id != prov.westernProvince.owner.id) {
-                    batch.draw(pBorders[3], prov.x, prov.y, sideSize, sideSize);
+                    batch.draw(prov.owner.borders[3], prov.x, prov.y, sideSize, sideSize);
                 }
             }
         }
