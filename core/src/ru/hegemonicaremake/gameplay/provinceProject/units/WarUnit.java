@@ -1,5 +1,7 @@
 package ru.hegemonicaremake.gameplay.provinceProject.units;
 
+import com.badlogic.gdx.graphics.Texture;
+
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
@@ -9,6 +11,10 @@ public class WarUnit extends ProvinceProject {
     public int unitId;
     public Province province;
     public Country owner;
+
+    //graphics
+    public Texture ownerTexture;
+    public Texture unitTexture;
 
     //battle
     public float health;

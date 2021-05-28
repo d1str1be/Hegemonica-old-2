@@ -1,5 +1,8 @@
 package ru.hegemonicaremake.gameplay;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+
 import ru.hegemonicaremake.gameplay.provinceProject.Building;
 import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
 
@@ -10,6 +13,9 @@ public class Country {
 
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
+
+    //graphics
+    public Texture unitTexture;
 
     //regional economics
     public float farmFoodProduction;
