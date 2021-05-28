@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.notifications.CancelNotification;
 
 public class PlayScreen implements Screen {
     HegeGame game;
     HegeMap map;
+    public CancelNotification cancelNotification;
     
     public PlayScreen(HegeGame game) {
         this.game = game;

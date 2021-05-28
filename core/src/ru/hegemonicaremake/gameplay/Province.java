@@ -90,10 +90,6 @@ public class Province {
         gfx = new ProvinceGFX(this);
     }
     
-    public void onFirstTurn() {
-        setNeighbors();
-    }
-    
     public void onTurn() {
         UnitActions.onTurn(unit);
         
