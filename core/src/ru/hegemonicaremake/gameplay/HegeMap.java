@@ -32,6 +32,7 @@ public class HegeMap {
 //        stage = new Stage(viewport, batch);
         logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL, this);
 //        logic.initStage(stage);
+
         input = new MapInput(this, camera, viewport);
         background = new Texture(Gdx.files.internal("bg.jpg"));
     }
