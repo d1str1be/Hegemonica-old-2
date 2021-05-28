@@ -15,6 +15,8 @@ public class HegeMap {
     HegeGame game;
     LogicMain logic;
     
+    
+    
     HUD ui;
     
     MapInput input;
@@ -76,5 +78,9 @@ public class HegeMap {
             logic.selectedProvince = null;
             ui.unselectProvince();
         }
+    }
+    
+    public HUD getUi() {
+        return ui;
     }
 }

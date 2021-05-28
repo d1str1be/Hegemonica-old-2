@@ -72,7 +72,6 @@ public class LogicMain {
                 break;
         }
         turnCountry = countries[Country.ID.BLUE];
-        provinces[5].unit = new WarUnit(ProvinceProject.ID.WARRIOR, provinces[5]);
     }
     
     public void onTurn() {

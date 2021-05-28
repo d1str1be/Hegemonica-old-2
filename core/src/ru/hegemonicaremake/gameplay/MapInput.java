@@ -38,6 +38,7 @@ public class MapInput implements GestureDetector.GestureListener {
         
         im = new InputMultiplexer();
         im.addProcessor(new GestureDetector(this));
+        im.addProcessor(map.getUi().stage);
         
         Gdx.input.setInputProcessor(im);
     }

@@ -54,21 +54,37 @@ public class ProvinceWindow extends Window {
     
     private void init() {
         lP1 = new Label("Name:", skinManager.glassySkin);
+        lP1.setStyle(HegeGame.skinManager.playingInfoStyle);
         lP2 = new Label("Controlled by:", skinManager.glassySkin);
+        lP2.setStyle(HegeGame.skinManager.playingInfoStyle);
         lP3 = new Label("Population:", skinManager.glassySkin);
+        lP3.setStyle(HegeGame.skinManager.playingInfoStyle);
         lProvName = new Label("Null", skinManager.defaultSkin);
+        lProvName.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lProvCountry = new Label("Null", skinManager.defaultSkin);
+        lProvCountry.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lProvPopulation = new Label("Null", skinManager.defaultSkin);
+        lProvPopulation.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lP4 = new Label("Food points:", skinManager.glassySkin);
+        lP4.setStyle(HegeGame.skinManager.playingInfoStyle);
         lPopulationProgress = new Label("Null", skinManager.defaultSkin);
+        lPopulationProgress.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lP5 = new Label("Production points:", skinManager.glassySkin);
+        lP5.setStyle(HegeGame.skinManager.playingInfoStyle);
         lProductionProgress = new Label("Null", skinManager.defaultSkin);
+        lProductionProgress.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lP6 = new Label("Food Income:", skinManager.glassySkin);
+        lP6.setStyle(HegeGame.skinManager.playingInfoStyle);
         lFoodIncome = new Label("Null", skinManager.defaultSkin);
+        lFoodIncome.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lP7 = new Label("Production Income:", skinManager.glassySkin);
+        lP7.setStyle(HegeGame.skinManager.playingInfoStyle);
         lProductionIncome = new Label("Null", skinManager.defaultSkin);
+        lProductionIncome.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lP8 = new Label("Unit in province:", skinManager.glassySkin);
+        lP8.setStyle(HegeGame.skinManager.playingInfoStyle);
         lUnitThere = new Label("Null", skinManager.defaultSkin);
+        lUnitThere.setStyle(HegeGame.skinManager.playingInfoStyle1);
         
         populationProgress = new HegeProgressBar(getWidth() * 0.15f, getWidth() * 0.02f, HegeProgressBar.ID.FOOD);
         productionProgress = new HegeProgressBar(getWidth() * 0.15f, getWidth() * 0.02f, HegeProgressBar.ID.PRODUCTION);
@@ -88,6 +104,7 @@ public class ProvinceWindow extends Window {
             }
         });
         lMovementPoints = new Label("Null", skinManager.defaultSkin);
+        lMovementPoints.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lMovementPoints.setVisible(false);
     
         this.add(lP1);

@@ -28,7 +28,7 @@ public class UnitIconBuilder {
                 weapon = new Pixmap(Gdx.files.internal("icons/units/sword.png"));
                 break;
             default:
-                weapon = new Pixmap(Gdx.files.internal("icons/units/warrior.png"));
+                weapon = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
                 break;
         }
         switch (countryId) {
@@ -45,7 +45,7 @@ public class UnitIconBuilder {
                 circle = new Pixmap(Gdx.files.internal("icons/units/circleOrange.png"));
                 break;
             default:
-                circle = new Pixmap(Gdx.files.internal("icons/units/circleOrange.png"));
+                circle = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
                 break;
         }
         circle.drawPixmap(weapon, 0, 0);

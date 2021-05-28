@@ -32,9 +32,12 @@ public class HUD {
         provInfo.show();
         HegeLog.log("Interface", "Opened Prov info window");
     }
-    
     public void unselectProvince() {
         provInfo.hide();
+    }
+    public void openCountryInfo(Country country){
+        countryInfo.setupCountryInfo(country);
+        countryInfo.show();
     }
     
     public void render() {
