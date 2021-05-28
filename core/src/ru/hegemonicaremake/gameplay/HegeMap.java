@@ -62,7 +62,7 @@ public class HegeMap {
     public void update() {
         batch.begin();
         for (Province prov : logic.provinces) {
-            prov.update(batch);
+            prov.updateGFX(batch);
         }
         batch.end();
     }

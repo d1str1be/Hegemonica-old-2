@@ -2,8 +2,6 @@ package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.awt.Rectangle;
-
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
 import ru.hegemonicaremake.gameplay.provProject.Building;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
@@ -199,7 +197,7 @@ public class Province {
         gfx.render(batch);
     }
     
-    public void update(SpriteBatch batch) {
+    public void updateGFX(SpriteBatch batch) {
         gfx.update(batch);
     }
     
