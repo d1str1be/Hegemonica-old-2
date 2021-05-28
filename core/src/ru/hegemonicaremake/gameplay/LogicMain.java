@@ -3,6 +3,7 @@ package ru.hegemonicaremake.gameplay;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
 
@@ -15,6 +16,7 @@ public class LogicMain {
     public int unitIdCounter;
     
     //map
+    public HegeMap map;
     public int mapSizeId;
     public int mapHeight;
     public int mapWidth;
@@ -27,8 +29,9 @@ public class LogicMain {
     public Country turnCountry;
     public Country[] countries;
     
-    public LogicMain(int mapSizeId) {
+    public LogicMain(int mapSizeId, HegeMap map) {
         this.mapSizeId = mapSizeId;
+        this.map = map;
         turn = 1;
         unitIdCounter = 0;
         units = new ArrayList<WarUnit>();
@@ -56,6 +59,10 @@ public class LogicMain {
                 break;
         }
         turnCountry = countries[Country.ID.BLUE];
+    }
+
+    public void update() {
+        map.update();
     }
     
     public void onTurn() {

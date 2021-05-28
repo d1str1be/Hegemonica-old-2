@@ -30,7 +30,7 @@ public class HegeMap {
         viewport = new FitViewport(HegeGame.width, HegeGame.height, camera);
 
 //        stage = new Stage(viewport, batch);
-        logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL);
+        logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL, this);
 //        logic.initStage(stage);
         input = new MapInput(this, camera, viewport);
         background = new Texture(Gdx.files.internal("bg.jpg"));
