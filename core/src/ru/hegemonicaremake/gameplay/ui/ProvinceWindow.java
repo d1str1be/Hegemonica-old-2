@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.Province;
@@ -35,16 +36,20 @@ public class ProvinceWindow extends Window {
     
     SkinManager skinManager;
     
+    ChooseProjectWindow projectWindow;
+    
     public ProvinceWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
+        align(Align.top);
         setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
-        setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.15f / HegeGame.uiFactor);
+        setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.width * 0.3f / HegeGame.uiFactor);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
         init();
         
         stage.addActor(this);
+        projectWindow = new ChooseProjectWindow(stage);
     }
     
     private void init() {
@@ -84,6 +89,37 @@ public class ProvinceWindow extends Window {
         });
         lMovementPoints = new Label("Null", skinManager.defaultSkin);
         lMovementPoints.setVisible(false);
+    
+        this.add(lP1);
+        this.add(lProvName);
+        this.row();
+        this.add(lP2);
+        this.add(lProvCountry);
+        this.row();
+        this.add(lP3);
+        this.add(lProvPopulation);
+        this.row();
+        this.add(lP4);
+        this.row();
+        this.add(populationProgress);
+        this.add(lPopulationProgress);
+        this.row();
+        this.add(lP5);
+        this.row();
+        this.add(productionProgress);
+        this.add(lProductionProgress);
+        this.row();
+        this.add(lP6);
+        this.add(lFoodIncome);
+        this.row();
+        this.add(lP7);
+        this.add(lProductionIncome);
+        this.row();
+        this.add(lP8);
+        this.add(lUnitThere);
+        this.row();
+        this.add(bMoveUnit);
+        this.add(lMovementPoints);
     }
     
     public void setupProvinceInfo(Province prov) {

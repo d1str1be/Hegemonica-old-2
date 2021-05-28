@@ -70,8 +70,8 @@ public class HegeMap {
     public void checkTap(float x, float y) {
         if (logic.findTappedProvince(x, y)) {
             HegeLog.log("Input", "You`ve pressed " + logic.selectedProvince.name);
-            if (logic.selectedProvince.owner == logic.turnCountry)
-                ui.selectProvince(logic.selectedProvince);
+            ui.selectProvince(logic.selectedProvince);
+            
         } else {
             logic.selectedProvince = null;
             ui.unselectProvince();
