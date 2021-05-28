@@ -12,7 +12,6 @@ import ru.hegemonicaremake.utils.HegeLog;
 
 public class WarUnitGFX {
     
-    
     public final int id;
     Sprite unitSprite;
     public Texture unitIcon;

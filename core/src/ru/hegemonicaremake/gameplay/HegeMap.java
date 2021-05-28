@@ -62,18 +62,21 @@ public class HegeMap {
     public void update() {
         batch.begin();
         for (Province prov : logic.provinces) {
-            prov.update(batch);
+            prov.updateGFX(batch);
         }
         batch.end();
     }
     
     public void checkTap(float x, float y) {
         if (logic.findTappedProvince(x, y)) {
-            HegeLog.log("Input", "You`ve pressed " + logic.selectedProvince.name);
-            ui.selectProvince(logic.selectedProvince);
+            if (LogicMain.movingUnit != null) {
+                ui.moveUnit(LogicMain.movingUnit, LogicMain.selectedProvince);
+            }
+            HegeLog.log("Input", "You`ve pressed " + LogicMain.selectedProvince.name);
+            ui.selectProvince(LogicMain.selectedProvince);
             
         } else {
-            logic.selectedProvince = null;
+            LogicMain.selectedProvince = null;
             ui.unselectProvince();
         }
     }

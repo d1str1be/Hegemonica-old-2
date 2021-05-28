@@ -13,7 +13,7 @@ import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
-public class CountryInfoWindow extends Window implements Hideable {
+public class CountryWindow extends Window implements Hideable {
     
     SkinManager skinManager;
     
@@ -28,7 +28,7 @@ public class CountryInfoWindow extends Window implements Hideable {
     
     ChooseTechWindow techWindow;
     
-    public CountryInfoWindow(Stage stage) {
+    public CountryWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
         setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
         setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.15f / HegeGame.uiFactor);

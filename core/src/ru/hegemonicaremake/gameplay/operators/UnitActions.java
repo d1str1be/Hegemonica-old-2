@@ -16,10 +16,12 @@ public class UnitActions {
         if (unit.health > 100) {
             unit.health = 100;
         }
+        unit.gfx.update(unit);
         unit.movementPoints--;
     }
     
     public static void destroy(WarUnit unit) {
+        unit.gfx.dispose();
         unit.province.unit = null;
         unit.owner.logicMain.units.set(unit.unitId, null);
     }
@@ -28,15 +30,19 @@ public class UnitActions {
         if (province.unit != null) {
             battle(unit, province.unit);
             if (province.unit == null) {
+                unit.gfx.dispose();
                 unit.province.unit = null;
                 province.unit = unit;
                 unit.province = province;
+                unit.gfx.update(unit);
             }
         } else {
+            unit.gfx.dispose();
             unit.province.unit = null;
             province.unit = unit;
             unit.province = province;
             unit.movementPoints--;
+            unit.gfx.update(unit);
         }
     }
     
@@ -60,6 +66,7 @@ public class UnitActions {
     public static void capture(WarUnit unit) {
         unit.province.setOwner(unit.owner);
         unit.movementPoints--;
+        unit.gfx.update(unit);
     }
     
     public static boolean isMovable(WarUnit unit, Province province) {
