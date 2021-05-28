@@ -85,6 +85,9 @@ public class Province {
         foodPoints = 0;
         productionPoints = 0;
         population = 1;
+        foodIncome = 4;
+        productionIncome = 1;
+        scienceIncome = 1;
 //        eatingFood = owner.citizenEatingFood;
         gfx = new ProvinceGFX(this);
     }
