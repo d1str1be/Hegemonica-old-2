@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import static ru.hegemonicaremake.HegeGame.uiFactor;
+
 public class SkinManager {
     public Skin starSoldierSkin;
     public Skin glassySkin;
@@ -26,12 +28,15 @@ public class SkinManager {
         defaultSkin = new Skin(Gdx.files.internal("skins/default/skin/uiskin.json"));
         shimmerSkin = new Skin(Gdx.files.internal("skins/shimmer/skin/shimmer-ui.json"));
         
-        mainMenuStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), 50), Color.WHITE);
+        mainMenuStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), (int) (50 * uiFactor)), Color.WHITE);
         notificationStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf")), Color.WHITE);
-        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"),50,4), Color.WHITE);
-        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"),45,4), Color.WHITE);
-        timesNewRomanStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/times.ttf"), 100), Color.WHITE);
-        provNameStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf"), 24, 4), Color.WHITE);
+        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.WHITE)
+        ;
+        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.WHITE)
+        ;
+        timesNewRomanStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/times.ttf"), (int) (50 * uiFactor)), Color.WHITE)
+        ;
+        provNameStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf"), (int) (50 * uiFactor), 4), Color.WHITE);
         
     }
     

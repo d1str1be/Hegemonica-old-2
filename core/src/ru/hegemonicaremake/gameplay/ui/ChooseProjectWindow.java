@@ -23,6 +23,8 @@ public class ChooseProjectWindow extends Window implements Hideable {
     ArrayList<Label> lProdCost;
     ArrayList<HegeBuildButton> bUnitBuild;
     
+    
+    
     public ChooseProjectWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
         setPosition(0,0);
@@ -59,6 +61,7 @@ public class ChooseProjectWindow extends Window implements Hideable {
         bUnitBuild.clear();
         this.add(lCB1);
         this.add(lCB2);
+        
         
     }
     
