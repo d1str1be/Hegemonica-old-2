@@ -24,6 +24,7 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         ScreenUtils.clear(Color.CLEAR);
         map.render();
+        map.update();
     }
     
     @Override

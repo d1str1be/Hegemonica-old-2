@@ -196,8 +196,8 @@ public class Province {
     public void addToStage(Stage stage){
         gfx.addToStage(stage);
     }
-    public void update(){
-        gfx.update();
+    public void update(SpriteBatch batch){
+        gfx.update(batch);
     }
     public boolean contains(float x,float y){
         int w = LogicMain.provinceSize;

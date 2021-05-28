@@ -52,6 +52,14 @@ public class HegeMap {
 //        stage.act();
 //        stage.draw();
     }
+
+    public void update() {
+        batch.begin();
+        for (Province prov : logic.provinces) {
+            prov.update(batch);
+        }
+        batch.end();
+    }
     
     public void checkTap(float x, float y) {
         if (logic.findTappedProvince(x, y) != null) {

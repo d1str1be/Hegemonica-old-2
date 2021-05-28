@@ -21,6 +21,9 @@ public class ProvinceGFX {
     Texture borderTexture;
     Texture rectTexture;
     Texture provTexture;
+
+    // borders
+    Texture[] pBorders;
     
     
     Label provName;
@@ -30,7 +33,12 @@ public class ProvinceGFX {
         this.prov = prov;
         this.sideSize = LogicMain.provinceSize;
         this.setColor();
-        provTexture = new Texture(Gdx.files.internal("prov/grass.jpg"));
+        provTexture = new Texture(Gdx.files.internal("prov/provinceDefault.png"));
+        pBorders = new Texture[4];
+        pBorders[0] = new Texture(Gdx.files.internal("prov/blueBorderUp.png"));
+        pBorders[1] = new Texture(Gdx.files.internal("prov/blueBorderRight.png"));
+        pBorders[2] = new Texture(Gdx.files.internal("prov/blueBorderDown.png"));
+        pBorders[3] = new Texture(Gdx.files.internal("prov/blueBorderLeft.png"));
         borders = new Pixmap(sideSize, sideSize, Format.RGBA8888);
         borders.setColor(color);
         rectangle = new Pixmap(sideSize, sideSize, Format.RGBA8888);
@@ -52,9 +60,29 @@ public class ProvinceGFX {
         provName.draw(batch, 1f);
     }
     
-    public void update() {
-        
-        setColor();
+    public void update(SpriteBatch batch) {
+        if (prov.owner.id != Country.ID.NOTHING) {
+            if (prov.northernProvince != null) {
+                if (prov.owner.id == prov.northernProvince.owner.id) {
+                    batch.draw(pBorders[0], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.easternProvince != null) {
+                if (prov.owner.id == prov.easternProvince.owner.id) {
+                    batch.draw(pBorders[1], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.southernProvince != null) {
+                if (prov.owner.id == prov.southernProvince.owner.id) {
+                    batch.draw(pBorders[2], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.westernProvince != null) {
+                if (prov.owner.id == prov.westernProvince.owner.id) {
+                    batch.draw(pBorders[3], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+        }
     }
     
     public void addToStage(Stage stage) {
