@@ -41,8 +41,10 @@ public class ProvinceWindow extends Window {
     public ProvinceWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
         align(Align.top);
-        setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
-        setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.width * 0.3f / HegeGame.uiFactor);
+        getTitleLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
+        
+        setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.width * 0.5f / HegeGame.uiFactor);
+        setPosition(HegeGame.width * 0.05f, HegeGame.height - getHeight());
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
@@ -86,11 +88,12 @@ public class ProvinceWindow extends Window {
         lUnitThere = new Label("Null", skinManager.defaultSkin);
         lUnitThere.setStyle(HegeGame.skinManager.playingInfoStyle1);
         
-        populationProgress = new HegeProgressBar(getWidth() * 0.15f, getWidth() * 0.02f, HegeProgressBar.ID.FOOD);
-        productionProgress = new HegeProgressBar(getWidth() * 0.15f, getWidth() * 0.02f, HegeProgressBar.ID.PRODUCTION);
+        populationProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.FOOD);
+        productionProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.PRODUCTION);
         
-        bMoveUnit = new TextButton("Move Unit", HegeGame.skinManager.defaultSkin);
+        bMoveUnit = new TextButton("Move Unit", HegeGame.skinManager.shimmerSkin);
         bMoveUnit.setSize(getWidth() * 0.4f, getHeight() * 0.3f);
+        bMoveUnit.getLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
         bMoveUnit.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -100,13 +103,12 @@ public class ProvinceWindow extends Window {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             
-            
             }
         });
         lMovementPoints = new Label("Null", skinManager.defaultSkin);
         lMovementPoints.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lMovementPoints.setVisible(false);
-    
+        
         this.add(lP1);
         this.add(lProvName);
         this.row();
@@ -135,7 +137,7 @@ public class ProvinceWindow extends Window {
         this.add(lP8);
         this.add(lUnitThere);
         this.row();
-        this.add(bMoveUnit);
+        this.add(bMoveUnit).width(getWidth() * 0.4f).height(getHeight() * 0.1f);
         this.add(lMovementPoints);
     }
     

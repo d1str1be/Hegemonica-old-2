@@ -15,8 +15,6 @@ public class HegeMap {
     HegeGame game;
     LogicMain logic;
     
-    
-    
     HUD ui;
     
     MapInput input;
