@@ -37,12 +37,8 @@ public class ChooseProjectWindow extends Window implements Hideable {
     public void init() {
         lCB2 = new Label("Cost", skinManager.glassySkin);
         lCB1 = new Label("Project", skinManager.glassySkin);
-        
-        
-        Label l = new Label(" ", skinManager.glassySkin);
         this.add(lCB1).padRight(this.getWidth() * 0.15f);
         this.add(lCB2).padRight(this.getWidth() * 0.15f);
-        this.add(l);
         this.setVisible(false);
         lBuildingProjects = new ArrayList<>();
         bBuildingBuild = new ArrayList<>();
@@ -63,6 +59,7 @@ public class ChooseProjectWindow extends Window implements Hideable {
         bUnitBuild.clear();
         this.add(lCB1);
         this.add(lCB2);
+        
     }
     
     @Override
@@ -72,6 +69,6 @@ public class ChooseProjectWindow extends Window implements Hideable {
     
     @Override
     public void show() {
-        setVisible(true);
+//        setVisible(true);
     }
 }
