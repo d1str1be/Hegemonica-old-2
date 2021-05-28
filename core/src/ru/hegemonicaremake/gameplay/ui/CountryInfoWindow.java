@@ -95,9 +95,9 @@ public class CountryInfoWindow extends Window implements Hideable {
         scienceProgress.setValue((float) turnCountry.sciencePoints);
         
         if (turnCountry.technologyInProcess!=null) {
-            setTechInfo();
-            wChooseTech.setVisible(true);
-            wChooseTech.setMovable(true);
+            techWindow.setupTechInfo();
+            techWindow.setVisible(true);
+            techWindow.setMovable(true);
         }
     }
     @Override
