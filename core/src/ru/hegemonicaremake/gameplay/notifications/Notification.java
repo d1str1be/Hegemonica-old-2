@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.Texture;
 public class Notification {
     
     public int id;
+    public Texture icon;
     public Notificator notificator;
     public int notificatorId;
     public String text;
-    public Texture icon;
     
     public Notification(int id, Notificator notificator) {
         this.id = id;

@@ -25,8 +25,8 @@ public class ChooseProjectWindow extends Window implements Hideable {
     
     public ChooseProjectWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
-        setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
-        setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.15f / HegeGame.uiFactor);
+        setPosition(0,0);
+        setSize(HegeGame.width, HegeGame.height);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;

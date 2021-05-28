@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.Country;
-import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.Technology;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
