@@ -20,21 +20,21 @@ public class UnitActions {
     }
 
     public static void destroy(WarUnit unit) {
-        unit.province.unitThere = null;
+        unit.province.unitunit = null;
         unit.owner.logicMain.units.set(unit.unitId, null);
     }
 
     public static void move(WarUnit unit, Province province) {
-        if (province.unitThere != null) {
-            battle(unit, province.unitThere);
-            if (province.unitThere == null) {
-                unit.province.unitThere = null;
-                province.unitThere = unit;
+        if (province.unitunit != null) {
+            battle(unit, province.unitunit);
+            if (province.unitunit == null) {
+                unit.province.unitunit = null;
+                province.unitunit = unit;
                 unit.province = province;
             }
         } else {
-            unit.province.unitThere = null;
-            province.unitThere = unit;
+            unit.province.unitunit = null;
+            province.unitunit = unit;
             unit.province = province;
             unit.movementPoints--;
         }
@@ -65,9 +65,9 @@ public class UnitActions {
     public static boolean isMovable(WarUnit unit, Province province) {
         if (unit.movementPoints > 0) {
             if (unit.province.isNeighbor(province)) {
-                if (province.unitThere == null) {
+                if (province.unitunit == null) {
                     return true;
-                } else if (province.unitThere.owner.id == unit.owner.id) {
+                } else if (province.unitunit.owner.id == unit.owner.id) {
                     return false;
                 }
             }

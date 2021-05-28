@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import ru.hegemonicaremake.HegeGame;
@@ -21,13 +20,13 @@ public class ProvinceGFX {
     Texture borderTexture;
     Texture rectTexture;
     Texture provTexture;
-
+    
     // borders
     Texture[] pBorders;
     
     
     Label provName;
-    Image unitIcon;
+    Texture unitIcon;
     
     public ProvinceGFX(Province prov) {
         this.prov = prov;
@@ -48,7 +47,7 @@ public class ProvinceGFX {
         drawBorders();
         
         provName = new Label(prov.name, HegeGame.skinManager.provNameStyle);
-        provName.setPosition(prov.x  - provName.getWidth(), prov.y );
+        provName.setPosition(prov.x - provName.getWidth(), prov.y);
         
         
     }
@@ -138,4 +137,7 @@ public class ProvinceGFX {
         provTexture.dispose();
     }
     
+    public void makeUnit(int countryId, int unitId) {
+        unitIcon = UnitIconBuilder.buildIcon(countryId, unitId);
+    }
 }

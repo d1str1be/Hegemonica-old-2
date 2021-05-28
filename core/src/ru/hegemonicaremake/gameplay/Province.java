@@ -16,7 +16,7 @@ public class Province {
     public LogicMain logicMain;
 
     //units
-    public WarUnit unitThere;
+    public WarUnit unit;
 
     //economics
     public int population;
@@ -92,7 +92,7 @@ public class Province {
     }
 
     public void onTurn() {
-        UnitActions.onTurn(unitThere);
+        UnitActions.onTurn(unit);
 
         foodIncome = buildings[ProvinceProject.ID.FARM].quantity * owner.farmFoodProduction + owner.startFoodProduction;
         productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;

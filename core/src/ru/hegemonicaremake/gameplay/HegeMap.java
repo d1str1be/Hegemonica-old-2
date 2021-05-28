@@ -3,7 +3,6 @@ package ru.hegemonicaremake.gameplay;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -13,8 +12,10 @@ import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class HegeMap {
-    MapInput input;
     LogicMain logic;
+    HUD ui;
+    
+    MapInput input;
     SpriteBatch batch;
     SpriteBatch bgBatch;
     Texture background;
@@ -31,11 +32,12 @@ public class HegeMap {
 
 //        stage = new Stage(viewport, batch);
         logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL, this);
+        ui = new HUD(logic);
 //        logic.initStage(stage);
-
+        
         input = new MapInput(this, camera, viewport);
         background = new Texture(Gdx.files.internal("bg.jpg"));
-
+        
     }
     
     public void render() {
@@ -49,12 +51,12 @@ public class HegeMap {
             prov.render(batch);
         }
         batch.end();
-        
-        
+
+
 //        stage.act();
 //        stage.draw();
     }
-
+    
     public void update() {
         batch.begin();
         for (Province prov : logic.provinces) {
@@ -64,8 +66,10 @@ public class HegeMap {
     }
     
     public void checkTap(float x, float y) {
-        if (logic.findTappedProvince(x, y) != null) {
-            HegeLog.log("Input", "You`ve pressed " + logic.findTappedProvince(x, y).name);
+        if (logic.findTappedProvince(x, y)) {
+            HegeLog.log("Input", "You`ve pressed " + logic.selectedProvince.name);
+            if (logic.selectedProvince.owner == logic.turnCountry)
+                ui.selectProvince(logic.selectedProvince);
         }
     }
 }

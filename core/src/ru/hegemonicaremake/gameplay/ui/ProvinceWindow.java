@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.utils.SkinManager;
 
 public class ProvinceWindow extends Window {
@@ -41,6 +42,8 @@ public class ProvinceWindow extends Window {
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
+        
+        init();
     }
     
     private void init() {
@@ -82,6 +85,38 @@ public class ProvinceWindow extends Window {
         lMovementPoints.setVisible(false);
     }
     
+    public void showProvinceInfo(Province prov) {
+        lProvName.setText(prov.name);
+        lProvCountry.setText(prov.owner.name);
+        lProvPopulation.setText(prov.population);
+        
+        lPopulationProgress.setText(prov.foodPoints + " / " + prov.neededFood);
+        lProductionProgress.setText(prov.productionPoints + " / " + prov.neededProduction);
+        
+        
+        populationProgress.setRange(0, (float) prov.neededFood);
+        populationProgress.setValue(prov.foodPoints);
+        
+        productionProgress.setRange(0, (float) prov.neededFood);
+        productionProgress.setValue((float) prov.productionPoints);
+        
+        lFoodIncome.setText(Float.toString(prov.foodIncome));
+        lProductionIncome.setText(Float.toString(prov.productionIncome));
+        
+        if (prov.unit != null) {
+            lUnitThere.setText(prov.unit.name);
+            lMovementPoints.setText(Float.toString(prov.unit.movementPoints));
+            bMoveUnit.setVisible(true);
+            lMovementPoints.setVisible(true);
+        } else {
+            lUnitThere.setText("No Unit");
+            bMoveUnit.setVisible(false);
+            lMovementPoints.setVisible(false);
+        }
+        
+        
+        
+    }
     
     public void show() {
         setVisible(true);

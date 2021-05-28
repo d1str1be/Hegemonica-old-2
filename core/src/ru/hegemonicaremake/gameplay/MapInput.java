@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
@@ -44,7 +45,10 @@ public class MapInput implements GestureDetector.GestureListener {
     }
     
     @Override
-    public boolean touchDown(float x, float y, int pointer, int button) {
+    public boolean touchDown(float x, float y, int ponter, int button) {
+        if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+            HegeGame.skinManager.se
+        }
         return false;
     }
     

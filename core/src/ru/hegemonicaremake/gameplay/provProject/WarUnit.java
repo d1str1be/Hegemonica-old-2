@@ -33,7 +33,7 @@ public class WarUnit extends ProvinceProject {
         this.owner = province.owner;
         unitId = owner.logicMain.unitIdCounter;
         owner.logicMain.unitIdCounter++;
-        province.unitThere = this;
+        province.unitunit = this;
         ownerTexture = province.owner.unitTexture;
         switch (id) {
             case ID.WARRIOR:

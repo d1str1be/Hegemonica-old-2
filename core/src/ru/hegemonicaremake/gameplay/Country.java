@@ -1,5 +1,6 @@
 package ru.hegemonicaremake.gameplay;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.provProject.Building;
@@ -12,10 +13,7 @@ public class Country {
 
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
-
-    //graphics
-    public Texture unitTexture;
-
+    
     //regional economics
     public float farmFoodProduction;
     public float startFoodProduction;
@@ -44,22 +42,17 @@ public class Country {
                 break;
             case ID.BLUE:
                 name = "Blue";
-                unitTexture = new Texture(Gdx.files.internal("icons/units/circleBlue.png"));
                 break;
             case ID.GREEN:
                 name = "Green";
-                unitTexture = new Texture(Gdx.files.internal("icons/units/circleGreen.png"));
                 break;
             case ID.RED:
                 name = "Red";
-                unitTexture = new Texture(Gdx.files.internal("icons/units/circleRed.png"));
                 break;
             case ID.ORANGE:
                 name = "Orange";
-                unitTexture = new Texture(Gdx.files.internal("icons/units/circleOrange.png"));
                 break;
         }
-
         provinceProjects = new ProvinceProject[11];
         provinceProjects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
         provinceProjects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
