@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.gameplay.notifications;
 
 import com.badlogic.gdx.Files;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Notification {
@@ -31,8 +32,16 @@ public class Notification {
     public void setIcon(){
         switch (id){
             case ID.PROJECTCOMPLETED:
-                Files files;
-                icon = new Texture(files.internal());
+                icon = new Texture(Gdx.files.internal("icons/notifications/projectCompleted.png"));
+                break;
+            case ID.UNITATTACKED:
+                icon = new Texture(Gdx.files.internal("icons/notifications/unitAttacked.png"));
+                break;
+            case ID.PROVINCECAPTURED:
+                icon = new Texture(Gdx.files.internal("icons/notifications/provinceCaptured.png"));
+                break;
+            case ID.TECHNOLOGYRESEARCHED:
+                icon = new Texture(Gdx.files.internal("icons/notifications/technologyResearched.png"));
                 break;
         }
     }
