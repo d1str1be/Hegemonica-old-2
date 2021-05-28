@@ -51,24 +51,73 @@ public class LogicMain {
                 units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[4]));
                 break;
             case MAPSIZEID.LITTLE:
-                mapHeight = 3;
-                mapWidth = 7;
+                mapHeight = 4;
+                mapWidth = 4;
                 countries = new Country[3];
                 countries[Country.ID.NOTHING] = new Country(Country.ID.NOTHING, this);
                 countries[Country.ID.BLUE] = new Country(Country.ID.BLUE, this);
                 countries[Country.ID.GREEN] = new Country(Country.ID.GREEN, this);
-                provinces = new Province[21];
-                for (int i = 0; i < 21; i++) {
+                provinces = new Province[16];
+                for (int i = 0; i < 16; i++) {
                     provinces[i] = new Province(i, this, countries[Country.ID.NOTHING]);
                     setProvinceCoordinates(i);
                 }
-                for (int i = 0; i < 21; i++) {
+                for (int i = 0; i < 16; i++) {
                     provinces[i].setNeighbors();
                 }
-                provinces[8].owner = countries[Country.ID.BLUE];
-                provinces[12].owner = countries[Country.ID.GREEN];
-                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[8]));
-                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[12]));
+                provinces[0].owner = countries[Country.ID.BLUE];
+                provinces[15].owner = countries[Country.ID.GREEN];
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[0]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[15]));
+                break;
+            case MAPSIZEID.STANDARD:
+                mapHeight = 5;
+                mapWidth = 5;
+                countries = new Country[4];
+                countries[Country.ID.NOTHING] = new Country(Country.ID.NOTHING, this);
+                countries[Country.ID.BLUE] = new Country(Country.ID.BLUE, this);
+                countries[Country.ID.GREEN] = new Country(Country.ID.GREEN, this);
+                countries[Country.ID.RED] = new Country(Country.ID.RED, this);
+                provinces = new Province[25];
+                for (int i = 0; i < 25; i++) {
+                    provinces[i] = new Province(i, this, countries[Country.ID.NOTHING]);
+                    setProvinceCoordinates(i);
+                }
+                for (int i = 0; i < 25; i++) {
+                    provinces[i].setNeighbors();
+                }
+                provinces[0].owner = countries[Country.ID.BLUE];
+                provinces[4].owner = countries[Country.ID.GREEN];
+                provinces[24].owner = countries[Country.ID.RED];
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[0]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[4]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[24]));
+                break;
+            case MAPSIZEID.BIG:
+                mapHeight = 6;
+                mapWidth = 6;
+                countries = new Country[5];
+                countries[Country.ID.NOTHING] = new Country(Country.ID.NOTHING, this);
+                countries[Country.ID.BLUE] = new Country(Country.ID.BLUE, this);
+                countries[Country.ID.GREEN] = new Country(Country.ID.GREEN, this);
+                countries[Country.ID.RED] = new Country(Country.ID.RED, this);
+                countries[Country.ID.ORANGE] = new Country(Country.ID.ORANGE, this);
+                provinces = new Province[36];
+                for (int i = 0; i < 36; i++) {
+                    provinces[i] = new Province(i, this, countries[Country.ID.NOTHING]);
+                    setProvinceCoordinates(i);
+                }
+                for (int i = 0; i < 36; i++) {
+                    provinces[i].setNeighbors();
+                }
+                provinces[0].owner = countries[Country.ID.BLUE];
+                provinces[5].owner = countries[Country.ID.GREEN];
+                provinces[30].owner = countries[Country.ID.RED];
+                provinces[35].owner = countries[Country.ID.ORANGE];
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[0]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[5]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[30]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[35]));
                 break;
         }
         turnCountry = countries[Country.ID.BLUE];
