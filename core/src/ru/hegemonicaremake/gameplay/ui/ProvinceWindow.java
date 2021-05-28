@@ -42,8 +42,9 @@ public class ProvinceWindow extends Window {
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
-        
         init();
+        
+        stage.addActor(this);
     }
     
     private void init() {
@@ -85,7 +86,7 @@ public class ProvinceWindow extends Window {
         lMovementPoints.setVisible(false);
     }
     
-    public void showProvinceInfo(Province prov) {
+    public void setupProvinceInfo(Province prov) {
         lProvName.setText(prov.name);
         lProvCountry.setText(prov.owner.name);
         lProvPopulation.setText(prov.population);
@@ -113,9 +114,6 @@ public class ProvinceWindow extends Window {
             bMoveUnit.setVisible(false);
             lMovementPoints.setVisible(false);
         }
-        
-        
-        
     }
     
     public void show() {

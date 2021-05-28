@@ -12,12 +12,11 @@ public class MoveUnitButton extends TextButton {
     }
     
     
-    public void click(){
+    public void click() {
         MapInput.isMovingUnit = true;
     }
     
-    public void moveUnit(Province prov){
-        
+    public void moveUnit(Province prov) {
         
         
         MapInput.isMovingUnit = false;

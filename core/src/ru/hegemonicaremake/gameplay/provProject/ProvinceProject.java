@@ -1,14 +1,14 @@
 package ru.hegemonicaremake.gameplay.provProject;
 
 public class ProvinceProject {
-
+    
     public int id;
     public int typeId;
     public float cost;
     public String name;
-
+    
     public boolean isUnlocked;
-
+    
     public ProvinceProject(int id) {
         this.id = id;
         switch (id) {
@@ -80,11 +80,11 @@ public class ProvinceProject {
                 break;
         }
     }
-
+    
     public void unlock() {
         isUnlocked = true;
     }
-
+    
     public static class ID {
         public final static int FARM = 0;
         public final static int MINE = 1;
@@ -98,12 +98,12 @@ public class ProvinceProject {
         public final static int SWORDSMAN = 9;
         public final static int CROSSBOWS = 10;
     }
-
+    
     public static class TYPEID {
         public final static int BUILDING = 0;
         public final static int UNIT = 1;
     }
-
+    
     public static class STARTCOST {
         public final static float FARM = 8;
         public final static float MINE = 8;
@@ -116,7 +116,7 @@ public class ProvinceProject {
         public final static float SHIELDMAN = 15;
         public final static float SWORDSMAN = 25;
         public final static float CROSSBOWS = 25;
-
+        
     }
-
+    
 }

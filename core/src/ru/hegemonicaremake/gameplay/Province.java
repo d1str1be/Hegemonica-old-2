@@ -1,7 +1,8 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+
+import java.awt.Rectangle;
 
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
 import ru.hegemonicaremake.gameplay.provProject.Building;
@@ -9,15 +10,15 @@ import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class Province {
-
+    
     public int id;
     public String name;
     public Country owner;
     public LogicMain logicMain;
-
+    
     //units
     public WarUnit unit;
-
+    
     //economics
     public int population;
     public float foodPoints;
@@ -28,13 +29,13 @@ public class Province {
     public float neededFood;
     public float neededProduction;
     public float eatingFood;
-
+    
     public Building[] buildings;
     public ProvinceProject[] projects;
-
+    
     public ProvinceProject projectInProcess;
     public int numberOfBuildings;
-
+    
     //neighbors and location
     public Province[] adjacentProvinces;
     public Province northernProvince;
@@ -45,14 +46,14 @@ public class Province {
     public Province northEasternProvince;
     public Province southEasternProvince;
     public Province southWesternProvince;
-
+    
     public int x;
     public int y;
     private final float provinceSideSize = 50f;
     
     //for rendering
     public ProvinceGFX gfx;
-
+    
     public Province(int id, LogicMain logicMain, Country owner) {
         this.id = id;
         this.logicMain = logicMain;
@@ -70,7 +71,7 @@ public class Province {
         projects[ProvinceProject.ID.SHIELDMAN] = new ProvinceProject(ProvinceProject.ID.SHIELDMAN);
         projects[ProvinceProject.ID.SWORDSMAN] = new ProvinceProject(ProvinceProject.ID.SWORDSMAN);
         projects[ProvinceProject.ID.CROSSBOWS] = new ProvinceProject(ProvinceProject.ID.CROSSBOWS);
-
+        
         buildings = new Building[6];
         buildings[Building.ID.FARM] = new Building(Building.ID.FARM, this);
         buildings[Building.ID.MINE] = new Building(Building.ID.MINE, this);
@@ -79,27 +80,27 @@ public class Province {
         buildings[Building.ID.WORKSHOP] = new Building(Building.ID.WORKSHOP, this);
         buildings[Building.ID.CITY] = new Building(Building.ID.CITY, this);
         numberOfBuildings = 0;
-
+        
         foodPoints = 0;
         productionPoints = 0;
         population = 1;
 //        eatingFood = owner.citizenEatingFood;
         gfx = new ProvinceGFX(this);
     }
-
+    
     public void onFirstTurn() {
         setNeighbors();
     }
-
+    
     public void onTurn() {
         UnitActions.onTurn(unit);
-
+        
         foodIncome = buildings[ProvinceProject.ID.FARM].quantity * owner.farmFoodProduction + owner.startFoodProduction;
         productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;
         scienceIncome = buildings[ProvinceProject.ID.LIBRARY].quantity * owner.libraryScienceProduction + buildings[ProvinceProject.ID.UNIVERSITY].quantity * owner.universityScienceProduction + population * owner.citizenScienceProduction;
         eatingFood = population * owner.citizenEatingFood;
         owner.scienceIncome += scienceIncome;
-
+        
         foodPoints += foodIncome - eatingFood;
         productionPoints += productionIncome;
         if (foodPoints >= neededFood) {
@@ -119,37 +120,37 @@ public class Province {
             projectInProcess = null;
         }
     }
-
+    
     public void grow() {
         foodPoints -= neededFood;
         population++;
         eatingFood = population * owner.citizenEatingFood;
         neededFood += 2;
     }
-
+    
     public void decrease() {
         population--;
         eatingFood = population * owner.citizenEatingFood;
         neededFood -= 2;
         foodPoints = neededFood - 1;
     }
-
+    
     public void setOwner(Country newOwner) {
         owner = newOwner;
         for (int i = 0; i < 11; i++) {
             projects[i].isUnlocked = newOwner.provinceProjects[i].isUnlocked;
         }
     }
-
+    
     public void chooseProject(ProvinceProject provinceProject) {
         projectInProcess = provinceProject;
         neededProduction = provinceProject.cost;
     }
-
+    
     public boolean isTurnAvailable() {
         return !(projectInProcess == null);
     }
-
+    
     public void setNeighbors() {
         float a = LogicMain.provinceSize;
         northWesternProvince = null;
@@ -180,7 +181,7 @@ public class Province {
         adjacentProvinces[6] = southWesternProvince;
         adjacentProvinces[7] = westernProvince;
     }
-
+    
     public boolean isNeighbor(Province province) {
         for (Province province1 : adjacentProvinces) {
             if (province.id == province1.id) {
@@ -190,34 +191,21 @@ public class Province {
         return false;
     }
     
-    public void render(SpriteBatch batch){
+    public void render(SpriteBatch batch) {
         gfx.render(batch);
     }
-    public void addToStage(Stage stage){
-        gfx.addToStage(stage);
-    }
-    public void update(SpriteBatch batch){
+    
+    public void update(SpriteBatch batch) {
         gfx.update(batch);
     }
-    public void createUnit(SpriteBatch batch, WarUnit unit) {gfx.createUnit(batch, unit);}
-    public boolean contains(float x,float y){
-        int w = LogicMain.provinceSize;
-        int h = LogicMain.provinceSize;
-        if ((w | h) < 0) {
-            // At least one of the dimensions is negative...
-            return false;
-        }
-        // Note: if either dimension is zero, tests below must return false...
-        int X = this.x;
-        int Y = this.y;
-        if (X < x || Y < y) {
-            return false;
-        }
-        w += x;
-        h += y;
-        //    overflow || intersect
-        return ((w < x || w > X) &&
-                (h < y || h > Y));
+    
+    public void createUnit(WarUnit unit) {
+        this.unit = unit;
+    }
+    
+    public boolean contains(float x, float y) {
+        Rectangle rect = new Rectangle(this.x, this.y, LogicMain.provinceSize, LogicMain.provinceSize);
+        return rect.contains(x, y);
     }
     
 }

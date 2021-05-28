@@ -4,11 +4,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
-public class CountryInfoWindow extends Window implements Hideable{
+public class CountryInfoWindow extends Window implements Hideable {
     
     SkinManager skinManager;
+    
     public CountryInfoWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
         setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
@@ -16,6 +18,7 @@ public class CountryInfoWindow extends Window implements Hideable{
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
+        stage.addActor(this);
     }
     
     @Override

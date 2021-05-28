@@ -9,12 +9,12 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class HegeMap {
+    HegeGame game;
     LogicMain logic;
-
+    
     HUD ui;
     
     MapInput input;
@@ -26,7 +26,8 @@ public class HegeMap {
     
     Stage stage;
     
-    public HegeMap() {
+    public HegeMap(HegeGame game) {
+        this.game = game;
         batch = new SpriteBatch();
         bgBatch = new SpriteBatch();
         camera = new OrthographicCamera(HegeGame.width, HegeGame.height);
@@ -53,8 +54,7 @@ public class HegeMap {
             prov.render(batch);
         }
         batch.end();
-
-
+        ui.render();
 //        stage.act();
 //        stage.draw();
     }
@@ -66,18 +66,15 @@ public class HegeMap {
         }
         batch.end();
     }
-
-    public void createUnit(WarUnit unit) {
-        batch.begin();
-        unit.province.createUnit(batch, unit);
-        batch.end();
-    }
     
     public void checkTap(float x, float y) {
         if (logic.findTappedProvince(x, y)) {
             HegeLog.log("Input", "You`ve pressed " + logic.selectedProvince.name);
             if (logic.selectedProvince.owner == logic.turnCountry)
                 ui.selectProvince(logic.selectedProvince);
+        } else {
+            logic.selectedProvince = null;
+            ui.unselectProvince();
         }
     }
 }

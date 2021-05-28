@@ -6,11 +6,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
-import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class ProvinceGFX {
     Pixmap borders;
@@ -25,9 +20,6 @@ public class ProvinceGFX {
     // borders
     Texture[] pBorders;
     
-    
-    Label provName;
-    Texture unitIcon;
     
     public ProvinceGFX(Province prov) {
         this.prov = prov;
@@ -46,18 +38,14 @@ public class ProvinceGFX {
         
         drawRectangle();
         drawBorders();
-        
-        provName = new Label(prov.name, HegeGame.skinManager.provNameStyle);
-        provName.setPosition(prov.x - provName.getWidth(), prov.y);
-        
-        
     }
     
     public void render(SpriteBatch batch) {
         batch.draw(rectTexture, prov.x, prov.y);
         batch.draw(provTexture, prov.x, prov.y, sideSize, sideSize);
         batch.draw(borderTexture, prov.x, prov.y);
-        provName.draw(batch, 1f);
+        if (prov.unit != null)
+            prov.unit.gfx.render(batch);
     }
     
     public void update(SpriteBatch batch) {
@@ -83,18 +71,6 @@ public class ProvinceGFX {
                 }
             }
         }
-    }
-
-    public void createUnit(SpriteBatch batch, WarUnit unit) {
-        batch.begin();
-        batch.draw(unit.ownerTexture, prov.x, prov.y, sideSize, sideSize);
-        batch.draw(unit.unitTexture, prov.x, prov.y, sideSize, sideSize);
-        batch.end();
-    }
-    
-    public void addToStage(Stage stage) {
-        stage.addActor(provName);
-        //добавить иконку в стейдж
     }
     
     public void setColor() {
@@ -143,9 +119,5 @@ public class ProvinceGFX {
         borderTexture.dispose();
         rectTexture.dispose();
         provTexture.dispose();
-    }
-    
-    public void makeUnit(int countryId, int unitId) {
-        unitIcon = UnitIconBuilder.buildIcon(countryId, unitId);
     }
 }

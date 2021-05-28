@@ -4,13 +4,13 @@ import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class UnitActions {
-
+    
     public static void onTurn(WarUnit unit) {
         if (unit != null) {
             unit.movementPoints = unit.startMovementPoints;
         }
     }
-
+    
     public static void heal(WarUnit unit) {
         unit.health += 20;
         if (unit.health > 100) {
@@ -18,28 +18,28 @@ public class UnitActions {
         }
         unit.movementPoints--;
     }
-
+    
     public static void destroy(WarUnit unit) {
-        unit.province.unitunit = null;
+        unit.province.unit = null;
         unit.owner.logicMain.units.set(unit.unitId, null);
     }
-
+    
     public static void move(WarUnit unit, Province province) {
-        if (province.unitunit != null) {
-            battle(unit, province.unitunit);
-            if (province.unitunit == null) {
-                unit.province.unitunit = null;
-                province.unitunit = unit;
+        if (province.unit != null) {
+            battle(unit, province.unit);
+            if (province.unit == null) {
+                unit.province.unit = null;
+                province.unit = unit;
                 unit.province = province;
             }
         } else {
-            unit.province.unitunit = null;
-            province.unitunit = unit;
+            unit.province.unit = null;
+            province.unit = unit;
             unit.province = province;
             unit.movementPoints--;
         }
     }
-
+    
     public static void battle(WarUnit attacker, WarUnit defender) {
         defender.health -= 30 * Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
         if (defender.health <= 0) {
@@ -56,25 +56,25 @@ public class UnitActions {
             }
         }
     }
-
+    
     public static void capture(WarUnit unit) {
         unit.province.setOwner(unit.owner);
         unit.movementPoints--;
     }
-
+    
     public static boolean isMovable(WarUnit unit, Province province) {
         if (unit.movementPoints > 0) {
             if (unit.province.isNeighbor(province)) {
-                if (province.unitunit == null) {
+                if (province.unit == null) {
                     return true;
-                } else if (province.unitunit.owner.id == unit.owner.id) {
+                } else if (province.unit.owner.id == unit.owner.id) {
                     return false;
                 }
             }
         }
         return false;
     }
-
+    
     public static boolean isCanCapture(WarUnit unit, Province province) {
         if (unit.movementPoints > 0) {
             if (unit.owner.id == province.owner.id) return true;

@@ -12,7 +12,7 @@ public class PlayScreen implements Screen {
     
     public PlayScreen(HegeGame game) {
         this.game = game;
-        map = new HegeMap();
+        map = new HegeMap(game);
     }
     
     @Override

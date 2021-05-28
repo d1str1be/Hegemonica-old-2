@@ -1,16 +1,13 @@
 package ru.hegemonicaremake.gameplay;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-
 import ru.hegemonicaremake.gameplay.provProject.Building;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 
 public class Country {
-
+    
     public int id;
     public String name;
-
+    
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
     
@@ -18,21 +15,21 @@ public class Country {
     public float farmFoodProduction;
     public float startFoodProduction;
     public float citizenEatingFood;
-
+    
     public float mineProduction;
     public float workshopProduction;
     public float citizenProduction;
-
+    
     public float libraryScienceProduction;
     public float universityScienceProduction;
     public float citizenScienceProduction;
-
+    
     public LogicMain logicMain;
-
+    
     public Technology technologyInProcess;
     public float sciencePoints;
     public float scienceIncome;
-
+    
     public Country(int id, LogicMain logicMain) {
         this.id = id;
         this.logicMain = logicMain;
@@ -65,7 +62,7 @@ public class Country {
         provinceProjects[ProvinceProject.ID.SHIELDMAN] = new ProvinceProject(ProvinceProject.ID.SHIELDMAN);
         provinceProjects[ProvinceProject.ID.SWORDSMAN] = new ProvinceProject(ProvinceProject.ID.SWORDSMAN);
         provinceProjects[ProvinceProject.ID.CROSSBOWS] = new ProvinceProject(ProvinceProject.ID.CROSSBOWS);
-
+        
         technologies = new Technology[6];
         technologies[Technology.ID.ENGINEERING] = new Technology(Technology.ID.ENGINEERING, this);
         technologies[Technology.ID.PAPER] = new Technology(Technology.ID.PAPER, this);
@@ -73,7 +70,7 @@ public class Country {
         technologies[Technology.ID.MACHINERY] = new Technology(Technology.ID.MACHINERY, this);
         technologies[Technology.ID.APPRENTICESHIP] = new Technology(Technology.ID.APPRENTICESHIP, this);
         technologies[Technology.ID.EDUCATION] = new Technology(Technology.ID.EDUCATION, this);
-
+        
         farmFoodProduction = Building.STARTFOODPRODUCTION.FARM;
         startFoodProduction = Building.STARTFOODPRODUCTION.STARTPRODUCTION;
         citizenEatingFood = OTHERVALUES.STARTEATINGFOODCITIZEN;
@@ -83,11 +80,11 @@ public class Country {
         libraryScienceProduction = Building.STARTSCIENCEPRODUCTION.LIBRARY;
         universityScienceProduction = Building.STARTSCIENCEPRODUCTION.UNIVERSITY;
         citizenScienceProduction = Building.STARTSCIENCEPRODUCTION.CITIZEN;
-
+        
         technologyInProcess = null;
         sciencePoints = 0;
     }
-
+    
     public void onTurn() {
         for (Province province : logicMain.provinces) {
             if (province.owner.id == id) {
@@ -98,11 +95,11 @@ public class Country {
             technologies[technologyInProcess.id].research();
         }
     }
-
+    
     public void chooseTechnology(Technology technology) {
         technologyInProcess = technology;
     }
-
+    
     public boolean isTurnAvailable() {
         for (Province province : logicMain.provinces) {
             if (province.owner.id == id) {
@@ -112,7 +109,7 @@ public class Country {
         if (technologyInProcess == null) return false;
         return true;
     }
-
+    
     public static class ID {
         public final static int NOTHING = 0;
         public final static int BLUE = 1;
@@ -120,7 +117,7 @@ public class Country {
         public final static int RED = 3;
         public final static int ORANGE = 4;
     }
-
+    
     public static class OTHERVALUES {
         public final static float STARTEATINGFOODCITIZEN = 2;
     }

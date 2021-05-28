@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.screens.MainMenu;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class MapInput implements GestureDetector.GestureListener {
@@ -46,8 +47,8 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean touchDown(float x, float y, int ponter, int button) {
-        if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
-            HegeGame.skinManager.se
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            HegeGame.screenManager.setScreen(new MainMenu(map.game));
         }
         return false;
     }
@@ -58,7 +59,7 @@ public class MapInput implements GestureDetector.GestureListener {
         realY = (HegeGame.height - y + cameraMovementY) * camera.zoom;
         HegeLog.log("Input", "Tapped on X: " + realX);
         HegeLog.log("Input", "Tapped on Y: " + realY);
-        map.checkTap(x, y);
+        map.checkTap(realX, realY);
         return true;
     }
     
@@ -93,8 +94,7 @@ public class MapInput implements GestureDetector.GestureListener {
             if ((distance - initialDistance) > 0) {
                 camera.zoom *= 0.95f;
                 return true;
-            }
-            else {
+            } else {
                 camera.zoom *= 1.05f;
                 return true;
             }

@@ -12,7 +12,7 @@ public class HegeLog {
     final static public String HUD = "HUD";
     final static public String COUNTRY = "Country Logs";
     final static public String PROVINCE = "Province Logs";
-
+    
     public static void log(String logTag, String message) {
         if (HegeGame.DEV_MODE)
             Gdx.app.log(logTag, message);

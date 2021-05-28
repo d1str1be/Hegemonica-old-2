@@ -3,13 +3,13 @@ package ru.hegemonicaremake.gameplay;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 
 public class Technology {
-
+    
     public int id;
     public float cost;
     public Country owner;
     public boolean isResearched;
     public String name;
-
+    
     public Technology(int id, Country owner) {
         this.id = id;
         this.owner = owner;
@@ -41,7 +41,7 @@ public class Technology {
                 break;
         }
     }
-
+    
     public void research() {
         isResearched = true;
         owner.sciencePoints -= cost;
@@ -74,7 +74,7 @@ public class Technology {
                 break;
         }
     }
-
+    
     public static class ID {
         public final static int ENGINEERING = 0;
         public final static int PAPER = 1;
@@ -83,7 +83,7 @@ public class Technology {
         public final static int APPRENTICESHIP = 4;
         public final static int EDUCATION = 5;
     }
-
+    
     public static class COST {
         public final static float ENGINEERING = 15;
         public final static float PAPER = 15;

@@ -5,18 +5,20 @@ import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
+import ru.hegemonicaremake.gameplay.WarUnitGFX;
 
 public class WarUnit extends ProvinceProject {
-
+    
     public int unitId;
     public Province province;
     public Country owner;
-
+    
     //graphics
     public Texture ownerTexture;
     public Texture unitTexture;
-
+    
     //battle
+    public static final float maxHealth = 100;
     public float health;
     public float startAttackStrength;
     public float startDefenseStrength;
@@ -25,7 +27,9 @@ public class WarUnit extends ProvinceProject {
     public float defenseStrength;
     public float movementPoints;
     public boolean isRanged;
-
+    
+    public WarUnitGFX gfx;
+    
     //create constructor
     public WarUnit(int id, Province province) {
         super(id);
@@ -33,8 +37,8 @@ public class WarUnit extends ProvinceProject {
         this.owner = province.owner;
         unitId = owner.logicMain.unitIdCounter;
         owner.logicMain.unitIdCounter++;
-        province.unitunit = this;
-        ownerTexture = province.owner.unitTexture;
+        province.unit = this;
+        gfx = new WarUnitGFX(id, province);
         switch (id) {
             case ID.WARRIOR:
                 startAttackStrength = ATTACKSTRENGTH.WARRIOR;
@@ -75,19 +79,17 @@ public class WarUnit extends ProvinceProject {
         attackStrength = startAttackStrength;
         defenseStrength = startDefenseStrength;
         movementPoints = startMovementPoints;
-
-        //graphics
-        province.owner.logicMain.map.createUnit(this);
+        
     }
-
+    
     public void setAttackStrength() {
         attackStrength = startAttackStrength - 10 * (health / 100);
     }
-
+    
     public void setDefenseStrength() {
         defenseStrength = startDefenseStrength - 10 * (health / 100);
     }
-
+    
     public class ATTACKSTRENGTH {
         public final static float WARRIOR = 20;
         public final static float ARCHER = 20;
@@ -95,7 +97,7 @@ public class WarUnit extends ProvinceProject {
         public final static float CROSSBOWS = 30;
         public final static float SWORDSMAN = 30;
     }
-
+    
     public class DEFENSESTRENGTH {
         public final static float WARRIOR = 22;
         public final static float ARCHER = 10;
@@ -103,7 +105,7 @@ public class WarUnit extends ProvinceProject {
         public final static float CROSSBOWS = 18;
         public final static float SWORDSMAN = 32;
     }
-
+    
     public class MOVEMENTPOINTS {
         public final static float WARRIOR = 1;
         public final static float ARCHER = 1;
@@ -111,5 +113,5 @@ public class WarUnit extends ProvinceProject {
         public final static float CROSSBOWS = 1;
         public final static float SWORDSMAN = 1;
     }
-
+    
 }
