@@ -1,6 +1,4 @@
-package ru.hegemonicaremake.gameplay.provinceProject;
-
-import ru.hegemonicaremake.gameplay.Province;
+package ru.hegemonicaremake.gameplay;
 
 public class Building extends ProvinceProject{
 

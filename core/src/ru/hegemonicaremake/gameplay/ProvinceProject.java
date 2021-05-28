@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.gameplay.provinceProject;
+package ru.hegemonicaremake.gameplay;
 
 public class ProvinceProject {
 

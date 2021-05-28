@@ -1,7 +1,7 @@
 package ru.hegemonicaremake.gameplay.operators;
 
 import ru.hegemonicaremake.gameplay.Province;
-import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.units.WarUnit;
 
 public class UnitActions {
 

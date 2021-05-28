@@ -1,8 +1,5 @@
 package ru.hegemonicaremake.gameplay;
 
-import ru.hegemonicaremake.gameplay.provinceProject.Building;
-import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
-
 public class Country {
 
     public int id;

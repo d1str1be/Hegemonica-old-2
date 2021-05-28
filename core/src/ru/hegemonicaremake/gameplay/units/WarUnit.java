@@ -1,8 +1,8 @@
-package ru.hegemonicaremake.gameplay.provinceProject.units;
+package ru.hegemonicaremake.gameplay.units;
 
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
-import ru.hegemonicaremake.gameplay.provinceProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.ProvinceProject;
 
 public class WarUnit extends ProvinceProject {
 
