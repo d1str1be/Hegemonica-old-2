@@ -1,5 +1,6 @@
 package ru.hegemonicaremake.gameplay;
 
+import com.badlogic.gdx.graphics.Texture;
 public class Country {
 
     public int id;
@@ -7,6 +8,9 @@ public class Country {
 
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
+
+    //graphics
+    public Texture unitTexture;
 
     //regional economics
     public float farmFoodProduction;
