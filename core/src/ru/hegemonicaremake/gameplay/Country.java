@@ -10,7 +10,9 @@ public class Country {
     
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
-    
+
+    public int population;
+
     //regional economics
     public float farmFoodProduction;
     public float startFoodProduction;
@@ -33,6 +35,7 @@ public class Country {
     public Country(int id, LogicMain logicMain) {
         this.id = id;
         this.logicMain = logicMain;
+        population = 1;
         switch (id) {
             case ID.NOTHING:
                 name = "Nothing";
@@ -86,8 +89,10 @@ public class Country {
     }
     
     public void onTurn() {
+        population = 0;
         for (Province province : logicMain.provinces) {
             if (province.owner.id == id) {
+                population += province.population;
                 province.onTurn();
             }
         }
