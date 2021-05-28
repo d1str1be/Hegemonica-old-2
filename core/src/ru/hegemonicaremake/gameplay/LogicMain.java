@@ -47,13 +47,28 @@ public class LogicMain {
                 for (int i = 0; i < 9; i++) {
                     provinces[i].setNeighbors();
                 }
-                for (int i = 0; i < 9; i++) {
-                    provinces[i].owner = countries[Country.ID.NOTHING];
-                }
                 provinces[4].owner = countries[Country.ID.BLUE];
                 units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[4]));
                 break;
             case MAPSIZEID.LITTLE:
+                mapHeight = 3;
+                mapWidth = 7;
+                countries = new Country[3];
+                countries[Country.ID.NOTHING] = new Country(Country.ID.NOTHING, this);
+                countries[Country.ID.BLUE] = new Country(Country.ID.BLUE, this);
+                countries[Country.ID.GREEN] = new Country(Country.ID.GREEN, this);
+                provinces = new Province[21];
+                for (int i = 0; i < 21; i++) {
+                    provinces[i] = new Province(i, this, countries[Country.ID.NOTHING]);
+                    setProvinceCoordinates(i);
+                }
+                for (int i = 0; i < 21; i++) {
+                    provinces[i].setNeighbors();
+                }
+                provinces[8].owner = countries[Country.ID.BLUE];
+                provinces[12].owner = countries[Country.ID.GREEN];
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[8]));
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[12]));
                 break;
         }
         turnCountry = countries[Country.ID.BLUE];
