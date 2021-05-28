@@ -3,9 +3,8 @@ package ru.hegemonicaremake.gameplay;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import ru.hegemonicaremake.gameplay.provinceProject.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class LogicMain {
     

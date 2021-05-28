@@ -1,4 +1,4 @@
-package ru.hegemonicaremake.gameplay.provinceProject;
+package ru.hegemonicaremake.gameplay.provProject;
 
 import ru.hegemonicaremake.gameplay.Province;
 
