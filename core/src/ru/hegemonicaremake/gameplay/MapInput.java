@@ -34,7 +34,7 @@ public class MapInput implements GestureDetector.GestureListener {
         camera.translate(0, 0);
         cameraMovementX = camera.viewportWidth / 2;
         cameraMovementY = -camera.viewportHeight / 2;
-        camera.zoom = 2f;
+        camera.zoom = 1f;
         
         im = new InputMultiplexer();
         im.addProcessor(new GestureDetector(this));
@@ -89,16 +89,16 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean zoom(float initialDistance, float distance) {
-        float zoomMin = 5f;
-        float zoomMax = 1f;
-        if (camera.zoom > zoomMax && camera.zoom < zoomMin)
-            if ((distance - initialDistance) > 0) {
-                camera.zoom *= 0.95f;
-                return true;
-            } else {
-                camera.zoom *= 1.05f;
-                return true;
-            }
+//        float zoomMin = 5f;
+//        float zoomMax = 1f;
+//        if (camera.zoom > zoomMax && camera.zoom < zoomMin) - зум нарушает обработку нажатия на провинцию, фикс не разработан
+//            if ((distance - initialDistance) > 0) {
+//                camera.zoom *= 0.95f;
+//                return true;
+//            } else {
+//                camera.zoom *= 1.05f;
+//                return true;
+//            }
         return false;
     }
     

@@ -49,7 +49,7 @@ public class Province {
     
     public int x;
     public int y;
-    private final float provinceSideSize = 50f;
+    private final float provinceSideSize;
     
     //for rendering
     public ProvinceGFX gfx;
@@ -59,6 +59,7 @@ public class Province {
         this.logicMain = logicMain;
         this.owner = owner;
         this.name = "Province " + id;
+        provinceSideSize = LogicMain.provinceSize;
         projects = new ProvinceProject[11];
         projects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
         projects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
@@ -204,8 +205,10 @@ public class Province {
     }
     
     public boolean contains(float x, float y) {
-        Rectangle rect = new Rectangle(this.x, this.y, LogicMain.provinceSize, LogicMain.provinceSize);
-        return rect.contains(x, y);
+        return (x >= this.x &&
+                y >= this.y &&
+                x < this.x + provinceSideSize &&
+                y < this.y + provinceSideSize);
     }
     
 }
