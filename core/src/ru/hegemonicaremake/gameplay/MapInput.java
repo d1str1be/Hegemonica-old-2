@@ -16,13 +16,12 @@ public class MapInput implements GestureDetector.GestureListener {
     OrthographicCamera camera;
     InputMultiplexer im;
     
-    private final float zoomMin = 5f;
-    private final float zoomMax = 1f;
-    
     float realX;
     float realY;
     float cameraMovementX;
     float cameraMovementY;
+    
+    public static boolean isMovingUnit = false;
     
     public MapInput(HegeMap map, OrthographicCamera camera, Viewport viewport) {
         
@@ -84,6 +83,8 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean zoom(float initialDistance, float distance) {
+        float zoomMin = 5f;
+        float zoomMax = 1f;
         if (camera.zoom > zoomMax && camera.zoom < zoomMin)
             if ((distance - initialDistance) > 0) {
                 camera.zoom *= 0.95f;
