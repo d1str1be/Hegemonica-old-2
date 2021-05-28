@@ -10,12 +10,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class HegeMap {
     MapInput input;
     LogicMain logic;
-    SpriteBatch batch;
+    public SpriteBatch batch;
     SpriteBatch bgBatch;
     Texture background;
     Viewport viewport;
@@ -60,6 +61,12 @@ public class HegeMap {
         for (Province prov : logic.provinces) {
             prov.update(batch);
         }
+        batch.end();
+    }
+
+    public void createUnit(WarUnit unit) {
+        batch.begin();
+        unit.province.createUnit(batch, unit);
         batch.end();
     }
     

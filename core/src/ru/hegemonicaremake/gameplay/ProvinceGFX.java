@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class ProvinceGFX {
     Pixmap borders;
@@ -83,6 +84,13 @@ public class ProvinceGFX {
                 }
             }
         }
+    }
+
+    public void createUnit(SpriteBatch batch, WarUnit unit) {
+        batch.begin();
+        batch.draw(unit.ownerTexture, prov.x, prov.y, sideSize, sideSize);
+        batch.draw(unit.unitTexture, prov.x, prov.y, sideSize, sideSize);
+        batch.end();
     }
     
     public void addToStage(Stage stage) {

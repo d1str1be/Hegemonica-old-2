@@ -40,7 +40,7 @@ public class WarUnit extends ProvinceProject {
                 startAttackStrength = ATTACKSTRENGTH.WARRIOR;
                 startDefenseStrength = DEFENSESTRENGTH.WARRIOR;
                 startMovementPoints = MOVEMENTPOINTS.WARRIOR;
-                unitTexture = new Texture(Gdx.files.internal("icons/units/old/warrior.png"));
+                unitTexture = new Texture(Gdx.files.internal("icons/units/warrior.png"));
                 isRanged = false;
                 break;
             case ID.ARCHER:
@@ -75,6 +75,9 @@ public class WarUnit extends ProvinceProject {
         attackStrength = startAttackStrength;
         defenseStrength = startDefenseStrength;
         movementPoints = startMovementPoints;
+
+        //graphics
+        province.owner.logicMain.map.createUnit(this);
     }
 
     public void setAttackStrength() {

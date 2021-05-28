@@ -1,5 +1,6 @@
 package ru.hegemonicaremake.gameplay;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.provProject.Building;

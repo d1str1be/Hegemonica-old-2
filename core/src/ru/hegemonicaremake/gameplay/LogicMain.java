@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
 
+import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class LogicMain {
@@ -53,16 +54,12 @@ public class LogicMain {
                     provinces[i].owner = countries[Country.ID.NOTHING];
                 }
                 provinces[4].owner = countries[Country.ID.BLUE];
-
+                units.add(new WarUnit(ProvinceProject.ID.WARRIOR, provinces[4]));
                 break;
             case MAPSIZEID.LITTLE:
                 break;
         }
         turnCountry = countries[Country.ID.BLUE];
-    }
-
-    public void update() {
-        map.update();
     }
     
     public void onTurn() {

@@ -51,7 +51,7 @@ public class Province {
     private final float provinceSideSize = 50f;
     
     //for rendering
-    ProvinceGFX gfx;
+    public ProvinceGFX gfx;
 
     public Province(int id, LogicMain logicMain, Country owner) {
         this.id = id;
@@ -199,6 +199,7 @@ public class Province {
     public void update(SpriteBatch batch){
         gfx.update(batch);
     }
+    public void createUnit(SpriteBatch batch, WarUnit unit) {gfx.createUnit(batch, unit);}
     public boolean contains(float x,float y){
         int w = LogicMain.provinceSize;
         int h = LogicMain.provinceSize;
