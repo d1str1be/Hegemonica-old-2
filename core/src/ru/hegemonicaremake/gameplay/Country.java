@@ -45,15 +45,19 @@ public class Country {
                 break;
             case ID.BLUE:
                 name = "Blue";
+                unitTexture = new Texture(Gdx.files.internal("icons/units/circleBlue.png"));
                 break;
             case ID.GREEN:
                 name = "Green";
+                unitTexture = new Texture(Gdx.files.internal("icons/units/circleGreen.png"));
                 break;
             case ID.RED:
                 name = "Red";
+                unitTexture = new Texture(Gdx.files.internal("icons/units/circleRed.png"));
                 break;
             case ID.ORANGE:
                 name = "Orange";
+                unitTexture = new Texture(Gdx.files.internal("icons/units/circleOrange.png"));
                 break;
         }
 

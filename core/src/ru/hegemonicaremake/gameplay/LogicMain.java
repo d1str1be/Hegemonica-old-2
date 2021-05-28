@@ -54,6 +54,7 @@ public class LogicMain {
                     provinces[i].owner = countries[Country.ID.NOTHING];
                 }
                 provinces[4].owner = countries[Country.ID.BLUE];
+
                 break;
             case MAPSIZEID.LITTLE:
                 break;

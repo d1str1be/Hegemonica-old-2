@@ -1,5 +1,6 @@
 package ru.hegemonicaremake.gameplay.provinceProject.units;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.Country;
@@ -34,35 +35,41 @@ public class WarUnit extends ProvinceProject {
         unitId = owner.logicMain.unitIdCounter;
         owner.logicMain.unitIdCounter++;
         province.unitThere = this;
+        ownerTexture = province.owner.unitTexture;
         switch (id) {
             case ID.WARRIOR:
                 startAttackStrength = ATTACKSTRENGTH.WARRIOR;
                 startDefenseStrength = DEFENSESTRENGTH.WARRIOR;
                 startMovementPoints = MOVEMENTPOINTS.WARRIOR;
+                unitTexture = new Texture(Gdx.files.internal("icons/units/old/warrior.png"));
                 isRanged = false;
                 break;
             case ID.ARCHER:
                 startAttackStrength = ATTACKSTRENGTH.ARCHER;
                 startDefenseStrength = DEFENSESTRENGTH.ARCHER;
                 startMovementPoints = MOVEMENTPOINTS.ARCHER;
+                unitTexture = new Texture(Gdx.files.internal("icons/units/archer.png"));
                 isRanged = true;
                 break;
             case ID.SHIELDMAN:
                 startAttackStrength = ATTACKSTRENGTH.SHIELDMAN;
                 startDefenseStrength = DEFENSESTRENGTH.SHIELDMAN;
                 startMovementPoints = MOVEMENTPOINTS.SHIELDMAN;
+                unitTexture = new Texture(Gdx.files.internal("icons/units/shield.png"));
                 isRanged = false;
                 break;
             case ID.CROSSBOWS:
                 startAttackStrength = ATTACKSTRENGTH.CROSSBOWS;
                 startDefenseStrength = DEFENSESTRENGTH.CROSSBOWS;
                 startMovementPoints = MOVEMENTPOINTS.CROSSBOWS;
+                unitTexture = new Texture(Gdx.files.internal("icons/units/crossbow.png"));
                 isRanged = true;
                 break;
             case ID.SWORDSMAN:
                 startAttackStrength = ATTACKSTRENGTH.SWORDSMAN;
                 startDefenseStrength = DEFENSESTRENGTH.SWORDSMAN;
                 startMovementPoints = MOVEMENTPOINTS.SWORDSMAN;
+                unitTexture = new Texture(Gdx.files.internal("icons/units/sword.png"));
                 isRanged = false;
                 break;
         }
