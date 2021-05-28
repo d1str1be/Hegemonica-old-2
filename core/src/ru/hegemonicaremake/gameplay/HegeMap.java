@@ -35,6 +35,7 @@ public class HegeMap {
 
         input = new MapInput(this, camera, viewport);
         background = new Texture(Gdx.files.internal("bg.jpg"));
+
     }
     
     public void render() {
