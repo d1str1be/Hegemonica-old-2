@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import java.util.ArrayList;
 
-import ru.hegemonicaremake.gameplay.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class LogicMain {
     

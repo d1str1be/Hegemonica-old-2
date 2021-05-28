@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.Technology;
-import ru.hegemonicaremake.gameplay.ProvinceProject;
-import ru.hegemonicaremake.gameplay.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class Notificator {
 

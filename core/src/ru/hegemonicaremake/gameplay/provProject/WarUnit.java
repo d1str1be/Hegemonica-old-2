@@ -1,10 +1,9 @@
-package ru.hegemonicaremake.gameplay.units;
+package ru.hegemonicaremake.gameplay.provProject;
 
 import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
-import ru.hegemonicaremake.gameplay.ProvinceProject;
 
 public class WarUnit extends ProvinceProject {
 

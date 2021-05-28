@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
-import ru.hegemonicaremake.gameplay.units.WarUnit;
+import ru.hegemonicaremake.gameplay.provProject.Building;
+import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
+import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class Province {
 

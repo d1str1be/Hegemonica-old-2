@@ -1,5 +1,7 @@
 package ru.hegemonicaremake.gameplay;
 
+import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
+
 public class Technology {
 
     public int id;

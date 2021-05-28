@@ -1,6 +1,10 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.graphics.Texture;
+
+import ru.hegemonicaremake.gameplay.provProject.Building;
+import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
+
 public class Country {
 
     public int id;
