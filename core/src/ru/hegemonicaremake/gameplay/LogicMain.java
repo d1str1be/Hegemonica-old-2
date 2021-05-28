@@ -154,6 +154,9 @@ public class LogicMain {
         }
         return false;
     }
-    
+
+    public void checkStatus() {
+
+    }
     
 }

@@ -34,7 +34,7 @@ public class HegeMap {
         viewport = new FitViewport(HegeGame.width, HegeGame.height, camera);
 
 //        stage = new Stage(viewport, batch);
-        logic = new LogicMain(LogicMain.MAPSIZEID.BIG, this);
+        logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL, this);
         ui = new HUD(logic);
 //        logic.initStage(stage);
         
