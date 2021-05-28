@@ -16,7 +16,7 @@ public class Notificator {
     
     public Notificator(Country owner) {
         this.owner = owner;
-        notifications = new ArrayList<Notification>();
+        notifications = new ArrayList<>();
         idCounter = 0;
     }
     

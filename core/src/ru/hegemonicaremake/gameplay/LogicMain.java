@@ -21,17 +21,18 @@ public class LogicMain {
     //Game process
     public int playersQuantity;
     public int turn;
-    public Country turnCountry;
+    public static Country turnCountry;
     public Country[] countries;
-    public Province selectedProvince;
+    public static Province selectedProvince;
     public Province[] provinces;
+    public static WarUnit movingUnit;
     
     public LogicMain(int mapSizeId, HegeMap map) {
         this.mapSizeId = mapSizeId;
         this.map = map;
         turn = 1;
         unitIdCounter = 0;
-        units = new ArrayList<WarUnit>();
+        units = new ArrayList<>();
         switch (mapSizeId) {
             case MAPSIZEID.EXPERIMENTAL:
                 mapHeight = 3;
@@ -154,6 +155,6 @@ public class LogicMain {
         }
         return false;
     }
-    
+    public void checkStatus()
     
 }

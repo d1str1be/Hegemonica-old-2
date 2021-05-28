@@ -90,7 +90,7 @@ public class WarUnit extends ProvinceProject {
         defenseStrength = startDefenseStrength - 10 * (health / 100);
     }
     
-    public class ATTACKSTRENGTH {
+    public static class ATTACKSTRENGTH {
         public final static float WARRIOR = 20;
         public final static float ARCHER = 20;
         public final static float SHIELDMAN = 10;
@@ -98,7 +98,7 @@ public class WarUnit extends ProvinceProject {
         public final static float SWORDSMAN = 30;
     }
     
-    public class DEFENSESTRENGTH {
+    public static class DEFENSESTRENGTH {
         public final static float WARRIOR = 22;
         public final static float ARCHER = 10;
         public final static float SHIELDMAN = 35;
@@ -106,7 +106,7 @@ public class WarUnit extends ProvinceProject {
         public final static float SWORDSMAN = 32;
     }
     
-    public class MOVEMENTPOINTS {
+    public static class MOVEMENTPOINTS {
         public final static float WARRIOR = 1;
         public final static float ARCHER = 1;
         public final static float SHIELDMAN = 1;

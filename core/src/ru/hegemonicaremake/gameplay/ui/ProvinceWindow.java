@@ -4,7 +4,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
@@ -31,7 +30,7 @@ public class ProvinceWindow extends Window {
     Label lProductionIncome;
     Label lP8;
     Label lUnitThere;
-    TextButton bMoveUnit;
+    MoveUnitButton bMoveUnit;
     Label lMovementPoints;
     
     SkinManager skinManager;
@@ -90,21 +89,9 @@ public class ProvinceWindow extends Window {
         
         populationProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.FOOD);
         productionProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.PRODUCTION);
-        
-        bMoveUnit = new TextButton("Move Unit", HegeGame.skinManager.shimmerSkin);
+        bMoveUnit = new MoveUnitButton();
         bMoveUnit.setSize(getWidth() * 0.4f, getHeight() * 0.3f);
         bMoveUnit.getLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
-        bMoveUnit.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-            
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            
-            }
-        });
         lMovementPoints = new Label("Null", skinManager.defaultSkin);
         lMovementPoints.setStyle(HegeGame.skinManager.playingInfoStyle1);
         lMovementPoints.setVisible(false);
@@ -141,7 +128,7 @@ public class ProvinceWindow extends Window {
         this.add(lMovementPoints);
     }
     
-    public void setupProvinceInfo(Province prov) {
+    public void setupProvinceInfo(final Province prov) {
         lProvName.setText(prov.name);
         lProvCountry.setText(prov.owner.name);
         lProvPopulation.setText(prov.population);
@@ -158,6 +145,19 @@ public class ProvinceWindow extends Window {
         
         lFoodIncome.setText(Float.toString(prov.foodIncome));
         lProductionIncome.setText(Float.toString(prov.productionIncome));
+    
+        bMoveUnit.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                if(prov.unit!=null)
+                bMoveUnit.onClick(prov.unit);
+            }
+        });
         
         if (prov.unit != null) {
             lUnitThere.setText(prov.unit.name);
@@ -168,6 +168,10 @@ public class ProvinceWindow extends Window {
             lUnitThere.setText("No Unit");
             bMoveUnit.setVisible(false);
             lMovementPoints.setVisible(false);
+        }
+        if(prov.projectInProcess==null){
+            projectWindow.setupBuildingsInfo(prov);
+            projectWindow.show();
         }
     }
     
