@@ -73,7 +73,6 @@ public class MainMenu implements Screen {
         
         menuTable = new Table();
         menuTable.setSize(HegeGame.width * 0.6f, HegeGame.height * 0.5f);
-        menuTable.setDebug(true);
         menuTable.setSize(HegeGame.width, HegeGame.height);
         menuTable.add(label);
         menuTable.center();

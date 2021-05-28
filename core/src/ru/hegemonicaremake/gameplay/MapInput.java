@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.screens.MainMenu;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class MapInput implements GestureDetector.GestureListener {
@@ -16,13 +18,12 @@ public class MapInput implements GestureDetector.GestureListener {
     OrthographicCamera camera;
     InputMultiplexer im;
     
-    private final float zoomMin = 5f;
-    private final float zoomMax = 1f;
-    
     float realX;
     float realY;
     float cameraMovementX;
     float cameraMovementY;
+    
+    public static boolean isMovingUnit = false;
     
     public MapInput(HegeMap map, OrthographicCamera camera, Viewport viewport) {
         
@@ -33,10 +34,11 @@ public class MapInput implements GestureDetector.GestureListener {
         camera.translate(0, 0);
         cameraMovementX = camera.viewportWidth / 2;
         cameraMovementY = -camera.viewportHeight / 2;
-        camera.zoom = 2f;
+        camera.zoom = 1f;
         
         im = new InputMultiplexer();
         im.addProcessor(new GestureDetector(this));
+        im.addProcessor(map.getUi().stage);
         
         Gdx.input.setInputProcessor(im);
     }
@@ -45,7 +47,10 @@ public class MapInput implements GestureDetector.GestureListener {
     }
     
     @Override
-    public boolean touchDown(float x, float y, int pointer, int button) {
+    public boolean touchDown(float x, float y, int ponter, int button) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            HegeGame.screenManager.setScreen(new MainMenu(map.game));
+        }
         return false;
     }
     
@@ -55,7 +60,7 @@ public class MapInput implements GestureDetector.GestureListener {
         realY = (HegeGame.height - y + cameraMovementY) * camera.zoom;
         HegeLog.log("Input", "Tapped on X: " + realX);
         HegeLog.log("Input", "Tapped on Y: " + realY);
-        map.checkTap(x, y);
+        map.checkTap(realX, realY);
         return true;
     }
     
@@ -84,15 +89,16 @@ public class MapInput implements GestureDetector.GestureListener {
     
     @Override
     public boolean zoom(float initialDistance, float distance) {
-        if (camera.zoom > zoomMax && camera.zoom < zoomMin)
-            if ((distance - initialDistance) > 0) {
-                camera.zoom *= 0.95f;
-                return true;
-            }
-            else {
-                camera.zoom *= 1.05f;
-                return true;
-            }
+//        float zoomMin = 5f;
+//        float zoomMax = 1f;
+//        if (camera.zoom > zoomMax && camera.zoom < zoomMin) - зум нарушает обработку нажатия на провинцию, фикс не разработан
+//            if ((distance - initialDistance) > 0) {
+//                camera.zoom *= 0.95f;
+//                return true;
+//            } else {
+//                camera.zoom *= 1.05f;
+//                return true;
+//            }
         return false;
     }
     

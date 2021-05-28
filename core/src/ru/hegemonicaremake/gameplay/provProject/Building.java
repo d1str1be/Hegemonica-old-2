@@ -1,14 +1,14 @@
-package ru.hegemonicaremake.gameplay.provinceProject;
+package ru.hegemonicaremake.gameplay.provProject;
 
 import ru.hegemonicaremake.gameplay.Province;
 
-public class Building extends ProvinceProject{
-
+public class Building extends ProvinceProject {
+    
     Province province;
-
+    
     public int quantity;
     public int limit;
-
+    
     //province constructor
     public Building(int id, Province province) {
         super(id);
@@ -41,12 +41,12 @@ public class Building extends ProvinceProject{
                 break;
         }
     }
-
+    
     public void build() {
         quantity++;
         if (id != ID.CITY) province.numberOfBuildings++;
     }
-
+    
     public boolean isAvailable() {
         if (quantity < limit && isUnlocked && province.numberOfBuildings < province.population) {
             switch (id) {
@@ -68,18 +68,18 @@ public class Building extends ProvinceProject{
         }
         return false;
     }
-
+    
     public static class STARTPRODUCTION {
         public final static float MINE = 2;
         public final static float WORKSHOP = 5;
         public final static float CITIZEN = 1;
     }
-
+    
     public static class STARTFOODPRODUCTION {
         public final static float FARM = 2;
         public final static float STARTPRODUCTION = 4;
     }
-
+    
     public static class STARTSCIENCEPRODUCTION {
         public final static float LIBRARY = 4;
         public final static float UNIVERSITY = 10;

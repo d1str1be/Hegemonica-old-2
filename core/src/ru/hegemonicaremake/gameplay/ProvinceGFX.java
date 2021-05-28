@@ -6,11 +6,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-
-import ru.hegemonicaremake.HegeGame;
 
 public class ProvinceGFX {
     Pixmap borders;
@@ -22,15 +17,20 @@ public class ProvinceGFX {
     Texture rectTexture;
     Texture provTexture;
     
+    // borders
+    Texture[] pBorders;
     
-    Label provName;
-    Image unitIcon;
     
     public ProvinceGFX(Province prov) {
         this.prov = prov;
         this.sideSize = LogicMain.provinceSize;
         this.setColor();
-        provTexture = new Texture(Gdx.files.internal("prov/grass.jpg"));
+        provTexture = new Texture(Gdx.files.internal("prov/provinceDefault.png"));
+        pBorders = new Texture[4];
+        pBorders[0] = new Texture(Gdx.files.internal("prov/blueBorderUp.png"));
+        pBorders[1] = new Texture(Gdx.files.internal("prov/blueBorderRight.png"));
+        pBorders[2] = new Texture(Gdx.files.internal("prov/blueBorderDown.png"));
+        pBorders[3] = new Texture(Gdx.files.internal("prov/blueBorderLeft.png"));
         borders = new Pixmap(sideSize, sideSize, Format.RGBA8888);
         borders.setColor(color);
         rectangle = new Pixmap(sideSize, sideSize, Format.RGBA8888);
@@ -38,28 +38,39 @@ public class ProvinceGFX {
         
         drawRectangle();
         drawBorders();
-        
-        provName = new Label(prov.name, HegeGame.skinManager.provNameStyle);
-        provName.setPosition(prov.x  - provName.getWidth(), prov.y );
-        
-        
     }
     
     public void render(SpriteBatch batch) {
         batch.draw(rectTexture, prov.x, prov.y);
         batch.draw(provTexture, prov.x, prov.y, sideSize, sideSize);
         batch.draw(borderTexture, prov.x, prov.y);
-        provName.draw(batch, 1f);
+        if (prov.unit != null)
+            prov.unit.gfx.render(batch);
     }
     
-    public void update() {
-        
-        setColor();
-    }
-    
-    public void addToStage(Stage stage) {
-        stage.addActor(provName);
-        //добавить иконку в стейдж
+    public void update(SpriteBatch batch) {
+        if (prov.owner.id != Country.ID.NOTHING) {
+            if (prov.northernProvince != null) {
+                if (prov.owner.id != prov.northernProvince.owner.id) {
+                    batch.draw(pBorders[0], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.easternProvince != null) {
+                if (prov.owner.id != prov.easternProvince.owner.id) {
+                    batch.draw(pBorders[1], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.southernProvince != null) {
+                if (prov.owner.id != prov.southernProvince.owner.id) {
+                    batch.draw(pBorders[2], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+            if (prov.westernProvince != null) {
+                if (prov.owner.id != prov.westernProvince.owner.id) {
+                    batch.draw(pBorders[3], prov.x, prov.y, sideSize, sideSize);
+                }
+            }
+        }
     }
     
     public void setColor() {
@@ -109,5 +120,4 @@ public class ProvinceGFX {
         rectTexture.dispose();
         provTexture.dispose();
     }
-    
 }

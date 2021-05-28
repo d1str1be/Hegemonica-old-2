@@ -12,7 +12,7 @@ public class PlayScreen implements Screen {
     
     public PlayScreen(HegeGame game) {
         this.game = game;
-        map = new HegeMap();
+        map = new HegeMap(game);
     }
     
     @Override
@@ -23,7 +23,9 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(Color.CLEAR);
+        map.update();
         map.render();
+        
     }
     
     @Override
