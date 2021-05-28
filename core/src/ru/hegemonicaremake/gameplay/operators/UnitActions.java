@@ -66,6 +66,7 @@ public class UnitActions {
     public static void capture(WarUnit unit) {
         unit.province.setOwner(unit.owner);
         unit.movementPoints--;
+        unit.gfx.update(unit);
     }
     
     public static boolean isMovable(WarUnit unit, Province province) {
