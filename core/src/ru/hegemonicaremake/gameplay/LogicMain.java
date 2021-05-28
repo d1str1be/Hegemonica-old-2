@@ -1,6 +1,7 @@
 package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Null;
 
 import java.util.ArrayList;
 
@@ -8,9 +9,6 @@ import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class LogicMain {
-    
-    public Province[] provinces;
-    
     //units
     public ArrayList<WarUnit> units;
     public int unitIdCounter;
@@ -28,6 +26,8 @@ public class LogicMain {
     public int turn;
     public Country turnCountry;
     public Country[] countries;
+    public Province selectedProvince;
+    public Province[] provinces;
     
     public LogicMain(int mapSizeId, HegeMap map) {
         this.mapSizeId = mapSizeId;
@@ -83,13 +83,14 @@ public class LogicMain {
         public final static int STANDARD = 2;
         public final static int BIG = 3;
     }
-    
-    public Province findTappedProvince(float x, float y) {
+    public boolean findTappedProvince(float x, float y) {
         for (Province province : provinces) {
-            if (province.contains(x, y))
-                return province;
+            if (province.contains(x, y)) {
+                selectedProvince = province;
+                return true;
+            }
         }
-        return null;
+        return false;
     }
     
     public void initStage(Stage stage) {
