@@ -31,6 +31,7 @@ public class ChooseProjectWindow extends Window implements Hideable {
         setResizable(true);
         skinManager = HegeGame.skinManager;
         stage.addActor(this);
+        init();
     }
     
     public void init() {

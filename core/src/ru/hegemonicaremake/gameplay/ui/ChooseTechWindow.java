@@ -41,7 +41,7 @@ public class ChooseTechWindow extends Window implements Hideable {
         lT1 = new Label("Tech name", skinManager.glassySkin);
         lT2 = new Label("Cost", skinManager.glassySkin);
     }
-    public  void setupTechInfo(){
+    public void setupTechInfo(){
         this.clear();
         this.add(lT1);
         this.add(lT2);
