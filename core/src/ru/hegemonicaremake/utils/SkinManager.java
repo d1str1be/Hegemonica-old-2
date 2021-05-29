@@ -46,14 +46,14 @@ public class SkinManager {
         
         
         ableToBuild = playingInfoStyle;
-        unableToBuild = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 3), Color.RED);
+        unableToBuild = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (60 * uiFactor), 3), Color.RED);
         ableToBuild1 = playingInfoStyle1;
-        unableToBuild1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 3), Color.RED);
+        unableToBuild1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (60 * uiFactor), 3), Color.RED);
     
-        redTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.RED);
-        blueTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.BLUE);
-        orangeTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.ORANGE);
-        greenTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.GREEN);
+        redTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (55 * uiFactor), 3), Color.RED);
+        blueTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (55* uiFactor), 3), Color.BLUE);
+        orangeTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (55 * uiFactor), 3), Color.ORANGE);
+        greenTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (55 * uiFactor), 3), Color.GREEN);
     }
     
 }

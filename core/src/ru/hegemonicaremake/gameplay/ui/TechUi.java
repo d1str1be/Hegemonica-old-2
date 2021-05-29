@@ -36,7 +36,7 @@ public class TechUi {
                 country.selectTechnology(technology);
                 window.hide();
                 ui.hideAll();
-                ui.hud.selectCountry(country);
+                ui.hud.selectCountry();
             }
         });
         window.add(name);

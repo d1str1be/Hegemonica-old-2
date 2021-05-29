@@ -90,6 +90,10 @@ public class WarUnit extends ProvinceProject {
         defenseStrength = startDefenseStrength - 10 * (health / 100);
     }
     
+    public boolean canMove(){
+        return movementPoints > 0;
+    }
+    
     public static class ATTACKSTRENGTH {
         public final static float WARRIOR = 20;
         public final static float ARCHER = 20;

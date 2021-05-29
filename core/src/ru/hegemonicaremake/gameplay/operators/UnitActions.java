@@ -26,22 +26,26 @@ public class UnitActions {
     }
     
     public static void move(WarUnit unit, Province province) {
-        if (province.unit != null) {
-            battle(unit, province.unit);
-            if (province.unit == null) {
+        if(unit.canMove()) {
+            if (province.unit != null) {
+                battle(unit, province.unit);
+                if (province.unit == null) {
+                    unit.province.unit = null;
+                    province.unit = unit;
+                    unit.province = province;
+                    if (isCanCapture(unit, province)) capture(unit);
+                    province.gfx.update(unit.owner.logicMain.map.batch);
+                    unit.gfx.update(unit);
+                }
+            } else {
                 unit.province.unit = null;
                 province.unit = unit;
                 unit.province = province;
+                unit.movementPoints--;
+                if (isCanCapture(unit, province)) capture(unit);
+                province.gfx.update(unit.owner.logicMain.map.batch);
                 unit.gfx.update(unit);
             }
-        } else {
-            unit.province.unit = null;
-            province.unit = unit;
-            unit.province = province;
-            unit.movementPoints--;
-            capture(unit);
-            province.gfx.update(unit.owner.logicMain.map.batch);
-            unit.gfx.update(unit);
         }
     }
     
@@ -50,7 +54,6 @@ public class UnitActions {
         defender.health -= 30 * Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
         if (defender.health <= 0) {
             destroy(defender);
-            move(attacker, province);
             attacker.movementPoints--;
         } else {
             if (!attacker.isRanged) {
