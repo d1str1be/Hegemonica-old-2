@@ -19,7 +19,6 @@ public class UnitActions {
             unit.health = 100;
         }
         unit.gfx.update(unit);
-        unit.movementPoints--;
     }
     
     public static void destroy(WarUnit unit) {

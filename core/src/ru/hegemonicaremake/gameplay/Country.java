@@ -124,6 +124,7 @@ public class Country {
             if (province.owner.id == id) {
                 population += province.population;
                 province.onTurn();
+                sciencePoints += province.scienceIncome;
             }
         }
         if (sciencePoints >= technologyInProcess.cost) {

@@ -35,6 +35,7 @@ public class WarUnit extends ProvinceProject {
         super(id);
         this.province = province;
         this.owner = province.owner;
+        health = maxHealth;
         unitId = owner.logicMain.unitIdCounter;
         owner.logicMain.unitIdCounter++;
         province.unit = this;

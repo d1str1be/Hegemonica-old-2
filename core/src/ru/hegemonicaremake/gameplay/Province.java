@@ -6,6 +6,7 @@ import ru.hegemonicaremake.gameplay.operators.UnitActions;
 import ru.hegemonicaremake.gameplay.provProject.Building;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class Province {
     
@@ -83,10 +84,6 @@ public class Province {
         foodPoints = 0;
         productionPoints = 0;
         population = 1;
-        foodIncome = 4;
-        productionIncome = 1;
-        scienceIncome = 1;
-//        eatingFood = owner.citizenEatingFood;
         gfx = new ProvinceGFX(this);
     }
     
@@ -97,7 +94,8 @@ public class Province {
         productionIncome = buildings[ProvinceProject.ID.MINE].quantity * owner.mineProduction + buildings[ProvinceProject.ID.WORKSHOP].quantity * owner.workshopProduction + population * owner.citizenProduction;
         scienceIncome = buildings[ProvinceProject.ID.LIBRARY].quantity * owner.libraryScienceProduction + buildings[ProvinceProject.ID.UNIVERSITY].quantity * owner.universityScienceProduction + population * owner.citizenScienceProduction;
         eatingFood = population * owner.citizenEatingFood;
-        owner.scienceIncome += scienceIncome;
+        HegeLog.log("Logic", "Science income of " + name + " : " + scienceIncome);
+        
         
         foodPoints += foodIncome - eatingFood;
         productionPoints += productionIncome;
