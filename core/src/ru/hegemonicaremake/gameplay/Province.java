@@ -84,6 +84,7 @@ public class Province {
         foodPoints = 0;
         productionPoints = 0;
         population = 1;
+        neededFood = 10;
         gfx = new ProvinceGFX(this);
     }
     
@@ -121,13 +122,13 @@ public class Province {
         foodPoints -= neededFood;
         population++;
         eatingFood = population * owner.citizenEatingFood;
-        neededFood += 2;
+        neededFood += 4;
     }
     
     public void decrease() {
         population--;
         eatingFood = population * owner.citizenEatingFood;
-        neededFood -= 2;
+        neededFood -= 4;
         foodPoints = neededFood - 1;
     }
     
@@ -180,8 +181,8 @@ public class Province {
     
     public boolean isNeighbor(Province province) {
         for (Province province1 : adjacentProvinces) {
-            if (province.id == province1.id) {
-                return true;
+            if (province1 != null) {
+                if (province1.id == province.id) return true;
             }
         }
         return false;

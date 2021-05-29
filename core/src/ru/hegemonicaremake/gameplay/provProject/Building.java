@@ -48,7 +48,7 @@ public class Building extends ProvinceProject {
     }
     
     public boolean isAvailable() {
-        if (quantity < limit && isUnlocked && province.numberOfBuildings < province.population) {
+        if (quantity < limit && isUnlocked) {
             switch (id) {
                 case ID.FARM:
                     return true;
@@ -83,6 +83,6 @@ public class Building extends ProvinceProject {
     public static class STARTSCIENCEPRODUCTION {
         public final static float LIBRARY = 4;
         public final static float UNIVERSITY = 10;
-        public final static float CITIZEN = 3;
+        public final static float CITIZEN = 0.5f;
     }
 }

@@ -30,6 +30,8 @@ public class Country {
     public float libraryScienceProduction;
     public float universityScienceProduction;
     public float citizenScienceProduction;
+
+    public float neededSciencePoints;
     
     public LogicMain logicMain;
     
@@ -127,7 +129,7 @@ public class Country {
                 sciencePoints += province.scienceIncome;
             }
         }
-        if (sciencePoints >= technologyInProcess.cost) {
+        if (sciencePoints >= neededSciencePoints) {
             technologies[technologyInProcess.id].research();
         }
         HegeLog.log("Logic", "Science points of country " + name + " : " + sciencePoints);
@@ -135,6 +137,7 @@ public class Country {
     
     public void selectTechnology(Technology technology) {
         technologyInProcess = technology;
+        neededSciencePoints = technology.cost;
     }
     
     public boolean isTurnAvailable() {

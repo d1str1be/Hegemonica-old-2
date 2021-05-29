@@ -24,6 +24,7 @@ public class UnitActions {
     public static void destroy(WarUnit unit) {
         unit.province.unit = null;
         unit.owner.logicMain.units.set(unit.unitId, null);
+        unit.gfx.update(unit);
     }
     
     public static void move(WarUnit unit, Province province) {
@@ -50,19 +51,21 @@ public class UnitActions {
     }
     
     public static void battle(WarUnit attacker, WarUnit defender) {
-        defender.health -= 30 * Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
+
+    }
+
+    public void defend(WarUnit attacker, WarUnit defender) {
+        defender.health -= Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
         if (defender.health <= 0) {
             destroy(defender);
-            attacker.movementPoints--;
-        } else {
-            if (!attacker.isRanged) {
-                attacker.health -= 30 * Math.pow(2.72, (defender.defenseStrength - attacker.attackStrength) / 25);
-                if (attacker.health <= 0) {
-                    destroy(attacker);
-                } else {
-                    attacker.movementPoints--;
-                }
-            }
+        }
+    }
+
+    public void attack(WarUnit attacker, WarUnit defender) {
+        Province province = defender.province;
+        defend(attacker, defender);
+        if (province.unit != null) {
+            attacker.health -= Math.pow(2.72, (defender.defenseStrength - attacker.attackStrength) / 25);
         }
     }
     
@@ -78,6 +81,8 @@ public class UnitActions {
                     return true;
                 } else if (province.unit.owner.id == unit.owner.id) {
                     return false;
+                } else if (province.unit.owner.id != unit.owner.id) {
+                    return true;
                 }
             }
         }

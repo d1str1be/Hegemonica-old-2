@@ -92,9 +92,9 @@ public class CountryWindow extends Window implements Hideable {
         lCountryName.setText(LogicMain.turnCountry.name);
         lCountryPopulation.setText(LogicMain.turnCountry.population);
         if (LogicMain.turnCountry.technologyInProcess != null) {
-            lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + LogicMain.turnCountry.technologyInProcess.cost);
-            scienceProgress.setRange(0, LogicMain.turnCountry.technologyInProcess.cost);
-            HegeLog.log("Interface","Country Progress Bar of " + LogicMain.turnCountry.name + " - set maxRange to : " + LogicMain.turnCountry.technologyInProcess.cost);
+            lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + LogicMain.turnCountry.neededSciencePoints);
+            scienceProgress.setRange(0, LogicMain.turnCountry.neededSciencePoints);
+            HegeLog.log("Interface","Country Progress Bar of " + LogicMain.turnCountry.name + " - set maxRange to : " + LogicMain.turnCountry.neededSciencePoints);
         } else {
             lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + "0");
             scienceProgress.setRange(0, 1);
