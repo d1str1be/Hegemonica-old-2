@@ -9,6 +9,7 @@ public class UnitActions {
     public static void onTurn(WarUnit unit) {
         if (unit != null) {
             unit.movementPoints = unit.startMovementPoints;
+            heal(unit);
         }
     }
     
@@ -36,7 +37,6 @@ public class UnitActions {
                     unit.province = province;
                     capture(unit);
                     unit.gfx.update(unit);
-                    LogicMain.movingUnit = null;
                 }
             } else {
                 unit.province.unit = null;
@@ -45,9 +45,9 @@ public class UnitActions {
                 unit.movementPoints--;
                 capture(unit);
                 unit.gfx.update(unit);
-                LogicMain.movingUnit = null;
             }
         }
+        LogicMain.movingUnit = null;
     }
     
     public static void battle(WarUnit attacker, WarUnit defender) {

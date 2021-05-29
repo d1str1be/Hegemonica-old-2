@@ -83,6 +83,6 @@ public class Building extends ProvinceProject {
     public static class STARTSCIENCEPRODUCTION {
         public final static float LIBRARY = 4;
         public final static float UNIVERSITY = 10;
-        public final static float CITIZEN = 1;
+        public final static float CITIZEN = 3;
     }
 }

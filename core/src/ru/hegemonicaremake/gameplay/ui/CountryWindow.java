@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.LogicMain;
+import ru.hegemonicaremake.utils.HegeLog;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
@@ -93,6 +94,7 @@ public class CountryWindow extends Window implements Hideable {
         if (LogicMain.turnCountry.technologyInProcess != null) {
             lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + LogicMain.turnCountry.technologyInProcess.cost);
             scienceProgress.setRange(0, LogicMain.turnCountry.technologyInProcess.cost);
+            HegeLog.log("Interface","Country Progress Bar of " + LogicMain.turnCountry.name + " - set maxRange to : " + LogicMain.turnCountry.technologyInProcess.cost);
         } else {
             lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + "0");
             scienceProgress.setRange(0, 1);
@@ -117,5 +119,6 @@ public class CountryWindow extends Window implements Hideable {
             techWindow.setVisible(true);
             techWindow.setMovable(true);
         }
+        HegeLog.log("Interface", "Opened Choose tech window");
     }
 }

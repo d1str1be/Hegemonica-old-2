@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import ru.hegemonicaremake.gameplay.provProject.Building;
 import ru.hegemonicaremake.gameplay.provProject.ProvinceProject;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class Country {
     
@@ -128,6 +129,7 @@ public class Country {
         if (sciencePoints >= technologyInProcess.cost) {
             technologies[technologyInProcess.id].research();
         }
+        HegeLog.log("Logic", "Science points of country " + name + " : " + sciencePoints);
     }
     
     public void selectTechnology(Technology technology) {

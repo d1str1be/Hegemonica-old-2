@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.Province;
+import ru.hegemonicaremake.utils.HegeLog;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
@@ -59,5 +60,6 @@ public class ChooseProjectWindow extends Window implements Hideable {
     @Override
     public void show() {
         setVisible(true);
+        HegeLog.log("Interface", "Opened Choose project window");
     }
 }

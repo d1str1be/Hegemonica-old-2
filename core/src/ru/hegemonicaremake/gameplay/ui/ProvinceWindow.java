@@ -7,7 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.gameplay.Province;
+import ru.hegemonicaremake.utils.HegeLog;
 import ru.hegemonicaremake.utils.SkinManager;
 
 public class ProvinceWindow extends Window {
@@ -141,9 +143,11 @@ public class ProvinceWindow extends Window {
         
         
         populationProgress.setRange(0, prov.neededFood);
+        HegeLog.log("Interface",prov.name + "  population Progress Bar - set maxRange to : " + prov.neededFood);
         populationProgress.setValue(prov.foodPoints);
         
-        productionProgress.setRange(0, prov.neededFood);
+        productionProgress.setRange(0, prov.neededProduction);
+        HegeLog.log("Interface",prov.name + " population Progress Bar - set maxRange to : " + prov.neededFood);
         productionProgress.setValue(prov.productionPoints);
         
         lFoodIncome.setText(Float.toString(prov.foodIncome));

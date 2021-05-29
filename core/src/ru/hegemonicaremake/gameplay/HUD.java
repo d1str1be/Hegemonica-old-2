@@ -108,9 +108,11 @@ public class HUD {
     }
     
     public void prepareUnitToMove(WarUnit unit) {
-        LogicMain.movingUnit = unit;
-        hideAll();
-        moveUnit.setVisible(true);
+        if(unit.canMove()) {
+            LogicMain.movingUnit = unit;
+            hideAll();
+            moveUnit.setVisible(true);
+        }
     }
     
     public void moveUnit(WarUnit unit, Province prov) {

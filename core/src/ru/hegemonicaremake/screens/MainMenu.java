@@ -97,7 +97,6 @@ public class MainMenu implements Screen {
         menuTable.add(bPlay).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
         menuTable.row();
         menuTable.add(bExit).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
-        ;
         
         
         stage.addActor(bg);
