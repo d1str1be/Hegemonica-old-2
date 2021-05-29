@@ -11,7 +11,7 @@ public class ProvinceProject {
     public Province province;
     
     public boolean isUnlocked;
-
+    
     //Province constructor
     public ProvinceProject(int id, Province province) {
         this.id = id;
@@ -85,7 +85,7 @@ public class ProvinceProject {
                 break;
         }
     }
-
+    
     //Country constuctor
     public ProvinceProject(int id) {
         this.id = id;
@@ -162,7 +162,7 @@ public class ProvinceProject {
     public void unlock() {
         isUnlocked = true;
     }
-
+    
     public boolean isAvailable() {
         if (isUnlocked) {
             if (id >= 0 && id <= ID.CITY) {

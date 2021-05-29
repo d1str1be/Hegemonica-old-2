@@ -14,9 +14,9 @@ public class Country {
     
     public Technology[] technologies;
     public ProvinceProject[] provinceProjects;
-
+    
     public int population;
-
+    
     //regional economics
     public float farmFoodProduction;
     public float startFoodProduction;
@@ -109,6 +109,7 @@ public class Country {
         universityScienceProduction = Building.STARTSCIENCEPRODUCTION.UNIVERSITY;
         citizenScienceProduction = Building.STARTSCIENCEPRODUCTION.CITIZEN;
         
+        
         technologyInProcess = null;
         sciencePoints = 0;
     }
@@ -126,7 +127,7 @@ public class Country {
         }
     }
     
-    public void chooseTechnology(Technology technology) {
+    public void selectTechnology(Technology technology) {
         technologyInProcess = technology;
     }
     

@@ -53,6 +53,7 @@ public class HegeMap {
         for (Province prov : logic.provinces) {
             prov.render(batch);
         }
+        update();
         batch.end();
         ui.render();
 //        stage.act();
@@ -60,11 +61,9 @@ public class HegeMap {
     }
     
     public void update() {
-        batch.begin();
         for (Province prov : logic.provinces) {
             prov.updateGFX(batch);
         }
-        batch.end();
     }
     
     public void checkTap(float x, float y) {

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -14,13 +16,14 @@ import ru.hegemonicaremake.gameplay.ui.ChooseTechWindow;
 import ru.hegemonicaremake.gameplay.ui.CountryButton;
 import ru.hegemonicaremake.gameplay.ui.CountryWindow;
 import ru.hegemonicaremake.gameplay.ui.ProvinceWindow;
+import ru.hegemonicaremake.gameplay.ui.UiStage;
 import ru.hegemonicaremake.utils.FontGenerator;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class HUD {
     LogicMain logic;
     
-    Stage stage;
+    UiStage stage;
     ProvinceWindow provInfo;
     CountryButton countryButton;
     CountryWindow countryInfo;
@@ -33,11 +36,22 @@ public class HUD {
     
     public HUD(LogicMain logic) {
         this.logic = logic;
-        stage = new Stage(new ScreenViewport());
+        stage = new UiStage(new ScreenViewport(), this);
+        countryButton = new CountryButton(stage);
+        countryButton.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+    
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                selectCountry(LogicMain.turnCountry);
+            }
+        });
         provInfo = new ProvinceWindow(stage);
-        countryButton = new CountryButton(stage, this);
-        countryInfo = new CountryWindow(stage);
         chooseProject = new ChooseProjectWindow(stage);
+        countryInfo = new CountryWindow(stage);
         chooseTech = new ChooseTechWindow(stage);
         
         funnybatch = new SpriteBatch();
@@ -46,6 +60,7 @@ public class HUD {
     }
     
     public void selectProvince(Province prov) {
+        hideAll();
         provInfo.setupProvinceInfo(prov);
         provInfo.show();
         HegeLog.log("Interface", "Opened Prov info window");
@@ -55,7 +70,8 @@ public class HUD {
         provInfo.hide();
     }
     
-    public void openCountryInfo(Country country) {
+    public void selectCountry(Country country) {
+        hideAll();
         countryInfo.show();
         countryInfo.setupCountryInfo(country);
     }
@@ -76,7 +92,7 @@ public class HUD {
     public void hideAll() {
         provInfo.hide();
         chooseProject.hide();
-        chooseProject.hide();
+        countryInfo.hide();
         chooseTech.hide();
     }
     

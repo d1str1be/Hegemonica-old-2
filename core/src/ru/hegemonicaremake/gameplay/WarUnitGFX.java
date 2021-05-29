@@ -84,12 +84,4 @@ public class WarUnitGFX {
         
     }
     
-    public void dispose() {
-        batch.dispose();
-        unitIcon.dispose();
-        healthBarBorder.dispose();
-        healthBarBorderTexture.dispose();
-    }
-    
-    
 }

@@ -44,6 +44,7 @@ public class ProvinceGFX {
         batch.draw(rectTexture, prov.x, prov.y);
         batch.draw(provTexture, prov.x, prov.y, sideSize, sideSize);
         batch.draw(borderTexture, prov.x, prov.y);
+        update(batch);
         if (prov.unit != null)
             prov.unit.gfx.render(batch);
     }

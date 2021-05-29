@@ -29,7 +29,7 @@ public class CountryWindow extends Window implements Hideable {
     ChooseTechWindow techWindow;
     
     public CountryWindow(Stage stage) {
-        super("Province Info", HegeGame.skinManager.shimmerSkin);
+        super("Country Info", HegeGame.skinManager.shimmerSkin);
         setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
         setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.15f / HegeGame.uiFactor);
         setVisible(false);
@@ -43,13 +43,13 @@ public class CountryWindow extends Window implements Hideable {
     }
     
     
-    public void init(){
+    public void init() {
         this.setMovable(true);
         this.setPosition(HegeGame.width * 0.3f, HegeGame.height * 0.6f);
         this.setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.125f / HegeGame.uiFactor);
         this.setVisible(false);
         this.align(Align.top);
-    
+        
         lC1 = new Label("Country Name:", skinManager.glassySkin);
         lCountryName = new Label("Null", skinManager.glassySkin);
         lC2 = new Label("Population:", skinManager.glassySkin);
@@ -57,22 +57,23 @@ public class CountryWindow extends Window implements Hideable {
         lC3 = new Label("Science points:", skinManager.glassySkin);
         lScienceProgress = new Label("Null", skinManager.defaultSkin);
         scienceProgress = new HegeProgressBar(this.getWidth() * 0.15f, this.getWidth() * 0.02f, HegeProgressBar.ID.SCIENCE);
-    
-        bCHide = new TextButton("Hide", skinManager.defaultSkin);
-        bCHide.setSize(this.getWidth(), this.getHeight() * 0.3f);
+        
+        bCHide = new TextButton("Hide", skinManager.shimmerSkin);
+        bCHide.getLabel().setStyle(skinManager.playingInfoStyle);
+        bCHide.setSize(this.getWidth(), this.getHeight() * 0.2f);
         bCHide.setRound(true);
         bCHide.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
-        
+            
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 bCHide.setVisible(false);
             }
         });
-    
+        
         this.add(lC1);
         this.add(lCountryName);
         this.row();
@@ -84,25 +85,34 @@ public class CountryWindow extends Window implements Hideable {
         this.add(scienceProgress);
         this.add(lScienceProgress);
         this.row();
-        this.add(bCHide).width(this.getWidth()).height(this.getHeight() * 0.3f);;
+        this.add(bCHide).width(this.getWidth()).height(this.getHeight() * 0.3f);
+        
     }
     
     public void setupCountryInfo(Country turnCountry) {
         lCountryName.setText(turnCountry.name);
         lCountryPopulation.setText(turnCountry.population);
-        lScienceProgress.setText(turnCountry.sciencePoints + " / " + turnCountry.technologyInProcess.cost);
-        scienceProgress.setRange(0, turnCountry.technologyInProcess.cost);
+        if (turnCountry.technologyInProcess != null) {
+            lScienceProgress.setText(turnCountry.sciencePoints + " / " + turnCountry.technologyInProcess.cost);
+            scienceProgress.setRange(0, turnCountry.technologyInProcess.cost);
+        } else {
+            lScienceProgress.setText(turnCountry.sciencePoints + " / " + "0");
+            scienceProgress.setRange(0, 1);
+        }
+        
         scienceProgress.setValue((float) turnCountry.sciencePoints);
         
-        if (turnCountry.technologyInProcess!=null) {
-            techWindow.setupTechInfo();
+        if (turnCountry.technologyInProcess == null) {
+            techWindow.setupTechInfo(turnCountry);
             techWindow.setVisible(true);
             techWindow.setMovable(true);
         }
     }
+    
     @Override
     public void hide() {
         setVisible(false);
+        techWindow.hide();
     }
     
     @Override

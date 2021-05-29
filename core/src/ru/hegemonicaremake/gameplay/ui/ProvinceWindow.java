@@ -38,12 +38,12 @@ public class ProvinceWindow extends Window {
     ChooseProjectWindow projectWindow;
     
     public ProvinceWindow(Stage stage) {
-        super("Province Info", HegeGame.skinManager.shimmerSkin);
+        super("Choose Province", HegeGame.skinManager.shimmerSkin);
         align(Align.top);
         getTitleLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
         
         setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.height * 0.8f);
-        setPosition(HegeGame.width * 0.05f, HegeGame.height - getHeight() * 0.9f);
+        setPosition((HegeGame.width -getWidth())/2f, (HegeGame.height - getHeight())/2f);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
@@ -129,6 +129,10 @@ public class ProvinceWindow extends Window {
     }
     
     public void setupProvinceInfo(final Province prov) {
+        if (prov.projectInProcess == null) {
+            projectWindow.show();
+            projectWindow.setupBuildingsInfo(prov);
+        }
         lProvName.setText(prov.name);
         lProvCountry.setText(prov.owner.name);
         lProvPopulation.setText(prov.population);
@@ -137,25 +141,25 @@ public class ProvinceWindow extends Window {
         lProductionProgress.setText(prov.productionPoints + " / " + prov.neededProduction);
         
         
-        populationProgress.setRange(0, (float) prov.neededFood);
+        populationProgress.setRange(0, prov.neededFood);
         populationProgress.setValue(prov.foodPoints);
         
-        productionProgress.setRange(0, (float) prov.neededFood);
-        productionProgress.setValue((float) prov.productionPoints);
+        productionProgress.setRange(0, prov.neededFood);
+        productionProgress.setValue(prov.productionPoints);
         
         lFoodIncome.setText(Float.toString(prov.foodIncome));
         lProductionIncome.setText(Float.toString(prov.productionIncome));
-    
+        
         bMoveUnit.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
-        
+            
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                if(prov.unit!=null)
-                bMoveUnit.onClick(prov.unit);
+                if (prov.unit != null)
+                    bMoveUnit.onClick(prov.unit);
             }
         });
         
@@ -169,10 +173,6 @@ public class ProvinceWindow extends Window {
             bMoveUnit.setVisible(false);
             lMovementPoints.setVisible(false);
         }
-        if(prov.projectInProcess==null){
-            projectWindow.setupBuildingsInfo(prov);
-            projectWindow.show();
-        }
     }
     
     public void show() {
@@ -181,5 +181,6 @@ public class ProvinceWindow extends Window {
     
     public void hide() {
         setVisible(false);
+        projectWindow.hide();
     }
 }

@@ -17,17 +17,10 @@ public class ChooseProjectWindow extends Window implements Hideable {
     SkinManager skinManager;
     Label lCB1;
     Label lCB2;
-    ArrayList<Label> lBuildingProjects;
-    ArrayList<HegeBuildButton> bBuildingBuild;
-    ArrayList<Label> lUnitProjects;
-    ArrayList<Label> lProdCost;
-    ArrayList<HegeBuildButton> bUnitBuild;
-    
-    
     
     public ChooseProjectWindow(Stage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
-        setPosition(0,0);
+        setPosition(0, 0);
         setSize(HegeGame.width, HegeGame.height);
         setVisible(false);
         setResizable(true);
@@ -37,16 +30,11 @@ public class ChooseProjectWindow extends Window implements Hideable {
     }
     
     public void init() {
-        lCB2 = new Label("Cost", skinManager.glassySkin);
-        lCB1 = new Label("Project", skinManager.glassySkin);
+        lCB2 = new Label("Cost", skinManager.playingInfoStyle);
+        lCB1 = new Label("Project", skinManager.playingInfoStyle);
         this.add(lCB1).padRight(this.getWidth() * 0.15f);
         this.add(lCB2).padRight(this.getWidth() * 0.15f);
         this.setVisible(false);
-        lBuildingProjects = new ArrayList<>();
-        bBuildingBuild = new ArrayList<>();
-        lUnitProjects = new ArrayList<>();
-        lProdCost = new ArrayList<>();
-        bUnitBuild = new ArrayList<>();
     }
     
     public void setupBuildingsInfo(Province prov) {
@@ -55,14 +43,14 @@ public class ChooseProjectWindow extends Window implements Hideable {
             hide();
             return;
         }
-        lBuildingProjects.clear();
-        lUnitProjects.clear();
-        bBuildingBuild.clear();
-        bUnitBuild.clear();
         this.add(lCB1);
         this.add(lCB2);
-        
-        
+        this.row();
+    
+        ProjectUi[] projects = new ProjectUi[11];
+        for (int i = 0; i < projects.length; i++) {
+            projects[i] = new ProjectUi(prov, this, prov.projects[i]);
+        }
     }
     
     @Override
@@ -72,6 +60,6 @@ public class ChooseProjectWindow extends Window implements Hideable {
     
     @Override
     public void show() {
-//        setVisible(true);
+        setVisible(true);
     }
 }

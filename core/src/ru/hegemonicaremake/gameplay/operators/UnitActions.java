@@ -21,7 +21,6 @@ public class UnitActions {
     }
     
     public static void destroy(WarUnit unit) {
-        unit.gfx.dispose();
         unit.province.unit = null;
         unit.owner.logicMain.units.set(unit.unitId, null);
     }
@@ -30,14 +29,12 @@ public class UnitActions {
         if (province.unit != null) {
             battle(unit, province.unit);
             if (province.unit == null) {
-                unit.gfx.dispose();
                 unit.province.unit = null;
                 province.unit = unit;
                 unit.province = province;
                 unit.gfx.update(unit);
             }
         } else {
-            unit.gfx.dispose();
             unit.province.unit = null;
             province.unit = unit;
             unit.province = province;

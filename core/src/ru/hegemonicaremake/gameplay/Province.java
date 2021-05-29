@@ -59,17 +59,17 @@ public class Province {
         this.name = "Province " + id;
         provinceSideSize = LogicMain.provinceSize;
         projects = new ProvinceProject[11];
-        projects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM);
-        projects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE);
-        projects[ProvinceProject.ID.LIBRARY] = new ProvinceProject(ProvinceProject.ID.LIBRARY);
-        projects[ProvinceProject.ID.UNIVERSITY] = new ProvinceProject(ProvinceProject.ID.UNIVERSITY);
-        projects[ProvinceProject.ID.WORKSHOP] = new ProvinceProject(ProvinceProject.ID.WORKSHOP);
-        projects[ProvinceProject.ID.CITY] = new ProvinceProject(ProvinceProject.ID.CITY);
-        projects[ProvinceProject.ID.WARRIOR] = new ProvinceProject(ProvinceProject.ID.WARRIOR);
-        projects[ProvinceProject.ID.ARCHER] = new ProvinceProject(ProvinceProject.ID.ARCHER);
-        projects[ProvinceProject.ID.SHIELDMAN] = new ProvinceProject(ProvinceProject.ID.SHIELDMAN);
-        projects[ProvinceProject.ID.SWORDSMAN] = new ProvinceProject(ProvinceProject.ID.SWORDSMAN);
-        projects[ProvinceProject.ID.CROSSBOWS] = new ProvinceProject(ProvinceProject.ID.CROSSBOWS);
+        projects[ProvinceProject.ID.FARM] = new ProvinceProject(ProvinceProject.ID.FARM, this);
+        projects[ProvinceProject.ID.MINE] = new ProvinceProject(ProvinceProject.ID.MINE, this);
+        projects[ProvinceProject.ID.LIBRARY] = new ProvinceProject(ProvinceProject.ID.LIBRARY, this);
+        projects[ProvinceProject.ID.UNIVERSITY] = new ProvinceProject(ProvinceProject.ID.UNIVERSITY, this);
+        projects[ProvinceProject.ID.WORKSHOP] = new ProvinceProject(ProvinceProject.ID.WORKSHOP, this);
+        projects[ProvinceProject.ID.CITY] = new ProvinceProject(ProvinceProject.ID.CITY, this);
+        projects[ProvinceProject.ID.WARRIOR] = new ProvinceProject(ProvinceProject.ID.WARRIOR, this);
+        projects[ProvinceProject.ID.ARCHER] = new ProvinceProject(ProvinceProject.ID.ARCHER, this);
+        projects[ProvinceProject.ID.SHIELDMAN] = new ProvinceProject(ProvinceProject.ID.SHIELDMAN, this);
+        projects[ProvinceProject.ID.SWORDSMAN] = new ProvinceProject(ProvinceProject.ID.SWORDSMAN, this);
+        projects[ProvinceProject.ID.CROSSBOWS] = new ProvinceProject(ProvinceProject.ID.CROSSBOWS, this);
         
         buildings = new Building[6];
         buildings[Building.ID.FARM] = new Building(Building.ID.FARM, this);
@@ -141,7 +141,7 @@ public class Province {
         gfx.update(owner.logicMain.map.batch);
     }
     
-    public void chooseProject(ProvinceProject provinceProject) {
+    public void selectProject(ProvinceProject provinceProject) {
         projectInProcess = provinceProject;
         neededProduction = provinceProject.cost;
     }

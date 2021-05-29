@@ -20,6 +20,10 @@ public class SkinManager {
     public Label.LabelStyle playingInfoStyle1;
     public Label.LabelStyle provNameStyle;
     public Label.LabelStyle timesNewRomanStyle;
+    public Label.LabelStyle ableToBuild;
+    public Label.LabelStyle ableToBuild1;
+    public Label.LabelStyle unableToBuild;
+    public Label.LabelStyle unableToBuild1;
     public TextButton.TextButtonStyle timesNewRomanButtonStyle;
     
     public SkinManager() {
@@ -30,14 +34,16 @@ public class SkinManager {
         
         mainMenuStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), (int) (50 * uiFactor)), Color.WHITE);
         notificationStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf")), Color.WHITE);
-        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.WHITE)
-        ;
-        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.WHITE)
-        ;
-        timesNewRomanStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/times.ttf"), (int) (50 * uiFactor)), Color.WHITE)
-        ;
+        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.WHITE);
+        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.WHITE);
+        timesNewRomanStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/times.ttf"), (int) (50 * uiFactor)), Color.WHITE);
         provNameStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf"), (int) (50 * uiFactor), 4), Color.WHITE);
         
+        
+        ableToBuild = playingInfoStyle;
+        unableToBuild = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.RED);
+        ableToBuild1 = playingInfoStyle1;
+        unableToBuild1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.RED);
     }
     
 }
