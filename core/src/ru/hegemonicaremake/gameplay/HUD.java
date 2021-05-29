@@ -83,13 +83,14 @@ public class HUD {
         stage.addActor(whoTurnsLabel);
         stage.addActor(moveUnit);
         
-        knight = new Texture(Gdx.files.internal("knight.png"));
+        knight = new Texture(Gdx.files.internal("knight-talking.png"));
         knightStage = new Image(knight);
-        knightStage.setPosition(0,0);
+        knightStage.setPosition(0, 0);
         knightStage.setSize(HegeGame.width * 0.5f, HegeGame.height);
-        info = new Label("Info", HegeGame.skinManager.notificationStyle);
-        info.setPosition(info.getX() + info.getWidth(), info.getY() + info.getHeight());
-        showKnight("Info");
+        knightStage.setVisible(false);
+        info = new Label("You have unselected projects or technology!", HegeGame.skinManager.playingInfoStyle);
+        info.setPosition((HegeGame.width-info.getWidth())/2f, HegeGame.height * 0.5f);
+        showKnight("You have unselected projects or technology!");
         stage.addActor(knightStage);
         stage.addActor(info);
     }
@@ -130,7 +131,7 @@ public class HUD {
             updateWhoTurnsLabel();
             HegeLog.log("Logic", "turn happened");
         } else {
-            showKnight("You have unselected projects or technology");
+            showKnight("You have unselected projects or technology!");
             HegeLog.log("Logic", "turn not happened");
         }
     }
@@ -175,14 +176,14 @@ public class HUD {
     
     public void showKnight(String text) {
         info.setText(text);
-        
-        knightStage.setVisible(true);
+        info.setVisible(true);
+//        knightStage.setVisible(true);
     }
     
     public void hideKnight() {
         
-        
-        knightStage.setVisible(false);
+        info.setVisible(false);
+//        knightStage.setVisible(false);
     }
     
     public void dispose() {

@@ -36,6 +36,11 @@ public class ChooseMode {
         littleBtn.setVisible(false);
         standardBtn.setVisible(false);
         bigBtn.setVisible(false);
+    
+        expBtn.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
+        littleBtn.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
+        standardBtn.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
+        bigBtn.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
         addListeners(game);
         stage.addActor(expBtn);
         stage.addActor(littleBtn);
