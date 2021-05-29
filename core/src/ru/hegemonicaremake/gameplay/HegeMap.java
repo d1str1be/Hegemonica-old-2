@@ -18,7 +18,7 @@ public class HegeMap {
     HUD ui;
     
     MapInput input;
-    SpriteBatch batch;
+    public SpriteBatch batch;
     SpriteBatch bgBatch;
     Texture background;
     Viewport viewport;
