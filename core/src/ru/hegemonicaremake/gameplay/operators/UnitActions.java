@@ -34,6 +34,8 @@ public class UnitActions {
                     unit.province.unit = null;
                     province.unit = unit;
                     unit.province = province;
+                    capture(unit);
+                    province.gfx.update(unit.owner.logicMain.map.batch);
                     unit.gfx.update(unit);
                     LogicMain.movingUnit = null;
                 }
@@ -42,11 +44,11 @@ public class UnitActions {
                 province.unit = unit;
                 unit.province = province;
                 unit.movementPoints--;
+                capture(unit);
+                province.gfx.update(unit.owner.logicMain.map.batch);
                 unit.gfx.update(unit);
                 LogicMain.movingUnit = null;
             }
-        }
-        else {
         }
     }
     
@@ -69,7 +71,6 @@ public class UnitActions {
     
     public static void capture(WarUnit unit) {
         unit.province.setOwner(unit.owner);
-        unit.movementPoints--;
         unit.gfx.update(unit);
     }
     
