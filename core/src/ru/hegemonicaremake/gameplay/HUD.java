@@ -2,10 +2,9 @@ package ru.hegemonicaremake.gameplay;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -19,7 +18,6 @@ import ru.hegemonicaremake.gameplay.ui.CountryButton;
 import ru.hegemonicaremake.gameplay.ui.CountryWindow;
 import ru.hegemonicaremake.gameplay.ui.ProvinceWindow;
 import ru.hegemonicaremake.gameplay.ui.UiStage;
-import ru.hegemonicaremake.utils.FontGenerator;
 import ru.hegemonicaremake.utils.HegeLog;
 
 public class HUD {
@@ -32,9 +30,9 @@ public class HUD {
     ChooseProjectWindow chooseProject;
     ChooseTechWindow chooseTech;
     
-    BitmapFont youidiot;
     Texture knight;
-    SpriteBatch funnybatch;
+    Image knightStage;
+    Label info;
     
     Label whoTurnsLabel;
     TextButton turnButton;
@@ -84,9 +82,16 @@ public class HUD {
         stage.addActor(turnButton);
         stage.addActor(whoTurnsLabel);
         stage.addActor(moveUnit);
-        funnybatch = new SpriteBatch();
-        youidiot = FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), 50);
-        knight = new Texture(Gdx.files.internal("knight-talking.png"));
+        
+        knight = new Texture(Gdx.files.internal("knight.png"));
+        knightStage = new Image(knight);
+        knightStage.setPosition(0,0);
+        knightStage.setSize(HegeGame.width * 0.5f, HegeGame.height);
+        info = new Label("Info", HegeGame.skinManager.notificationStyle);
+        info.setPosition(info.getX() + info.getWidth(), info.getY() + info.getHeight());
+        showKnight("Info");
+        stage.addActor(knightStage);
+        stage.addActor(info);
     }
     
     public void selectProvince(Province prov) {
@@ -108,7 +113,7 @@ public class HUD {
     }
     
     public void prepareUnitToMove(WarUnit unit) {
-        if(unit.canMove()) {
+        if (unit.canMove()) {
             LogicMain.movingUnit = unit;
             hideAll();
             moveUnit.setVisible(true);
@@ -125,12 +130,13 @@ public class HUD {
             updateWhoTurnsLabel();
             HegeLog.log("Logic", "turn happened");
         } else {
+            showKnight("You have unselected projects or technology");
             HegeLog.log("Logic", "turn not happened");
         }
     }
     
     public void updateWhoTurnsLabel() {
-        if(whoTurnsLabel!=null)
+        if (whoTurnsLabel != null)
             whoTurnsLabel.remove();
         switch (LogicMain.turnCountry.id) {
             case Country.ID.BLUE:
@@ -158,10 +164,6 @@ public class HUD {
     public void render() {
         stage.act();
         stage.draw();
-//        funnybatch.begin();
-//        funnybatch.draw(knight,0,0);
-//        youidiot.draw(funnybatch,"TbI dolboeb",430,550);
-//        funnybatch.end();
     }
     
     public void hideAll() {
@@ -169,6 +171,18 @@ public class HUD {
         chooseProject.hide();
         countryInfo.hide();
         chooseTech.hide();
+    }
+    
+    public void showKnight(String text) {
+        info.setText(text);
+        
+        knightStage.setVisible(true);
+    }
+    
+    public void hideKnight() {
+        
+        
+        knightStage.setVisible(false);
     }
     
     public void dispose() {

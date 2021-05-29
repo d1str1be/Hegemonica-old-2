@@ -34,7 +34,7 @@ public class HegeGame extends Game {
         
         HegeLog.log("Graphics", "Width of app: " + width +
                 "\nHeight of app: " + height);
-        uiFactor = width / 2030f;
+        uiFactor = width / 1800f;
         
         audio = new AudioManager();
         skinManager = new SkinManager();

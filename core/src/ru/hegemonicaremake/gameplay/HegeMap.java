@@ -79,6 +79,7 @@ public class HegeMap {
             LogicMain.selectedProvince = null;
             ui.unselectProvince();
         }
+        ui.hideKnight();
     }
     
     public HUD getUi() {
