@@ -3,6 +3,7 @@ package ru.hegemonicaremake.gameplay.operators;
 import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
+import ru.hegemonicaremake.utils.HegeLog;
 
 public class UnitActions {
     
@@ -51,21 +52,28 @@ public class UnitActions {
     }
     
     public static void battle(WarUnit attacker, WarUnit defender) {
-
+        attack(attacker, defender);
+        attacker.gfx.update(attacker);
+        defender.gfx.update(defender);
     }
 
-    public void defend(WarUnit attacker, WarUnit defender) {
-        defender.health -= Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
+    public static void defend(WarUnit attacker, WarUnit defender) {
+        defender.health -= 30 * Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
         if (defender.health <= 0) {
             destroy(defender);
         }
+        HegeLog.log("Battle", "unit of " + defender.owner.name + " was attacked");
     }
 
-    public void attack(WarUnit attacker, WarUnit defender) {
+    public static void attack(WarUnit attacker, WarUnit defender) {
+        attacker.movementPoints--;
         Province province = defender.province;
         defend(attacker, defender);
         if (province.unit != null) {
-            attacker.health -= Math.pow(2.72, (defender.defenseStrength - attacker.attackStrength) / 25);
+            attacker.health -= 30 * Math.pow(2.72, (defender.defenseStrength - attacker.attackStrength) / 25);
+        }
+        if (attacker.health <= 0) {
+            destroy(attacker);
         }
     }
     
