@@ -1,13 +1,9 @@
 package ru.hegemonicaremake.gameplay.ui;
 
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.HUD;
-import ru.hegemonicaremake.gameplay.LogicMain;
 
 public class CountryButton extends TextButton {
     public CountryButton(Stage stage) {

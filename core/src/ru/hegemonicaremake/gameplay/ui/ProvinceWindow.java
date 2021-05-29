@@ -2,14 +2,11 @@ package ru.hegemonicaremake.gameplay.ui;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.LogicMain;
-import ru.hegemonicaremake.gameplay.MapInput;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.utils.SkinManager;
 
@@ -48,7 +45,7 @@ public class ProvinceWindow extends Window {
         getTitleLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
         
         setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.height * 0.8f);
-        setPosition((HegeGame.width -getWidth())/2f, (HegeGame.height - getHeight())/2f);
+        setPosition((HegeGame.width - getWidth()) / 2f, (HegeGame.height - getHeight()) / 2f);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
@@ -112,12 +109,12 @@ public class ProvinceWindow extends Window {
         this.row();
         this.add(lP4);
         this.row();
-        this.add(populationProgress).width(getWidth()*0.3f);
+        this.add(populationProgress).width(getWidth() * 0.3f);
         this.add(lPopulationProgress);
         this.row();
         this.add(lP5);
         this.row();
-        this.add(productionProgress).width(getWidth()*0.3f);
+        this.add(productionProgress).width(getWidth() * 0.3f);
         this.add(lProductionProgress);
         this.row();
         this.add(lP6);
@@ -135,10 +132,6 @@ public class ProvinceWindow extends Window {
     
     public void setupProvinceInfo(final Province prov) {
         this.selectedProv = prov;
-        if (prov.projectInProcess == null) {
-            projectWindow.show();
-            projectWindow.setupBuildingsInfo(prov);
-        }
         lProvName.setText(prov.name);
         lProvCountry.setText(prov.owner.name);
         lProvPopulation.setText(prov.population);
@@ -183,6 +176,10 @@ public class ProvinceWindow extends Window {
     
     public void show() {
         setVisible(true);
+        if (selectedProv.projectInProcess == null) {
+            projectWindow.show();
+            projectWindow.setupBuildingsInfo(selectedProv);
+        }
     }
     
     public void hide() {

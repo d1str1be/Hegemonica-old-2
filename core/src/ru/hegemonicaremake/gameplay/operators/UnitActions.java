@@ -27,7 +27,7 @@ public class UnitActions {
     }
     
     public static void move(WarUnit unit, Province province) {
-        if(unit.canMove()) {
+        if (unit.canMove()) {
             if (province.unit != null) {
                 battle(unit, province.unit);
                 if (province.unit == null) {

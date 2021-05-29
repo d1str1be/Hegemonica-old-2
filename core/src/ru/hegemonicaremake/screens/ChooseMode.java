@@ -31,7 +31,7 @@ public class ChooseMode {
         bigBtn = new TextButton("Big", HegeGame.skinManager.shimmerSkin);
         bigBtn.setSize(HegeGame.width * 0.5f, HegeGame.height * 0.2f);
         bigBtn.setPosition(HegeGame.width / 4f, standardBtn.getY() - bigBtn.getHeight());
-    
+        
         expBtn.setVisible(false);
         littleBtn.setVisible(false);
         standardBtn.setVisible(false);
@@ -49,8 +49,8 @@ public class ChooseMode {
         littleBtn.setVisible(true);
         standardBtn.setVisible(true);
         bigBtn.setVisible(true);
-    
-        HegeLog.log("Menu","Choose mode now");
+        
+        HegeLog.log("Menu", "Choose mode now");
     }
     
     public void addListeners(final HegeGame game) {

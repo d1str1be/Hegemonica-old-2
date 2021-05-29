@@ -125,7 +125,7 @@ public class LogicMain {
     }
     
     public boolean onTurn() {
-        if(turnCountry.isTurnAvailable()) {
+        if (turnCountry.isTurnAvailable()) {
             countries[turnCountry.id].onTurn();
             if (turnCountry.id == playersQuantity) {
                 turnCountry = countries[Country.ID.BLUE];
@@ -133,14 +133,12 @@ public class LogicMain {
             } else {
                 try {
                     turnCountry = countries[turnCountry.id + 1];
-                }
-                catch (ArrayIndexOutOfBoundsException e){
-                    turnCountry = countries[0];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    turnCountry = countries[Country.ID.BLUE];
                 }
             }
             return true;
-        }
-        else
+        } else
             return false;
     }
     
@@ -165,9 +163,4 @@ public class LogicMain {
         }
         return false;
     }
-    
-    public void checkStatus() {
-    
-    }
-    
 }

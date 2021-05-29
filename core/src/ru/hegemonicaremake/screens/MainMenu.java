@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -20,7 +19,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.PlayScreen;
 
 public class MainMenu implements Screen {
     
@@ -74,7 +72,7 @@ public class MainMenu implements Screen {
                 return true;
             }
         });
-    
+        
         bExit = new TextButton("Exit", HegeGame.skinManager.shimmerSkin);
         bExit.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
         bExit.addListener(new InputListener() {
@@ -82,7 +80,7 @@ public class MainMenu implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 Gdx.app.exit();
             }
-    
+            
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
@@ -98,12 +96,12 @@ public class MainMenu implements Screen {
         menuTable.row();
         menuTable.add(bPlay).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
         menuTable.row();
-        menuTable.add(bExit).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);;
-    
-    
+        menuTable.add(bExit).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
+        ;
+        
         
         stage.addActor(bg);
-        chooseModeBtns = new ChooseMode(game,stage);
+        chooseModeBtns = new ChooseMode(game, stage);
         stage.addActor(menuTable);
         
         Gdx.input.setInputProcessor(stage);

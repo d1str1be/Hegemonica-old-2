@@ -48,7 +48,7 @@ public class Technology {
                 break;
         }
     }
-
+    
     public void setRequiredTechnologies() {
         switch (id) {
             case ID.ENGINEERING:
@@ -103,7 +103,7 @@ public class Technology {
                 break;
         }
     }
-
+    
     public boolean isAvailable() {
         for (Technology technology : requiredTechnologies) {
             if (!owner.technologies[technology.id].isResearched) return false;

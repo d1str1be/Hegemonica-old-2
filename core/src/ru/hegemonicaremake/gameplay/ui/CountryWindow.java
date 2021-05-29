@@ -2,14 +2,12 @@ package ru.hegemonicaremake.gameplay.ui;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
-import ru.hegemonicaremake.gameplay.Country;
 import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
@@ -33,7 +31,7 @@ public class CountryWindow extends Window implements Hideable {
         super("Country Info", HegeGame.skinManager.shimmerSkin);
         ui = stage;
         setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.height * 0.8f);
-        setPosition((HegeGame.width -getWidth())/2f, (HegeGame.height - getHeight())/2f);
+        setPosition((HegeGame.width - getWidth()) / 2f, (HegeGame.height - getHeight()) / 2f);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
@@ -81,10 +79,10 @@ public class CountryWindow extends Window implements Hideable {
         this.row();
         this.add(lC3);
         this.row();
-        this.add(scienceProgress).width(getWidth()*0.3f);
+        this.add(scienceProgress).width(getWidth() * 0.3f);
         this.add(lScienceProgress);
         this.row();
-        this.add(bCHide).width(this.getWidth()*0.3f).height(this.getHeight() * 0.3f);
+        this.add(bCHide).width(this.getWidth() * 0.3f).height(this.getHeight() * 0.3f);
         
         scienceProgress.updateVisualValue();
     }
@@ -99,8 +97,8 @@ public class CountryWindow extends Window implements Hideable {
             lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + "0");
             scienceProgress.setRange(0, 1);
         }
-        
-        scienceProgress.setValue((float) LogicMain.turnCountry.sciencePoints);
+        scienceProgress.updateVisualValue();
+        scienceProgress.setValue(LogicMain.turnCountry.sciencePoints);
         
         
     }

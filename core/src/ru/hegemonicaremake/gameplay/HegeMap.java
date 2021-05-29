@@ -70,8 +70,7 @@ public class HegeMap {
         if (logic.findTappedProvince(x, y)) {
             if (LogicMain.movingUnit != null) {
                 ui.moveUnit(LogicMain.movingUnit, LogicMain.selectedProvince);
-            }
-            else{
+            } else {
                 HegeLog.log("Input", "You`ve pressed " + LogicMain.selectedProvince.name);
                 ui.selectProvince(LogicMain.selectedProvince);
             }

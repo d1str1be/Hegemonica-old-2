@@ -14,7 +14,7 @@ public class PlayScreen implements Screen {
     
     public PlayScreen(HegeGame game, int mapSizeId) {
         this.game = game;
-        map = new HegeMap(game,mapSizeId);
+        map = new HegeMap(game, mapSizeId);
     }
     
     @Override

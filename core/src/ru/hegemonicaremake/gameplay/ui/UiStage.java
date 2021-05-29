@@ -7,12 +7,13 @@ import ru.hegemonicaremake.gameplay.HUD;
 
 public class UiStage extends Stage {
     HUD hud;
+    
     public UiStage(Viewport viewport, HUD hud) {
         super(viewport);
         this.hud = hud;
     }
     
-    public void hideAll(){
+    public void hideAll() {
         hud.hideAll();
     }
     

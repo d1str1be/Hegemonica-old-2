@@ -90,7 +90,7 @@ public class WarUnit extends ProvinceProject {
         defenseStrength = startDefenseStrength - 10 * (health / 100);
     }
     
-    public boolean canMove(){
+    public boolean canMove() {
         return movementPoints > 0;
     }
     

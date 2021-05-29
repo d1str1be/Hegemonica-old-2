@@ -7,7 +7,6 @@ import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.gameplay.MapInput;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
-import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
 public class MoveUnitButton extends TextButton {
     public MoveUnitButton() {

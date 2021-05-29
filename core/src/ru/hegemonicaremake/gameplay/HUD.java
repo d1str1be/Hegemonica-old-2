@@ -112,10 +112,12 @@ public class HUD {
         hideAll();
         moveUnit.setVisible(true);
     }
+    
     public void moveUnit(WarUnit unit, Province prov) {
         UnitActions.move(unit, prov);
         moveUnit.setVisible(false);
     }
+    
     public void onTurn() {
         if (logic.onTurn()) {
             updateWhoTurnsLabel();
@@ -145,7 +147,6 @@ public class HUD {
                 break;
         }
     }
-    
     
     
     public void render() {
