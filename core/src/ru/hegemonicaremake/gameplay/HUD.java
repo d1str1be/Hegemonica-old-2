@@ -130,6 +130,8 @@ public class HUD {
     }
     
     public void updateWhoTurnsLabel() {
+        if(whoTurnsLabel!=null)
+            whoTurnsLabel.remove();
         switch (LogicMain.turnCountry.id) {
             case Country.ID.BLUE:
                 whoTurnsLabel = new Label("Blue turns", HegeGame.skinManager.blueTurn);
@@ -148,6 +150,8 @@ public class HUD {
                 whoTurnsLabel.setPosition(turnButton.getX(), turnButton.getHeight() + turnButton.getY());
                 break;
         }
+        stage.addActor(whoTurnsLabel);
+        
     }
     
     
