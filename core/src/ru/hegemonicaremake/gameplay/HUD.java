@@ -38,6 +38,7 @@ public class HUD {
     
     Label whoTurnsLabel;
     TextButton turnButton;
+    Label moveUnit;
     
     public HUD(LogicMain logic) {
         this.logic = logic;
@@ -51,7 +52,7 @@ public class HUD {
             
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                selectCountry(LogicMain.turnCountry);
+                selectCountry();
             }
         });
         provInfo = new ProvinceWindow(stage);
@@ -62,23 +63,27 @@ public class HUD {
         turnButton = new TextButton("Turn", HegeGame.skinManager.shimmerSkin);
         turnButton.setSize(HegeGame.width * 0.3f * HegeGame.uiFactor, HegeGame.height * 0.3f * HegeGame.uiFactor);
         turnButton.setPosition(HegeGame.width - turnButton.getWidth(), 0);
-        turnButton.addListener(new InputListener(){
+        turnButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
-    
+            
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 onTurn();
             }
         });
         
+        moveUnit = new Label("Move Unit to...", HegeGame.skinManager.mainMenuStyle);
+        moveUnit.setPosition((HegeGame.width - moveUnit.getWidth()) / 2f, HegeGame.height * 0.9f - moveUnit.getHeight());
+        moveUnit.setVisible(false);
         
         updateWhoTurnsLabel();
         
         stage.addActor(turnButton);
         stage.addActor(whoTurnsLabel);
+        stage.addActor(moveUnit);
         funnybatch = new SpriteBatch();
         youidiot = FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), 50);
         knight = new Texture(Gdx.files.internal("knight-talking.png"));
@@ -95,23 +100,27 @@ public class HUD {
         provInfo.hide();
     }
     
-    public void selectCountry(Country country) {
+    public void selectCountry() {
         hideAll();
-        countryInfo.setupCountryInfo(country);
+        countryInfo.setupCountryInfo();
         countryInfo.show();
         HegeLog.log("Interface", "Opened Country info window");
     }
     
     public void prepareUnitToMove(WarUnit unit) {
-    
+        LogicMain.movingUnit = unit;
+        hideAll();
+        moveUnit.setVisible(true);
     }
-    
+    public void moveUnit(WarUnit unit, Province prov) {
+        UnitActions.move(unit, prov);
+        moveUnit.setVisible(false);
+    }
     public void onTurn() {
-        if(logic.onTurn()) {
+        if (logic.onTurn()) {
             updateWhoTurnsLabel();
             HegeLog.log("Logic", "turn happened");
-        }
-        else
+        } else
             HegeLog.log("Logic", "turn not happened");
     }
     
@@ -119,26 +128,24 @@ public class HUD {
         switch (LogicMain.turnCountry.id) {
             case Country.ID.BLUE:
                 whoTurnsLabel = new Label("Blue turns", HegeGame.skinManager.blueTurn);
-                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                whoTurnsLabel.setPosition(turnButton.getX(), turnButton.getHeight() + turnButton.getY());
                 break;
             case Country.ID.RED:
                 whoTurnsLabel = new Label("Red turns", HegeGame.skinManager.redTurn);
-                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                whoTurnsLabel.setPosition(turnButton.getX(), turnButton.getHeight() + turnButton.getY());
                 break;
             case Country.ID.GREEN:
                 whoTurnsLabel = new Label("Green turns", HegeGame.skinManager.greenTurn);
-                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                whoTurnsLabel.setPosition(turnButton.getX(), turnButton.getHeight() + turnButton.getY());
                 break;
             case Country.ID.ORANGE:
                 whoTurnsLabel = new Label("Orange turns", HegeGame.skinManager.orangeTurn);
-                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                whoTurnsLabel.setPosition(turnButton.getX(), turnButton.getHeight() + turnButton.getY());
                 break;
         }
     }
     
-    public void moveUnit(WarUnit unit, Province prov) {
-        UnitActions.move(unit, prov);
-    }
+    
     
     public void render() {
         stage.act();

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -25,6 +26,8 @@ public class MainMenu implements Screen {
     
     HegeGame game;
     
+    ChooseMode chooseModeBtns;
+    
     OrthographicCamera camera;
     Texture bgTexture;
     Image bg;
@@ -34,6 +37,7 @@ public class MainMenu implements Screen {
     SpriteBatch batch;
     Label label;
     TextButton bPlay;
+    TextButton bExit;
     
     Table menuTable;
     
@@ -57,11 +61,12 @@ public class MainMenu implements Screen {
         label = new Label("Hegemonica", HegeGame.skinManager.timesNewRomanStyle);
         bPlay = new TextButton("Play", HegeGame.skinManager.shimmerSkin);
         bPlay.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
+        
         bPlay.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                HegeGame.screenManager.setScreen(new PlayScreen(game));
-                dispose();
+                chooseModeBtns.show(menuTable);
+                stage.act();
             }
             
             @Override
@@ -69,7 +74,20 @@ public class MainMenu implements Screen {
                 return true;
             }
         });
-        
+    
+        bExit = new TextButton("Exit", HegeGame.skinManager.shimmerSkin);
+        bExit.getLabel().setStyle(HegeGame.skinManager.mainMenuStyle);
+        bExit.addListener(new InputListener() {
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+            }
+    
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
         
         menuTable = new Table();
         menuTable.setSize(HegeGame.width * 0.6f, HegeGame.height * 0.5f);
@@ -79,9 +97,15 @@ public class MainMenu implements Screen {
         menuTable.padBottom(HegeGame.height * 0.2f);
         menuTable.row();
         menuTable.add(bPlay).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);
+        menuTable.row();
+        menuTable.add(bExit).width(HegeGame.width * 0.5f).height(HegeGame.height * 0.2f);;
+    
+    
         
         stage.addActor(bg);
+        chooseModeBtns = new ChooseMode(game,stage);
         stage.addActor(menuTable);
+        
         Gdx.input.setInputProcessor(stage);
     }
     

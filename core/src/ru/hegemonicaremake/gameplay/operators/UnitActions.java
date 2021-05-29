@@ -26,20 +26,24 @@ public class UnitActions {
     }
     
     public static void move(WarUnit unit, Province province) {
-        if (province.unit != null) {
-            battle(unit, province.unit);
-            if (province.unit == null) {
+        if(unit.canMove()) {
+            if (province.unit != null) {
+                battle(unit, province.unit);
+                if (province.unit == null) {
+                    unit.province.unit = null;
+                    province.unit = unit;
+                    unit.province = province;
+                    unit.gfx.update(unit);
+                }
+            } else {
                 unit.province.unit = null;
                 province.unit = unit;
                 unit.province = province;
+                unit.movementPoints--;
                 unit.gfx.update(unit);
             }
-        } else {
-            unit.province.unit = null;
-            province.unit = unit;
-            unit.province = province;
-            unit.movementPoints--;
-            unit.gfx.update(unit);
+        }
+        else {
         }
     }
     

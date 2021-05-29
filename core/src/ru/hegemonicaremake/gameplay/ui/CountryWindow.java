@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.Country;
+import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
@@ -87,24 +88,20 @@ public class CountryWindow extends Window implements Hideable {
         
     }
     
-    public void setupCountryInfo(Country turnCountry) {
-        lCountryName.setText(turnCountry.name);
-        lCountryPopulation.setText(turnCountry.population);
-        if (turnCountry.technologyInProcess != null) {
-            lScienceProgress.setText(turnCountry.sciencePoints + " / " + turnCountry.technologyInProcess.cost);
-            scienceProgress.setRange(0, turnCountry.technologyInProcess.cost);
+    public void setupCountryInfo() {
+        lCountryName.setText(LogicMain.turnCountry.name);
+        lCountryPopulation.setText(LogicMain.turnCountry.population);
+        if (LogicMain.turnCountry.technologyInProcess != null) {
+            lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + LogicMain.turnCountry.technologyInProcess.cost);
+            scienceProgress.setRange(0, LogicMain.turnCountry.technologyInProcess.cost);
         } else {
-            lScienceProgress.setText(turnCountry.sciencePoints + " / " + "0");
+            lScienceProgress.setText(LogicMain.turnCountry.sciencePoints + " / " + "0");
             scienceProgress.setRange(0, 1);
         }
         
-        scienceProgress.setValue((float) turnCountry.sciencePoints);
+        scienceProgress.setValue((float) LogicMain.turnCountry.sciencePoints);
         
-        if (turnCountry.technologyInProcess == null) {
-            techWindow.setupTechInfo(turnCountry);
-            techWindow.setVisible(true);
-            techWindow.setMovable(true);
-        }
+        
     }
     
     @Override
@@ -116,5 +113,10 @@ public class CountryWindow extends Window implements Hideable {
     @Override
     public void show() {
         setVisible(true);
+        if (LogicMain.turnCountry.technologyInProcess == null) {
+            techWindow.setupTechInfo(LogicMain.turnCountry);
+            techWindow.setVisible(true);
+            techWindow.setMovable(true);
+        }
     }
 }

@@ -26,7 +26,7 @@ public class HegeMap {
     
     Stage stage;
     
-    public HegeMap(HegeGame game) {
+    public HegeMap(HegeGame game, int mapSizeId) {
         this.game = game;
         batch = new SpriteBatch();
         bgBatch = new SpriteBatch();
@@ -34,7 +34,7 @@ public class HegeMap {
         viewport = new FitViewport(HegeGame.width, HegeGame.height, camera);
 
 //        stage = new Stage(viewport, batch);
-        logic = new LogicMain(LogicMain.MAPSIZEID.EXPERIMENTAL, this);
+        logic = new LogicMain(mapSizeId, this);
         ui = new HUD(logic);
 //        logic.initStage(stage);
         

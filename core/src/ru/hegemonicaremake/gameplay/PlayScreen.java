@@ -12,9 +12,9 @@ public class PlayScreen implements Screen {
     HegeMap map;
     public CancelNotification cancelNotification;
     
-    public PlayScreen(HegeGame game) {
+    public PlayScreen(HegeGame game, int mapSizeId) {
         this.game = game;
-        map = new HegeMap(game);
+        map = new HegeMap(game,mapSizeId);
     }
     
     @Override
