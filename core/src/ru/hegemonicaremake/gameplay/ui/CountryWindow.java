@@ -86,6 +86,7 @@ public class CountryWindow extends Window implements Hideable {
         this.row();
         this.add(bCHide).width(this.getWidth()*0.3f).height(this.getHeight() * 0.3f);
         
+        scienceProgress.updateVisualValue();
     }
     
     public void setupCountryInfo() {

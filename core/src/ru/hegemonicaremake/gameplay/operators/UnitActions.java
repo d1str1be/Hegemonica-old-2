@@ -1,5 +1,6 @@
 package ru.hegemonicaremake.gameplay.operators;
 
+import ru.hegemonicaremake.gameplay.LogicMain;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 
@@ -34,6 +35,7 @@ public class UnitActions {
                     province.unit = unit;
                     unit.province = province;
                     unit.gfx.update(unit);
+                    LogicMain.movingUnit = null;
                 }
             } else {
                 unit.province.unit = null;
@@ -41,6 +43,7 @@ public class UnitActions {
                 unit.province = province;
                 unit.movementPoints--;
                 unit.gfx.update(unit);
+                LogicMain.movingUnit = null;
             }
         }
         else {

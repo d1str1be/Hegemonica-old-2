@@ -120,8 +120,9 @@ public class HUD {
         if (logic.onTurn()) {
             updateWhoTurnsLabel();
             HegeLog.log("Logic", "turn happened");
-        } else
+        } else {
             HegeLog.log("Logic", "turn not happened");
+        }
     }
     
     public void updateWhoTurnsLabel() {
