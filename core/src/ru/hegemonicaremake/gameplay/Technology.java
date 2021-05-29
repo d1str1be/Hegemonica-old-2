@@ -9,6 +9,7 @@ public class Technology {
     public Country owner;
     public boolean isResearched;
     public String name;
+    public Technology[] requiredTechnologies;
     
     public Technology(int id, Country owner) {
         this.id = id;
@@ -18,26 +19,54 @@ public class Technology {
             case ID.ENGINEERING:
                 cost = COST.ENGINEERING;
                 name = "Engineering";
+                requiredTechnologies = new Technology[0];
                 break;
             case ID.PAPER:
                 cost = COST.PAPER;
                 name = "Paper";
+                requiredTechnologies = new Technology[0];
                 break;
             case ID.SIMPLYCHEMISTRY:
                 cost = COST.SIMPLYCHEMISTRY;
                 name = "Simply Chemistry";
+                requiredTechnologies = new Technology[0];
                 break;
             case ID.MACHINERY:
                 cost = COST.MACHINERY;
                 name = "Machinery";
+                requiredTechnologies = new Technology[1];
                 break;
             case ID.APPRENTICESHIP:
                 cost = COST.APPRENTICESHIP;
                 name = "Apprenticeship";
+                requiredTechnologies = new Technology[2];
                 break;
             case ID.EDUCATION:
                 cost = COST.EDUCATION;
                 name = "Education";
+                requiredTechnologies = new Technology[2];
+                break;
+        }
+    }
+
+    public void setRequiredTechnologies() {
+        switch (id) {
+            case ID.ENGINEERING:
+                break;
+            case ID.PAPER:
+                break;
+            case ID.SIMPLYCHEMISTRY:
+                break;
+            case ID.APPRENTICESHIP:
+                requiredTechnologies[0] = owner.technologies[ID.ENGINEERING];
+                requiredTechnologies[1] = owner.technologies[ID.PAPER];
+                break;
+            case ID.MACHINERY:
+                requiredTechnologies[0] = owner.technologies[ID.ENGINEERING];
+                break;
+            case ID.EDUCATION:
+                requiredTechnologies[0] = owner.technologies[ID.PAPER];
+                requiredTechnologies[1] = owner.technologies[ID.SIMPLYCHEMISTRY];
                 break;
         }
     }
@@ -73,6 +102,13 @@ public class Technology {
                 owner.provinceProjects[ProvinceProject.ID.UNIVERSITY].unlock();
                 break;
         }
+    }
+
+    public boolean isAvailable() {
+        for (Technology technology : requiredTechnologies) {
+            if (!owner.technologies[technology.id].isResearched) return false;
+        }
+        return true;
     }
     
     public static class ID {
