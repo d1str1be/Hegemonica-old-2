@@ -105,6 +105,7 @@ public class Technology {
     }
     
     public boolean isAvailable() {
+        if (isResearched) return false;
         for (Technology technology : requiredTechnologies) {
             if (!owner.technologies[technology.id].isResearched) return false;
         }
