@@ -124,14 +124,24 @@ public class LogicMain {
         turnCountry = countries[Country.ID.BLUE];
     }
     
-    public void onTurn() {
-        countries[turnCountry.id].onTurn();
-        if (turnCountry.id == playersQuantity) {
-            turnCountry = countries[Country.ID.BLUE];
-            turn++;
-        } else {
-            turnCountry = countries[turnCountry.id + 1];
+    public boolean onTurn() {
+        if(turnCountry.isTurnAvailable()) {
+            countries[turnCountry.id].onTurn();
+            if (turnCountry.id == playersQuantity) {
+                turnCountry = countries[Country.ID.BLUE];
+                turn++;
+            } else {
+                try {
+                    turnCountry = countries[turnCountry.id + 1];
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    turnCountry = countries[0];
+                }
+            }
+            return true;
         }
+        else
+            return false;
     }
     
     public void setProvinceCoordinates(int id) {
