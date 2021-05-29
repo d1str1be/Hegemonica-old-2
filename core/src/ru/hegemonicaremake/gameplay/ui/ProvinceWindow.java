@@ -181,8 +181,8 @@ public class ProvinceWindow extends Window {
     public void show() {
         setVisible(true);
         if (selectedProv.projectInProcess == null) {
-            projectWindow.show();
             projectWindow.setupBuildingsInfo(selectedProv);
+            projectWindow.show();
         }
     }
     

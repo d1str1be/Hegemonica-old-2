@@ -72,7 +72,8 @@ public class HegeMap {
                 ui.moveUnit(LogicMain.movingUnit, LogicMain.selectedProvince);
             } else {
                 HegeLog.log("Input", "You`ve pressed " + LogicMain.selectedProvince.name);
-                ui.selectProvince(LogicMain.selectedProvince);
+                if (LogicMain.selectedProvince.owner.id == LogicMain.turnCountry.id)
+                    ui.selectProvince(LogicMain.selectedProvince);
             }
             
         } else {
