@@ -33,7 +33,7 @@ public class UnitActions {
                     unit.province.unit = null;
                     province.unit = unit;
                     unit.province = province;
-                    if (isCanCapture(unit, province)) capture(unit);
+                    capture(unit);
                     province.gfx.update(unit.owner.logicMain.map.batch);
                     unit.gfx.update(unit);
                 }
@@ -42,7 +42,7 @@ public class UnitActions {
                 province.unit = unit;
                 unit.province = province;
                 unit.movementPoints--;
-                if (isCanCapture(unit, province)) capture(unit);
+                capture(unit);
                 province.gfx.update(unit.owner.logicMain.map.batch);
                 unit.gfx.update(unit);
             }
@@ -50,7 +50,6 @@ public class UnitActions {
     }
     
     public static void battle(WarUnit attacker, WarUnit defender) {
-        Province province = defender.province;
         defender.health -= 30 * Math.pow(2.72, (attacker.attackStrength - defender.defenseStrength) / 25);
         if (defender.health <= 0) {
             destroy(defender);
