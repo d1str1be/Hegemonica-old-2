@@ -8,7 +8,6 @@ public class Technology {
     public float cost;
     public Country owner;
     public boolean isResearched;
-    public boolean isAvailable;
     public String name;
     public Technology[] requiredTechnologies;
     

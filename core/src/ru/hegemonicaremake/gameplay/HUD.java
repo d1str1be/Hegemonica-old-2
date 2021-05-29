@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
+import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.operators.UnitActions;
 import ru.hegemonicaremake.gameplay.provProject.WarUnit;
 import ru.hegemonicaremake.gameplay.ui.ChooseProjectWindow;
@@ -34,6 +36,9 @@ public class HUD {
     Texture knight;
     SpriteBatch funnybatch;
     
+    Label whoTurnsLabel;
+    TextButton turnButton;
+    
     public HUD(LogicMain logic) {
         this.logic = logic;
         stage = new UiStage(new ScreenViewport(), this);
@@ -43,7 +48,7 @@ public class HUD {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 return true;
             }
-    
+            
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 selectCountry(LogicMain.turnCountry);
@@ -54,6 +59,26 @@ public class HUD {
         countryInfo = new CountryWindow(stage);
         chooseTech = new ChooseTechWindow(stage);
         
+        turnButton = new TextButton("Turn", HegeGame.skinManager.shimmerSkin);
+        turnButton.setSize(HegeGame.width * 0.3f * HegeGame.uiFactor, HegeGame.height * 0.3f * HegeGame.uiFactor);
+        turnButton.setPosition(HegeGame.width - turnButton.getWidth(), 0);
+        turnButton.addListener(new InputListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+    
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                onTurn();
+            }
+        });
+        
+        
+        updateWhoTurnsLabel();
+        
+        stage.addActor(turnButton);
+        stage.addActor(whoTurnsLabel);
         funnybatch = new SpriteBatch();
         youidiot = FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), 50);
         knight = new Texture(Gdx.files.internal("knight-talking.png"));
@@ -72,8 +97,39 @@ public class HUD {
     
     public void selectCountry(Country country) {
         hideAll();
-        countryInfo.show();
         countryInfo.setupCountryInfo(country);
+        countryInfo.show();
+        HegeLog.log("Interface", "Opened Country info window");
+    }
+    
+    public void prepareUnitToMove(WarUnit unit) {
+    
+    }
+    
+    public void onTurn() {
+        logic.onTurn();
+        updateWhoTurnsLabel();
+    }
+    
+    public void updateWhoTurnsLabel() {
+        switch (LogicMain.turnCountry.id) {
+            case Country.ID.BLUE:
+                whoTurnsLabel = new Label("Blue turns", HegeGame.skinManager.blueTurn);
+                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                break;
+            case Country.ID.RED:
+                whoTurnsLabel = new Label("Red turns", HegeGame.skinManager.redTurn);
+                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                break;
+            case Country.ID.GREEN:
+                whoTurnsLabel = new Label("Green turns", HegeGame.skinManager.greenTurn);
+                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                break;
+            case Country.ID.ORANGE:
+                whoTurnsLabel = new Label("Orange turns", HegeGame.skinManager.orangeTurn);
+                whoTurnsLabel.setPosition(turnButton.getX(),turnButton.getHeight()+turnButton.getY());
+                break;
+        }
     }
     
     public void moveUnit(WarUnit unit, Province prov) {

@@ -8,10 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
 import ru.hegemonicaremake.HegeGame;
+import ru.hegemonicaremake.gameplay.LogicMain;
+import ru.hegemonicaremake.gameplay.MapInput;
 import ru.hegemonicaremake.gameplay.Province;
 import ru.hegemonicaremake.utils.SkinManager;
 
 public class ProvinceWindow extends Window {
+    Province selectedProv;
+    UiStage ui;
     Label lP1;
     Label lP2;
     Label lP3;
@@ -37,8 +41,9 @@ public class ProvinceWindow extends Window {
     
     ChooseProjectWindow projectWindow;
     
-    public ProvinceWindow(Stage stage) {
-        super("Choose Province", HegeGame.skinManager.shimmerSkin);
+    public ProvinceWindow(UiStage stage) {
+        super("Province", HegeGame.skinManager.shimmerSkin);
+        this.ui = stage;
         align(Align.top);
         getTitleLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
         
@@ -107,12 +112,12 @@ public class ProvinceWindow extends Window {
         this.row();
         this.add(lP4);
         this.row();
-        this.add(populationProgress);
+        this.add(populationProgress).width(getWidth()*0.3f);
         this.add(lPopulationProgress);
         this.row();
         this.add(lP5);
         this.row();
-        this.add(productionProgress);
+        this.add(productionProgress).width(getWidth()*0.3f);
         this.add(lProductionProgress);
         this.row();
         this.add(lP6);
@@ -129,6 +134,7 @@ public class ProvinceWindow extends Window {
     }
     
     public void setupProvinceInfo(final Province prov) {
+        this.selectedProv = prov;
         if (prov.projectInProcess == null) {
             projectWindow.show();
             projectWindow.setupBuildingsInfo(prov);
@@ -159,7 +165,7 @@ public class ProvinceWindow extends Window {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 if (prov.unit != null)
-                    bMoveUnit.onClick(prov.unit);
+                    ui.hud.prepareUnitToMove(prov.unit);
             }
         });
         

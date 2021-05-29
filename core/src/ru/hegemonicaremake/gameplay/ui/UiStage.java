@@ -6,14 +6,14 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import ru.hegemonicaremake.gameplay.HUD;
 
 public class UiStage extends Stage {
-    HUD ui;
-    public UiStage(Viewport viewport, HUD ui) {
+    HUD hud;
+    public UiStage(Viewport viewport, HUD hud) {
         super(viewport);
-        this.ui = ui;
+        this.hud = hud;
     }
     
     public void hideAll(){
-        ui.hideAll();
+        hud.hideAll();
     }
     
 }

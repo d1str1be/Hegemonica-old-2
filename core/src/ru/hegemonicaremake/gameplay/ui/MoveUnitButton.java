@@ -17,12 +17,6 @@ public class MoveUnitButton extends TextButton {
         
     }
     
-    
-    public void onClick(WarUnit unit) {
-        LogicMain.movingUnit = unit;
-        MapInput.isMovingUnit = true;
-    }
-    
     public void moveUnit(Province prov) {
         if (UnitActions.isMovable(LogicMain.movingUnit, prov)) {
             UnitActions.move(LogicMain.movingUnit, prov);

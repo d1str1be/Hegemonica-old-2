@@ -16,7 +16,7 @@ import ru.hegemonicaremake.utils.SkinManager;
 public class CountryWindow extends Window implements Hideable {
     
     SkinManager skinManager;
-    
+    UiStage ui;
     Label lC1;
     Label lCountryName;
     Label lC2;
@@ -28,10 +28,11 @@ public class CountryWindow extends Window implements Hideable {
     
     ChooseTechWindow techWindow;
     
-    public CountryWindow(Stage stage) {
+    public CountryWindow(UiStage stage) {
         super("Country Info", HegeGame.skinManager.shimmerSkin);
-        setPosition(HegeGame.width * 0.05f, HegeGame.height * 0.4f);
-        setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.15f / HegeGame.uiFactor);
+        ui = stage;
+        setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.height * 0.8f);
+        setPosition((HegeGame.width -getWidth())/2f, (HegeGame.height - getHeight())/2f);
         setVisible(false);
         setResizable(true);
         skinManager = HegeGame.skinManager;
@@ -45,22 +46,19 @@ public class CountryWindow extends Window implements Hideable {
     
     public void init() {
         this.setMovable(true);
-        this.setPosition(HegeGame.width * 0.3f, HegeGame.height * 0.6f);
-        this.setSize(HegeGame.width * 0.15f / HegeGame.uiFactor, HegeGame.width * 0.125f / HegeGame.uiFactor);
         this.setVisible(false);
         this.align(Align.top);
         
-        lC1 = new Label("Country Name:", skinManager.glassySkin);
-        lCountryName = new Label("Null", skinManager.glassySkin);
-        lC2 = new Label("Population:", skinManager.glassySkin);
-        lCountryPopulation = new Label("Null", skinManager.glassySkin);
-        lC3 = new Label("Science points:", skinManager.glassySkin);
-        lScienceProgress = new Label("Null", skinManager.defaultSkin);
+        lC1 = new Label("Country Name:", skinManager.playingInfoStyle);
+        lCountryName = new Label("Null", skinManager.playingInfoStyle1);
+        lC2 = new Label("Population:", skinManager.playingInfoStyle);
+        lCountryPopulation = new Label("Null", skinManager.playingInfoStyle1);
+        lC3 = new Label("Science points:", skinManager.playingInfoStyle);
+        lScienceProgress = new Label("Null", skinManager.playingInfoStyle1);
         scienceProgress = new HegeProgressBar(this.getWidth() * 0.15f, this.getWidth() * 0.02f, HegeProgressBar.ID.SCIENCE);
         
         bCHide = new TextButton("Hide", skinManager.shimmerSkin);
         bCHide.getLabel().setStyle(skinManager.playingInfoStyle);
-        bCHide.setSize(this.getWidth(), this.getHeight() * 0.2f);
         bCHide.setRound(true);
         bCHide.addListener(new InputListener() {
             @Override
@@ -70,7 +68,7 @@ public class CountryWindow extends Window implements Hideable {
             
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                bCHide.setVisible(false);
+                ui.hideAll();
             }
         });
         
@@ -82,10 +80,10 @@ public class CountryWindow extends Window implements Hideable {
         this.row();
         this.add(lC3);
         this.row();
-        this.add(scienceProgress);
+        this.add(scienceProgress).width(getWidth()*0.3f);
         this.add(lScienceProgress);
         this.row();
-        this.add(bCHide).width(this.getWidth()).height(this.getHeight() * 0.3f);
+        this.add(bCHide).width(this.getWidth()*0.3f).height(this.getHeight() * 0.3f);
         
     }
     

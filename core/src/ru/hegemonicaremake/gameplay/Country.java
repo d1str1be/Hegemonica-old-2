@@ -98,6 +98,9 @@ public class Country {
         technologies[Technology.ID.MACHINERY] = new Technology(Technology.ID.MACHINERY, this);
         technologies[Technology.ID.APPRENTICESHIP] = new Technology(Technology.ID.APPRENTICESHIP, this);
         technologies[Technology.ID.EDUCATION] = new Technology(Technology.ID.EDUCATION, this);
+        for (Technology technology : technologies) {
+            technology.setRequiredTechnologies();
+        }
         
         farmFoodProduction = Building.STARTFOODPRODUCTION.FARM;
         startFoodProduction = Building.STARTFOODPRODUCTION.STARTPRODUCTION;

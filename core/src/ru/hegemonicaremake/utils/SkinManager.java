@@ -26,6 +26,11 @@ public class SkinManager {
     public Label.LabelStyle unableToBuild1;
     public TextButton.TextButtonStyle timesNewRomanButtonStyle;
     
+    public Label.LabelStyle redTurn;
+    public Label.LabelStyle blueTurn;
+    public Label.LabelStyle orangeTurn;
+    public Label.LabelStyle greenTurn;
+    
     public SkinManager() {
         starSoldierSkin = new Skin(Gdx.files.internal("skins/star-soldier/skin/star-soldier-ui.json"));
         glassySkin = new Skin(Gdx.files.internal("skins/glassy/skin/glassy-ui.json"));
@@ -34,16 +39,21 @@ public class SkinManager {
         
         mainMenuStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/droidSans.ttf"), (int) (50 * uiFactor)), Color.WHITE);
         notificationStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf")), Color.WHITE);
-        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.WHITE);
-        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.WHITE);
+        playingInfoStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 3), Color.WHITE);
+        playingInfoStyle1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 3), Color.WHITE);
         timesNewRomanStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/times.ttf"), (int) (50 * uiFactor)), Color.WHITE);
         provNameStyle = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/vagWorld.otf"), (int) (50 * uiFactor), 4), Color.WHITE);
         
         
         ableToBuild = playingInfoStyle;
-        unableToBuild = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 4), Color.RED);
+        unableToBuild = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (50 * uiFactor), 3), Color.RED);
         ableToBuild1 = playingInfoStyle1;
-        unableToBuild1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 4), Color.RED);
+        unableToBuild1 = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/corbel.ttf"), (int) (50 * uiFactor), 3), Color.RED);
+    
+        redTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.RED);
+        blueTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.BLUE);
+        orangeTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.ORANGE);
+        greenTurn = new Label.LabelStyle(FontGenerator.generateFont(Gdx.files.internal("fontsTTF/COPRGTB.TTF"), (int) (45 * uiFactor), 3), Color.GREEN);
     }
     
 }

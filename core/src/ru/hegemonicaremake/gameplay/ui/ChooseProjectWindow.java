@@ -1,10 +1,7 @@
 package ru.hegemonicaremake.gameplay.ui;
 
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-
-import java.util.ArrayList;
 
 import ru.hegemonicaremake.HegeGame;
 import ru.hegemonicaremake.gameplay.Country;
@@ -13,13 +10,14 @@ import ru.hegemonicaremake.utils.Hideable;
 import ru.hegemonicaremake.utils.SkinManager;
 
 public class ChooseProjectWindow extends Window implements Hideable {
-    
+    UiStage ui;
     SkinManager skinManager;
     Label lCB1;
     Label lCB2;
     
-    public ChooseProjectWindow(Stage stage) {
+    public ChooseProjectWindow(UiStage stage) {
         super("Province Info", HegeGame.skinManager.shimmerSkin);
+        this.ui = stage;
         setPosition(0, 0);
         setSize(HegeGame.width, HegeGame.height);
         setVisible(false);
@@ -46,10 +44,10 @@ public class ChooseProjectWindow extends Window implements Hideable {
         this.add(lCB1);
         this.add(lCB2);
         this.row();
-    
+        
         ProjectUi[] projects = new ProjectUi[11];
         for (int i = 0; i < projects.length; i++) {
-            projects[i] = new ProjectUi(prov, this, prov.projects[i]);
+            projects[i] = new ProjectUi(prov, this, ui, prov.projects[i]);
         }
     }
     

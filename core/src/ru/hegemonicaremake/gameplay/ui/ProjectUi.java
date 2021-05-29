@@ -14,7 +14,7 @@ public class ProjectUi {
     Label cost;
     TextButton buildButton;
     
-    public ProjectUi(final Province province, final ChooseProjectWindow window, final ProvinceProject project) {
+    public ProjectUi(final Province province, final ChooseProjectWindow window, final UiStage ui, final ProvinceProject project) {
         if (project.isAvailable()) {
             name = new Label(project.name, HegeGame.skinManager.ableToBuild);
             cost = new Label(Float.toString(project.cost), HegeGame.skinManager.ableToBuild1);
@@ -36,6 +36,7 @@ public class ProjectUi {
                 if (project.isAvailable()) {
                     province.selectProject(project);
                     window.hide();
+                    ui.hideAll();
                 }
             }
         });
