@@ -41,26 +41,10 @@ public class HUD {
     public HUD(LogicMain logic) {
         this.logic = logic;
         stage = new UiStage(new ScreenViewport(), this);
-        countryButton = new CountryButton(stage);
-        countryButton.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return true;
-            }
-            
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                selectCountry();
-            }
-        });
-        provInfo = new ProvinceWindow(stage);
-        chooseProject = new ChooseProjectWindow(stage);
-        countryInfo = new CountryWindow(stage);
-        chooseTech = new ChooseTechWindow(stage);
-        
         turnButton = new TextButton("Turn", HegeGame.skinManager.shimmerSkin);
         turnButton.setSize(HegeGame.width * 0.3f * HegeGame.uiFactor, HegeGame.height * 0.3f * HegeGame.uiFactor);
         turnButton.setPosition(HegeGame.width - turnButton.getWidth(), 0);
+        turnButton.getLabel().setStyle(HegeGame.skinManager.playingInfoStyle);
         turnButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -79,9 +63,27 @@ public class HUD {
         
         updateWhoTurnsLabel();
         
+        
+        countryButton = new CountryButton(stage);
+        countryButton.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+            
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                selectCountry();
+            }
+        });
         stage.addActor(turnButton);
         stage.addActor(whoTurnsLabel);
         stage.addActor(moveUnit);
+        provInfo = new ProvinceWindow(stage);
+        chooseProject = new ChooseProjectWindow(stage);
+        countryInfo = new CountryWindow(stage);
+        chooseTech = new ChooseTechWindow(stage);
+        
         
         knight = new Texture(Gdx.files.internal("knight-talking.png"));
         knightStage = new Image(knight);
@@ -89,7 +91,7 @@ public class HUD {
         knightStage.setSize(HegeGame.width * 0.5f, HegeGame.height);
         knightStage.setVisible(false);
         info = new Label("You have unselected projects or technology!", HegeGame.skinManager.playingInfoStyle);
-        info.setPosition((HegeGame.width-info.getWidth())/2f, HegeGame.height * 0.5f);
+        info.setPosition((HegeGame.width - info.getWidth()) / 2f, HegeGame.height * 0.5f);
         info.setVisible(false);
         stage.addActor(knightStage);
         stage.addActor(info);
@@ -158,7 +160,6 @@ public class HUD {
                 break;
         }
         stage.addActor(whoTurnsLabel);
-        
     }
     
     

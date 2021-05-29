@@ -48,7 +48,7 @@ public class ProvinceWindow extends Window {
         align(Align.top);
         getTitleLabel().setStyle(HegeGame.skinManager.playingInfoStyle1);
         
-        setSize(HegeGame.width * 0.5f / HegeGame.uiFactor, HegeGame.height * 0.8f);
+        setSize(HegeGame.width * 0.7f / HegeGame.uiFactor, HegeGame.height * 0.8f);
         setPosition((HegeGame.width - getWidth()) / 2f, (HegeGame.height - getHeight()) / 2f);
         setVisible(false);
         setResizable(true);
@@ -207,6 +207,5 @@ public class ProvinceWindow extends Window {
     
     public void hide() {
         setVisible(false);
-        projectWindow.hide();
     }
 }
