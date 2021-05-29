@@ -138,7 +138,6 @@ public class Province {
         for (int i = 0; i < 11; i++) {
             projects[i].isUnlocked = newOwner.provinceProjects[i].isUnlocked;
         }
-        gfx.update(owner.logicMain.map.batch);
     }
     
     public void selectProject(ProvinceProject provinceProject) {

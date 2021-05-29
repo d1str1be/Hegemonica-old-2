@@ -35,7 +35,6 @@ public class UnitActions {
                     province.unit = unit;
                     unit.province = province;
                     capture(unit);
-                    province.gfx.update(unit.owner.logicMain.map.batch);
                     unit.gfx.update(unit);
                     LogicMain.movingUnit = null;
                 }
@@ -45,7 +44,6 @@ public class UnitActions {
                 unit.province = province;
                 unit.movementPoints--;
                 capture(unit);
-                province.gfx.update(unit.owner.logicMain.map.batch);
                 unit.gfx.update(unit);
                 LogicMain.movingUnit = null;
             }
