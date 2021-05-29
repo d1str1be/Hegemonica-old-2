@@ -90,6 +90,7 @@ public class HUD {
         knightStage.setVisible(false);
         info = new Label("You have unselected projects or technology!", HegeGame.skinManager.playingInfoStyle);
         info.setPosition((HegeGame.width-info.getWidth())/2f, HegeGame.height * 0.5f);
+        info.setVisible(false);
         showKnight("You have unselected projects or technology!");
         stage.addActor(knightStage);
         stage.addActor(info);

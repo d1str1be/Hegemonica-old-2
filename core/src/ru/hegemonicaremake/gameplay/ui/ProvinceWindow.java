@@ -3,6 +3,7 @@ package ru.hegemonicaremake.gameplay.ui;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 
@@ -35,6 +36,7 @@ public class ProvinceWindow extends Window {
     Label lUnitThere;
     MoveUnitButton bMoveUnit;
     Label lMovementPoints;
+    TextButton bCHide;
     
     SkinManager skinManager;
     
@@ -90,6 +92,22 @@ public class ProvinceWindow extends Window {
         lP8.setStyle(HegeGame.skinManager.playingInfoStyle);
         lUnitThere = new Label("Null", skinManager.defaultSkin);
         lUnitThere.setStyle(HegeGame.skinManager.playingInfoStyle1);
+    
+    
+        bCHide = new TextButton("Hide", skinManager.shimmerSkin);
+        bCHide.getLabel().setStyle(skinManager.playingInfoStyle);
+        bCHide.setRound(true);
+        bCHide.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                hide();
+            }
+        });
         
         populationProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.FOOD);
         productionProgress = new HegeProgressBar(getWidth() * 0.4f, getHeight() * 0.05f, HegeProgressBar.ID.PRODUCTION);
@@ -130,6 +148,7 @@ public class ProvinceWindow extends Window {
         this.row();
         this.add(bMoveUnit).width(getWidth() * 0.4f).height(getHeight() * 0.1f);
         this.add(lMovementPoints);
+        this.add(bCHide).width(this.getWidth() * 0.3f).height(this.getHeight() * 0.2f);
     }
     
     public void setupProvinceInfo(final Province prov) {
